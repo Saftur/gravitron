@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "Gravitron Unlimited",
+	uint64 LibraryId = 58efd05699e4dc81,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

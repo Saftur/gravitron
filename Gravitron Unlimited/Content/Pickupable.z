@@ -1,0 +1,53 @@
+class Pickupable : ZilchComponent
+{
+    //this script cannot be on an object without FollowObject, otherwise Pickup will run into an error
+    var Pickupable : Boolean = true;
+    var ImInSomething : Boolean = false;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+         Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+    }
+
+    function OnCollisionPersisted(event : CollisionEvent)
+    {
+        if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.DefaultGroup)
+        {
+            this.ImInSomething = true;
+        }
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+    function OnCollisionEnded(event : CollisionEvent)
+    {
+        if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.DefaultGroup)
+        {
+            var contacts = this.Owner.Collider.Contacts;
+            var noObjs = true;
+            foreach( var obj in contacts)
+            {
+                if(obj.OtherObject.Collider.CollisionGroup == CollisionGroup.DefaultGroup)
+                {
+                    noObjs = false;
+                }
+            }
+            if(noObjs)
+            {
+                this.ImInSomething = false;
+            }
+        }
+    }
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.DefaultGroup)
+        {
+            //Console.WriteLine(event.OtherObject.Name);
+            //Console.WriteLine("Im in something");
+            this.ImInSomething = true;
+        }
+    }
+}

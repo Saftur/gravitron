@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "GravitySwitch",
+		uint64 ResourceId = 58f3d5319d269435,
+	},
+},

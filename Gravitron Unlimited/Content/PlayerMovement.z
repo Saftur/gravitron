@@ -1,0 +1,50 @@
+// Name: Charles
+// Date: 2/2/17
+// All content © 2017 DigiPen (USA) Corporation, all rights reserved.
+
+class PlayerMovement : ZilchComponent
+{
+    var MaxMoveSpeed : Real = 0;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.MaxMoveSpeed = this.Owner.SweptController.MaxMoveSpeed;
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var movement = Real3(0,0,0);
+        
+        //Jumping
+        if(Zero.Keyboard.KeyIsPressed(Keys.W) || Zero.Keyboard.KeyIsPressed(Keys.Up))
+        {
+            this.Owner.SweptController.Jump();
+        }
+        if(Zero.Keyboard.KeyIsReleased(Keys.W) || Zero.Keyboard.KeyIsReleased(Keys.Up))
+        {
+            this.Owner.SweptController.JumpCancel();
+        }
+        
+        //Crawling
+        if((Zero.Keyboard.KeyIsPressed(Keys.S) || Zero.Keyboard.KeyIsPressed(Keys.Down)) && this.Owner.SweptController.Grounded)
+        {
+            this.Owner.SweptController.MaxMoveSpeed = 5;        //Crawling Speed
+        }
+        if(Zero.Keyboard.KeyIsReleased(Keys.S) || Zero.Keyboard.KeyIsReleased(Keys.Down))
+        {
+            this.Owner.SweptController.MaxMoveSpeed = this.MaxMoveSpeed;
+        }
+        
+        //Left Right movemennt
+        if(Zero.Keyboard.KeyIsDown(Keys.A) || Zero.Keyboard.KeyIsDown(Keys.Left))
+        {
+            movement = Real3(-1,0,0);
+        }
+        else if(Zero.Keyboard.KeyIsDown(Keys.D) || Zero.Keyboard.KeyIsDown(Keys.Right))
+        {
+            movement = Real3(1,0,0);
+        }
+        
+        this.Owner.SweptController.Update(movement, event.Dt);
+    }
+}
