@@ -1,11 +1,20 @@
 class GravitySwitch : ZilchComponent
 {
+    var Player : Cog = null;
+    
+    var Active : Boolean = false;
+    
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        this.Player = this.Space.FindObjectByName("Player");
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if(this.Active && this.Player != null)
+        {
+            this.Player.SweptController.Gravity *= -1;
+        }
     }
 }
