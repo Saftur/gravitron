@@ -8,10 +8,14 @@ Cog =
 	{
 		string Name = "Player",
 	},
+	Archetyped = 
+	{
+		string Name = "58f3cc3555d5a99b:Player",
+	},
 	Transform = 
 	{
 		Vec3 Translation = [0, 0, 0],
-		Vec3 Scale = [1, 1, 1],
+		Vec3 Scale = [1, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -59,15 +63,15 @@ Cog =
 		Vec3 WorldUp = [0, 1, 0],
 		bool LockZAxis = false,
 		bool ForwardEvents = false,
-		float Gravity = -10,
-		float JumpSpeed = 5,
+		float Gravity = 70,
+		float JumpSpeed = 25,
 		float JumpCancelFactor = 0.5,
-		float MaxMoveSpeed = 10,
+		float MaxMoveSpeed = 12,
 		float MaxFallSpeed = 50,
 		float GroundAcceleration = 50,
-		float AirAcceleration = 10,
-		float GroundDeceleration = 50,
-		float AirDeceleration = 10,
+		float AirAcceleration = 50,
+		float GroundDeceleration = 10000,
+		float AirDeceleration = 10000,
 		float MaxGroundSlope = 45,
 		float MaxCeilingSlope = 45,
 		float GroundSnapDistance = 0.100000001,
@@ -76,5 +80,8 @@ Cog =
 		bool Jumping = false,
 		float GroundTraction = 1,
 		float AirTraction = 1,
+	},
+	PlayerMovement = 
+	{
 	},
 },

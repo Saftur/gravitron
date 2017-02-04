@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 10.9762497,
+			float Size = 13.4064131,
 		},
 		EditorCameraController = 
 		{
@@ -168,91 +168,22 @@ Level =
 			float Volume = 1,
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "58f3cc3555d5a99b:Player",
 		LinkId = 
 		{
 			uint Id = 4,
 		},
-		Named = 
-		{
-			string Name = "Player",
-		},
-		Archetyped = 
-		{
-			string Name = "58f3cc3555d5a99b:Player",
-		},
 		Transform = 
 		{
 			Vec3 Translation = [0, 0, 0],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = false,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		SweptController = 
-		{
-			Vec3 WorldUp = [0, 1, 0],
-			bool LockZAxis = false,
-			bool ForwardEvents = false,
-			float Gravity = 70,
-			float JumpSpeed = 25,
-			float JumpCancelFactor = 0.5,
-			float MaxMoveSpeed = 12,
-			float MaxFallSpeed = 50,
-			float GroundAcceleration = 50,
-			float AirAcceleration = 50,
-			float GroundDeceleration = 10000,
-			float AirDeceleration = 10000,
-			float MaxGroundSlope = 45,
-			float MaxCeilingSlope = 45,
-			float GroundSnapDistance = 0.100000001,
-			Vec3 ControllerVelocity = [0, 0, 0],
-			bool Grounded = true,
-			bool Jumping = false,
-			float GroundTraction = 1,
-			float AirTraction = 1,
-		},
-		PlayerMovement = 
-		{
+			string Name = "Player",
 		},
 	},
 	Cog = 
@@ -267,7 +198,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.16884565, 2.3874445, 0],
+			Vec3 Translation = [4.48920488, -1.43910384, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -288,6 +219,16 @@ Level =
 			bool AnimationActive = true,
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.5, 0.5, 0.5],
 		},
 	},
 	Cog = 

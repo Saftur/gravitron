@@ -26,13 +26,21 @@ class PlayerMovement : ZilchComponent
         }
         
         //Crawling
-        if((Zero.Keyboard.KeyIsPressed(Keys.S) || Zero.Keyboard.KeyIsPressed(Keys.Down)) && this.Owner.SweptController.Grounded)
+        if((Zero.Keyboard.KeyIsDown(Keys.S) || Zero.Keyboard.KeyIsDown(Keys.Down)) && this.Owner.SweptController.Grounded)
         {
             this.Owner.SweptController.MaxMoveSpeed = 5;        //Crawling Speed
+            //Crawling Sprite
+            this.Owner.Sprite.Color = Real4(1,0,0,1);
+            this.Owner.BoxCollider.Size = Real3(2, 0.5, 1);
+            this.Owner.BoxCollider.Offset = Real3(0, -0.5, 0);
         }
         if(Zero.Keyboard.KeyIsReleased(Keys.S) || Zero.Keyboard.KeyIsReleased(Keys.Down))
         {
             this.Owner.SweptController.MaxMoveSpeed = this.MaxMoveSpeed;
+            //Walking Sprite
+            this.Owner.Sprite.Color = Real4(1,1,1,1);
+            this.Owner.BoxCollider.Size = Real3(1, 1, 1);
+            this.Owner.BoxCollider.Offset = Real3(0, 0, 0);
         }
         
         //Left Right movemennt
