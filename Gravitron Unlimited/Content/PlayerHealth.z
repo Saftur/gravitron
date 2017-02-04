@@ -1,0 +1,31 @@
+class PlayerHealth : ZilchComponent
+{
+    [Property]
+    var Health : Integer = 4;
+    
+    [Property]
+    var RespawnPoint : Real3 = Real3(0,0,0);
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(this.Health <= 0)
+        {
+            //Death Animation
+            this.Reset();
+        }
+    }
+    function TakeDamage(damage : Integer)
+    {
+        this.Health -= damage;
+    }
+    function Reset()
+    {
+        this.Health = 4;
+        this.Owner.Transform.Translation = this.RespawnPoint;
+    }
+}

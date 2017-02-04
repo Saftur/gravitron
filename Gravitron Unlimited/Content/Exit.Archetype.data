@@ -6,16 +6,12 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "GravitySwitch",
-	},
-	Archetyped = 
-	{
-		string Name = "5849527ca9ca868c:GravitySwitch",
+		string Name = "Exit",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [8.48099709, -2.48200369, 0],
-		Vec3 Scale = [1, 1, 1],
+		Vec3 Translation = [4.8564291, 3.43973947, 0],
+		Vec3 Scale = [2.0142405, 3.06345272, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -24,7 +20,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.329411685, 0.206250012, 0.625, 1],
+		Vec4 Color = [0.30992499, 0.805000007, 0.329727978, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -45,10 +41,5 @@ Cog =
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.5, 0.5, 0.5],
-	},
-	Switch = 
-	{
-		bool Active = false,
-		bool Gravity = true,
 	},
 },

@@ -15,6 +15,10 @@ class PlayerMovement : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if(this.Owner.PlayerHealth.Health <= 0)
+        {
+            return;
+        }
         var movement = Real3(0,0,0);
         
         //Jumping

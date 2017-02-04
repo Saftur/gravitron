@@ -3,6 +3,7 @@ class PlayerInteraction : ZilchComponent
     var CurrentItem : Cog = null;
     var CurrentSwitch : Cog = null;
     var HoldingItem : Boolean = false;
+    var IMadeIt : Boolean = false; //reached exit
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -12,12 +13,21 @@ class PlayerInteraction : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        if(this.Owner.PlayerHealth.Health <= 0)
+        {
+            return;
+        }
         if(Zero.Keyboard.KeyIsPressed(Keys.Space)) //OBJECT INTERACTIONS
         {
-            //Switches
-            if(this.CurrentSwitch != null)
+            //Exit
+            if(this.IMadeIt)
             {
-                Console.WriteLine("`this.CurrentSwitch.Sprite.Color`");
+                //NextLevel
+                this.GameSession.Quit();
+            }
+            //Switches
+            else if(this.CurrentSwitch != null)
+            {
                 //Gravity
                 if(this.CurrentSwitch.Switch.Gravity)
                 {
@@ -25,16 +35,17 @@ class PlayerInteraction : ZilchComponent
                     foreach(var s in switches)
                     {
                         //Changing the different switch states
-                        if(s.Sprite.Color == Real4(84.0/255 , 53.0/255, 159.0/255, 1))
+                        Console.WriteLine("`s.Sprite.Color`");
+                        if(s.Sprite.Color == Real4(0.329412, 0.20625, 0.625, 1))
                         {
                             s.Sprite.Color = Real4(24, 86, 159, 1);
                         }
                         else
                         {
-                            s.Sprite.Color = Real4(84.0/255 , 53.0/255, 159.0/255, 1);
+                            s.Sprite.Color = Real4(0.329412, 0.20625, 0.625, 1);
                         }
                     }
-                    this.Owner.SweptController.Gravity *= -1;
+                    this.Owner.SweptController.WorldUp *= Real3(1,-1,1);
                 }
             }
             //Picking up and putting down objects
@@ -65,19 +76,26 @@ class PlayerInteraction : ZilchComponent
     }
     function OnCollisionStarted(event : CollisionEvent)
     {
-       
+        if(event.OtherObject.Name == "Exit")
+        {
+            this.IMadeIt = true;
+        }
         if(event.OtherObject.Pickupable != null && event.OtherObject.Pickupable.Pickupable && this.CurrentItem == null)
         {
-                this.CurrentItem = event.OtherObject;
+            this.CurrentItem = event.OtherObject;
         }
         if(event.OtherObject.Switch != null)
         {
             this.CurrentSwitch = event.OtherObject;
+            Console.WriteLine("`this.CurrentSwitch.Sprite.Color`");
         }
     }
     function OnCollisionEnded(event : CollisionEvent)
     {
-        
+        if(event.OtherObject.Name == "Exit")
+        {
+            this.IMadeIt = false;
+        }
         if(event.OtherObject.Pickupable != null && event.OtherObject.Pickupable.Pickupable && this.CurrentItem != null)
         {
             this.CurrentItem = null;
