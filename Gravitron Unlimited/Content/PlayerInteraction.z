@@ -1,6 +1,7 @@
 class PlayerInteraction : ZilchComponent
 {
     var CurrentItem : Cog = null;
+    var CurrentSwitch : Cog = null;
     var HoldingItem : Boolean = false;
     function Initialize(init : CogInitializer)
     {
@@ -11,28 +12,55 @@ class PlayerInteraction : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if(Zero.Keyboard.KeyIsPressed(Keys.Space) && this.CurrentItem != null && !this.HoldingItem)
+        if(Zero.Keyboard.KeyIsPressed(Keys.Space)) //OBJECT INTERACTIONS
         {
-            this.CurrentItem.FollowObject.ObjectToFollow.Cog = this.Owner;
-            this.HoldingItem = true;
-        }
-        else if(Zero.Keyboard.KeyIsPressed(Keys.Space) && this.CurrentItem != null)
-        {
-            var dad = this.Owner.FollowObject.ObjectToFollow.Cog;
-            
-            if(this.CurrentItem.Pickupable.ImInSomething)
+            //Switches
+            if(this.CurrentSwitch != null)
             {
-                var x = dad.Transform.Translation.X - this.CurrentItem.Transform.Translation.X;
-                if(x < 0)
-                    x = -1;
-                else
-                    x = 2;
-                    Console.WriteLine("Released");
-                this.CurrentItem.Transform.Translation += Real3(x, 0, 0);
+                Console.WriteLine("`this.CurrentSwitch.Sprite.Color`");
+                //Gravity
+                if(this.CurrentSwitch.Switch.Gravity)
+                {
+                    var switches = this.Space.FindAllObjectsByName("GravitySwitch");
+                    foreach(var s in switches)
+                    {
+                        //Changing the different switch states
+                        if(s.Sprite.Color == Real4(84.0/255 , 53.0/255, 159.0/255, 1))
+                        {
+                            s.Sprite.Color = Real4(24, 86, 159, 1);
+                        }
+                        else
+                        {
+                            s.Sprite.Color = Real4(84.0/255 , 53.0/255, 159.0/255, 1);
+                        }
+                    }
+                    this.Owner.SweptController.Gravity *= -1;
+                }
             }
-            this.CurrentItem.FollowObject.ObjectToFollow.Cog = null;
-            this.CurrentItem.RigidBody.Velocity = dad.RigidBody.Velocity;
-            this.HoldingItem = false;
+            //Picking up and putting down objects
+            else if(this.CurrentItem != null && !this.HoldingItem)
+            {
+                this.CurrentItem.FollowObject.ObjectToFollow.Cog = this.Owner;
+                this.HoldingItem = true;
+            }
+            else if(this.CurrentItem != null)
+            {
+                var dad = this.Owner.FollowObject.ObjectToFollow.Cog;
+                
+                if(this.CurrentItem.Pickupable.ImInSomething)
+                {
+                    var x = dad.Transform.Translation.X - this.CurrentItem.Transform.Translation.X;
+                    if(x < 0)
+                        x = -1;
+                    else
+                        x = 2;
+                        Console.WriteLine("Released");
+                    this.CurrentItem.Transform.Translation += Real3(x, 0, 0);
+                }
+                this.CurrentItem.FollowObject.ObjectToFollow.Cog = null;
+                this.CurrentItem.RigidBody.Velocity = dad.RigidBody.Velocity;
+                this.HoldingItem = false;
+            }
         }
     }
     function OnCollisionStarted(event : CollisionEvent)
@@ -42,6 +70,10 @@ class PlayerInteraction : ZilchComponent
         {
                 this.CurrentItem = event.OtherObject;
         }
+        if(event.OtherObject.Switch != null)
+        {
+            this.CurrentSwitch = event.OtherObject;
+        }
     }
     function OnCollisionEnded(event : CollisionEvent)
     {
@@ -49,6 +81,10 @@ class PlayerInteraction : ZilchComponent
         if(event.OtherObject.Pickupable != null && event.OtherObject.Pickupable.Pickupable && this.CurrentItem != null)
         {
             this.CurrentItem = null;
+        }
+        if(event.OtherObject.Switch != null)
+        {
+            this.CurrentSwitch = null;
         }
     }
 }

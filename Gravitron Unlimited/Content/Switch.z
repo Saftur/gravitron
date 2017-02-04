@@ -1,0 +1,13 @@
+class Switch : ZilchComponent
+{
+    [Property]
+    var Active : Boolean = false;
+    
+    [Property]
+    var Gravity : Boolean = true;
+    
+    /*
+    Add more Properties for any additional switch types, code for what the switch does should be added to 
+    "PlayerInteraction"
+    */
+}

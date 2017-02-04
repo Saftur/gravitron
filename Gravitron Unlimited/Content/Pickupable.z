@@ -5,9 +5,9 @@ class Pickupable : ZilchComponent
     var ImInSomething : Boolean = false;
     function Initialize(init : CogInitializer)
     {
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
-         Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
+        Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
     }
 
@@ -17,10 +17,6 @@ class Pickupable : ZilchComponent
         {
             this.ImInSomething = true;
         }
-    }
-
-    function OnLogicUpdate(event : UpdateEvent)
-    {
     }
     function OnCollisionEnded(event : CollisionEvent)
     {
