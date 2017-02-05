@@ -6,11 +6,16 @@ class PlayerMovement : ZilchComponent
 {
     var MaxMoveSpeed : Real = 0;
     var CeilingDistance : Real = 0;
+    var CrawlOffset : Real3 = Real3(0, -0.25, 0);
+    
+    var Hitbox : Cog = null;    //For holding items
+    var Displacement : Real3 = Real3(1.5,0,0);
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         this.MaxMoveSpeed = this.Owner.SweptController.MaxMoveSpeed;
+        this.Hitbox = this.Space.FindObjectByName("Hitbox");
     }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -39,7 +44,7 @@ class PlayerMovement : ZilchComponent
             
                 this.Owner.Sprite.Color = Real4(1,0,0,1);
                 this.Owner.BoxCollider.Size = Real3(2, 0.5, 1);
-                this.Owner.BoxCollider.Offset = Real3(0, -0.25, 0);
+                this.Owner.BoxCollider.Offset = this.CrawlOffset;
         }
         if(Zero.Keyboard.KeyIsReleased(Keys.S) || Zero.Keyboard.KeyIsReleased(Keys.Down))
         {
@@ -55,10 +60,20 @@ class PlayerMovement : ZilchComponent
         if(Zero.Keyboard.KeyIsDown(Keys.A) || Zero.Keyboard.KeyIsDown(Keys.Left))
         {
             movement = Real3(-1,0,0);
+            this.Displacement = Real3(-1.5, 0, 0);
+            if(this.Hitbox.PlayerInteraction.CurrentItem != null)
+            {
+                this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
+            }
         }
         else if(Zero.Keyboard.KeyIsDown(Keys.D) || Zero.Keyboard.KeyIsDown(Keys.Right))
         {
             movement = Real3(1,0,0);
+            this.Displacement = Real3(1.5, 0, 0);
+            if(this.Hitbox.PlayerInteraction.CurrentItem != null)
+            {
+                this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
+            }
         }
         
         this.Owner.SweptController.Update(movement, event.Dt);

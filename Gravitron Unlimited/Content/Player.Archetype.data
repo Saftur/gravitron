@@ -63,10 +63,10 @@ Cog =
 		int Health = 4,
 		Vec3 RespawnPoint = [0, 0, 0],
 	},
-	PlayerMovement = 
+	PlayerInteraction = 
 	{
 	},
-	PlayerInteraction = 
+	PlayerMovement = 
 	{
 	},
 	SweptController = 
