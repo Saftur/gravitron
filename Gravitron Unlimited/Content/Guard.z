@@ -1,0 +1,39 @@
+class Guard : ZilchComponent
+{
+    var Health : Integer = 0;
+    
+    [Property]
+    var LeftPoint : Real3 = Real3(0,0,0);
+    [Property]
+    var RightPoint : Real3 = Real3(1,0,0);
+    [Property]
+    var Speed : Real3 = Real3(5,0,0);
+    
+    
+    [Property]
+    var Type : Integer = 1; //Differentiate types of guards here
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        if(this.Type == 1)
+        {
+            this.Health = 2;
+        }
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //Patrolling
+        var pos = this.Owner.Transform.Translation;
+        if(pos.X > this.RightPoint.X)
+        {
+            this.Speed = Real3(-5,0,0);
+        }
+        else if(pos.X < this.LeftPoint.X)
+        {
+            this.Speed = Real3(5,0,0);
+        }
+        
+    }
+}
