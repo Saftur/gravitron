@@ -11,11 +11,14 @@ class PlayerMovement : ZilchComponent
     var Hitbox : Cog = null;    //For holding items
     var Displacement : Real3 = Real3(1.5,0,0);
     
+    var Controls : Input;
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         this.MaxMoveSpeed = this.Owner.SweptController.MaxMoveSpeed;
         this.Hitbox = this.Space.FindObjectByName("Hitbox");
+        this.Controls = new Input();
     }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -27,17 +30,17 @@ class PlayerMovement : ZilchComponent
         var movement = Real3(0,0,0);
         
         //Jumping
-        if(Zero.Keyboard.KeyIsPressed(Keys.W) || Zero.Keyboard.KeyIsPressed(Keys.Up))
+        if(this.Controls.KeyPressed(2))
         {
             this.Owner.SweptController.Jump();
         }
-        if(Zero.Keyboard.KeyIsReleased(Keys.W) || Zero.Keyboard.KeyIsReleased(Keys.Up))
+        if(this.Controls.KeyReleased(2))
         {
             this.Owner.SweptController.JumpCancel();
         }
         
         //Crawling
-        if((Zero.Keyboard.KeyIsDown(Keys.S) || Zero.Keyboard.KeyIsDown(Keys.Down)) && this.Owner.SweptController.Grounded)
+        if(this.Controls.KeyPressed(3) && this.Owner.SweptController.Grounded)
         {
             this.Owner.SweptController.MaxMoveSpeed = 5;        //Crawling Speed
             //Crawling Sprite
@@ -46,7 +49,7 @@ class PlayerMovement : ZilchComponent
                 this.Owner.BoxCollider.Size = Real3(2, 0.5, 1);
                 this.Owner.BoxCollider.Offset = this.CrawlOffset;
         }
-        if(Zero.Keyboard.KeyIsReleased(Keys.S) || Zero.Keyboard.KeyIsReleased(Keys.Down))
+        if(this.Controls.KeyReleased(3))
         {
             this.Owner.SweptController.MaxMoveSpeed = this.MaxMoveSpeed;
             //Walking Sprite
@@ -56,26 +59,131 @@ class PlayerMovement : ZilchComponent
                 this.Owner.BoxCollider.Offset = Real3(0, 0, 0);
         }
         
-        //Left Right movemennt
-        if(Zero.Keyboard.KeyIsDown(Keys.A) || Zero.Keyboard.KeyIsDown(Keys.Left))
+        //Left Right movement
+        if(this.Controls.KeyDown(0))
         {
-            movement = Real3(-1,0,0);
+            movement.X += -1;
             this.Displacement = Real3(-1.5, 0, 0);
             if(this.Hitbox.PlayerInteraction.CurrentItem != null)
             {
                 this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
             }
         }
-        else if(Zero.Keyboard.KeyIsDown(Keys.D) || Zero.Keyboard.KeyIsDown(Keys.Right))
+        if(this.Controls.KeyDown(1))
         {
-            movement = Real3(1,0,0);
+            movement.X += 1;
             this.Displacement = Real3(1.5, 0, 0);
             if(this.Hitbox.PlayerInteraction.CurrentItem != null)
             {
                 this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
             }
         }
+        if(this.Controls.Pad.LeftStick.X != 0)
+        {
+            movement.X += this.Controls.Pad.LeftStick.X;
+        }
         
         this.Owner.SweptController.Update(movement, event.Dt);
+    }
+}
+
+class Input
+{
+    var Keys : Array[Array[Integer]];
+    var IsKey : Array[Array[Boolean]];
+    
+    var Pad : Gamepad;
+    
+    constructor()
+    {
+        this.Pad = Zero.Gamepads.GetGamePad(0);
+        this.Keys = new Array[Array[Integer]]();
+        this.IsKey = new Array[Array[Boolean]]();
+        for (var i=0; i<4; i+=1) {
+            this.Keys.Add(new Array[Integer]());
+            this.IsKey.Add(new Array[Boolean]());
+        }
+        // Left keys
+        this.AddKey(0, Keys.Left, true);
+        //this.Keys[0].Add(Keys.Left);
+        //this.IsKey[0].Add(true);
+        this.AddKey(0, Buttons.DpadLeft, false);
+        //this.Keys[0].Add(Buttons.DpadLeft);
+        //this.IsKey[0].Add(false);
+        // Right keys
+        this.Keys[1].Add(Keys.Right);
+        this.IsKey[1].Add(true);
+        this.Keys[1].Add(Buttons.DpadRight);
+        this.IsKey[1].Add(false);
+        // Jump keys
+        this.Keys[2].Add(Keys.Up);
+        this.IsKey[2].Add(true);
+        this.Keys[2].Add(Buttons.A);
+        this.IsKey[2].Add(false);
+        this.Keys[2].Add(Buttons.DpadUp);
+        this.IsKey[2].Add(false);
+        // Crawl keys
+        this.Keys[3].Add(Keys.Down);
+        this.IsKey[3].Add(true);
+        this.Keys[3].Add(Buttons.DpadDown);
+        this.IsKey[3].Add(false);
+    }
+    
+    function AddKey(control : Integer, key : Integer, isKey : Boolean)
+    {
+        this.Keys[control].Add(key);
+        this.IsKey[control].Add(isKey);
+    }
+    
+    function KeyDown(key : Integer) : Boolean
+    {
+        for (var i=0; i<this.IsKey[key].Count; i+=1) {
+            if (this.IsKey[key][i]) {
+                if (Zero.Keyboard.KeyIsDown(this.Keys[key][i] as Keys))
+                    return true;
+            } else if (this.Pad.IsActive) {
+                if (this.Pad.IsButtonHeld(this.Keys[key][i]))
+                    return true;
+            }
+        }
+        return false;
+    }
+    
+    function KeyPressed(key : Integer) : Boolean
+    {
+        for (var i=0; i<this.IsKey[key].Count; i+=1) {
+            if (this.IsKey[key][i]) {
+                if (Zero.Keyboard.KeyIsPressed(this.Keys[key][i] as Keys))
+                    return true;
+            } else if (this.Pad.IsActive) {
+                if (this.Pad.IsButtonPressed(this.Keys[key][i]))
+                    return true;
+            }
+        }
+        return false;
+    }
+    
+    function KeyReleased(key : Integer) : Boolean
+    {
+        for (var i=0; i<this.IsKey[key].Count; i+=1) {
+            if (this.IsKey[key][i]) {
+                if (Zero.Keyboard.KeyIsReleased(this.Keys[key][i] as Keys))
+                    return true;
+            } else if (this.Pad.IsActive) {
+                if (this.Pad.IsButtonReleased(this.Keys[key][i]))
+                    return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    function SwitchPad(num : Integer) {
+        if (Zero.Gamepads.GetGamePad(num).IsActive)
+            this.Pad = Zero.Gamepads.GetGamePad(num);
+    }
+    
+    function PadActive() : Boolean {
+        return this.Pad.IsActive;
     }
 }
