@@ -8,7 +8,7 @@ class PlayerMovement : ZilchComponent
     var CeilingDistance : Real = 0;
     var CrawlOffset : Real3 = Real3(0, -0.25, 0);
     
-    var Hitbox : Cog = null;    //For holding items
+    var Grabbox : Cog = null;    //For holding items
     var Displacement : Real3 = Real3(1.5,0,0);
     
     var Controls : Input;
@@ -17,7 +17,7 @@ class PlayerMovement : ZilchComponent
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         this.MaxMoveSpeed = this.Owner.SweptController.MaxMoveSpeed;
-        this.Hitbox = this.Space.FindObjectByName("Hitbox");
+        this.Grabbox = this.Space.FindObjectByName("Grabbox");
         this.Controls = new Input();
     }
 
@@ -68,24 +68,24 @@ class PlayerMovement : ZilchComponent
             if(this.Controls.KeyDown(0))
             {
                 movement.X += -1;
-                //this.Displacement = Real3(-1.5, 0, 0);
-                /*if(this.Hitbox.PlayerInteraction.CurrentItem != null)
+                this.Displacement = Real3(-1.5, 0, 0);
+                this.Grabbox.FollowObject.Displacement = Real3(-0.3, 0, -0.1);
+                if(this.Grabbox.PlayerInteraction.CurrentItem != null)
                 {
-                    this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
-                }*/
+                    this.Grabbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
+                }
             }
             if(this.Controls.KeyDown(1))
             {
                 movement.X += 1;
-                //this.Displacement = Real3(1.5, 0, 0);
-                /*if(this.Hitbox.PlayerInteraction.CurrentItem != null)
+                this.Displacement = Real3(1.5, 0, 0);
+                this.Grabbox.FollowObject.Displacement = Real3(0.3, 0, -0.1);
+                if(this.Grabbox.PlayerInteraction.CurrentItem != null)
                 {
-                    this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
-                }*/
+                    this.Grabbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
+                }
             }
         }
-        
-        //Console.WriteLine(movement);
         
         this.Owner.SweptController.Update(movement, event.Dt);
     }

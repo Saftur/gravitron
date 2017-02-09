@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [2.78730011, 4.38727522, 50],
+			Vec3 Translation = [0, 0, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.1034374,
+			float Size = 16.37463,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [2.78730011, 4.38727522, -3.73025841e-07],
+			Vec3 LookTarget = [0, 0, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -203,7 +203,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 0],
+			Vec3 Translation = [-0.480771959, -1.92308664, 0],
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -231,7 +231,7 @@ Level =
 			bool SendsMessages = true,
 			bool Seamless = true,
 			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			string SerializedGroupName = "58fbc55275a025d1:Player",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 0.5],
 		},
@@ -259,7 +259,7 @@ Level =
 		{
 			Vec3 WorldUp = [0, 1, 0],
 			bool LockZAxis = false,
-			bool ForwardEvents = false,
+			bool ForwardEvents = true,
 			float Gravity = 50,
 			float JumpSpeed = 20,
 			float JumpCancelFactor = 0.5,
@@ -277,6 +277,9 @@ Level =
 			bool Jumping = false,
 			float GroundTraction = 1,
 			float AirTraction = 1,
+		},
+		CustomCollisionEventTracker = 
+		{
 		},
 		Hierarchy = 
 		{
@@ -298,7 +301,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [17.1045113, -1.60035276, 0],
+			Vec3 Translation = [2.88107491, 5.71572351, 0],
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -335,7 +338,7 @@ Level =
 			bool Static = false,
 			bool Asleep = false,
 			bool Kinematic = false,
-			bool RotationLocked = false,
+			bool RotationLocked = true,
 			bool Mode2D = true,
 			bool AllowSleep = true,
 			bool Inherit2DMode = true,
@@ -354,16 +357,16 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Hitbox",
+			string Name = "Grabbox",
 		},
 		Archetyped = 
 		{
-			string Name = "584bb8ed28240fd1:Hitbox",
+			string Name = "584bb8ed28240fd1:Grabbox",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-6.91304684, 3.08734894, 0],
-			Vec3 Scale = [1.41139269, 2, 1],
+			Vec3 Translation = [-6.07188511, 0.844248891, 0],
+			Vec3 Scale = [1.60000002, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -384,13 +387,25 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = true,
+			bool RotationLocked = false,
+			bool Mode2D = true,
+			bool AllowSleep = true,
+			bool Inherit2DMode = true,
+			Vec3 Velocity = [52.5726051, -140.193756, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
+		},
 		BoxCollider = 
 		{
 			bool Ghost = true,
 			bool SendsMessages = true,
 			bool Seamless = true,
 			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			string SerializedGroupName = "58fbc52e7007cf67:Grabbox",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 0.5],
 		},
@@ -411,7 +426,7 @@ Level =
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
 			},
-			Vec3 Displacement = [0, 0, 0],
+			Vec3 Displacement = [0.300000012, 0, -0.100000001],
 		},
 		PlayerInteraction = 
 		{
@@ -590,7 +605,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "GravitySwitch1",
+			string Name = "GravitySwitch",
 		},
 	},
 	Cog = 
