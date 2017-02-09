@@ -5,8 +5,8 @@ class OurOwnSweptController : ZilchComponent
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
-    function Update()
+    function Update(v : Real3)
     {
-        
+        this.Owner.RigidBody.Velocity = v;
     }
 }
