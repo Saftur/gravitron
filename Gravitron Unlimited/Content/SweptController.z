@@ -238,7 +238,7 @@ class SweptController : ZilchComponent
         // Removes any movement given along the WorldUp axis.
         movement = movement - Math.Project(movement, this.WorldUp);
         // User not required to pass a normalized direction.
-        movement = Math.Normalize(movement);
+        //movement = Math.Normalize(movement);
         
         // Decompose velocity directions so that movement logic
         // can be independent of jumping/falling.

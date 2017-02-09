@@ -44,44 +44,48 @@ class PlayerMovement : ZilchComponent
         {
             this.Owner.SweptController.MaxMoveSpeed = 5;        //Crawling Speed
             //Crawling Sprite
-            
-                this.Owner.Sprite.Color = Real4(1,0,0,1);
-                this.Owner.BoxCollider.Size = Real3(2, 0.5, 1);
-                this.Owner.BoxCollider.Offset = this.CrawlOffset;
+            this.Owner.Sprite.Color = Real4(1,0,0,1);
+            this.Owner.BoxCollider.Size = Real3(2, 0.5, 1);
+            this.Owner.BoxCollider.Offset = this.CrawlOffset;
         }
         if(this.Controls.KeyReleased(3))
         {
             this.Owner.SweptController.MaxMoveSpeed = this.MaxMoveSpeed;
             //Walking Sprite
-            
-                this.Owner.Sprite.Color = Real4(1,1,1,1);
-                this.Owner.BoxCollider.Size = Real3(1, 1, 1);
-                this.Owner.BoxCollider.Offset = Real3(0, 0, 0);
+            this.Owner.Sprite.Color = Real4(1,1,1,1);
+            this.Owner.BoxCollider.Size = Real3(1, 1, 1);
+            this.Owner.BoxCollider.Offset = Real3(0, 0, 0);
         }
         
         //Left Right movement
-        if(this.Controls.KeyDown(0))
-        {
-            movement.X += -1;
-            this.Displacement = Real3(-1.5, 0, 0);
-            if(this.Hitbox.PlayerInteraction.CurrentItem != null)
-            {
-                this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
-            }
-        }
-        if(this.Controls.KeyDown(1))
-        {
-            movement.X += 1;
-            this.Displacement = Real3(1.5, 0, 0);
-            if(this.Hitbox.PlayerInteraction.CurrentItem != null)
-            {
-                this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
-            }
-        }
+        
         if(this.Controls.Pad.LeftStick.X != 0)
         {
             movement.X += this.Controls.Pad.LeftStick.X;
         }
+        else
+        {
+            if(this.Controls.KeyDown(0))
+            {
+                movement.X += -1;
+                //this.Displacement = Real3(-1.5, 0, 0);
+                /*if(this.Hitbox.PlayerInteraction.CurrentItem != null)
+                {
+                    this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
+                }*/
+            }
+            if(this.Controls.KeyDown(1))
+            {
+                movement.X += 1;
+                //this.Displacement = Real3(1.5, 0, 0);
+                /*if(this.Hitbox.PlayerInteraction.CurrentItem != null)
+                {
+                    this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
+                }*/
+            }
+        }
+        
+        //Console.WriteLine(movement);
         
         this.Owner.SweptController.Update(movement, event.Dt);
     }
@@ -120,6 +124,7 @@ class Input
         this.AddKey(3, Keys.Down, true);
         this.AddKey(3, Keys.S, true);
         this.AddKey(3, Buttons.DpadDown, false);
+        this.AddKey(3, Buttons.RightShoulder, false);
     }
     
     function AddKey(control : Integer, key : Integer, isKey : Boolean)
