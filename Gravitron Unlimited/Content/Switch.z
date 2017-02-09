@@ -6,6 +6,13 @@ class Switch : ZilchComponent
     [Property]
     var Gravity : Boolean = true;
     
+    function Initialize(init : CogInitializer) //Because colors in the editor don't match code
+    {
+        if(this.Gravity)
+        {
+            this.Owner.Sprite.Color = Real4(0.329412, 0.20625, 0.625, 1);
+        }
+    }
     /*
     Add more Properties for any additional switch types, code for what the switch does should be added to 
     "PlayerInteraction"

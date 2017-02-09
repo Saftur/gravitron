@@ -2,7 +2,7 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "Hitbox",
+		string Name = "Grabbox",
 		uint64 ResourceId = 584bb8ed28240fd1,
 		string LoaderType = "Cog",
 		uint Version = 0,

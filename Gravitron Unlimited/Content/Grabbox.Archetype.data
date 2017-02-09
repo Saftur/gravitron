@@ -6,15 +6,15 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Hitbox",
+		string Name = "Grabbox",
 	},
 	Archetyped = 
 	{
-		string Name = "584bb8ed28240fd1:Hitbox",
+		string Name = "584bb8ed28240fd1:Grabbox",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-7.3259573, 4.08228302, 0],
+		Vec3 Translation = [-6.91304684, 3.08734894, 0],
 		Vec3 Scale = [1.41139269, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -63,7 +63,7 @@ Cog =
 			CogPathPreference PathPreference1 = SpaceRelative,
 			CogPathPreference PathPreference2 = Absolute,
 		},
-		Vec3 Displacement = [0, 0, 0],
+		Vec3 Displacement = [0, 0, -0.100000001],
 	},
 	PlayerInteraction = 
 	{

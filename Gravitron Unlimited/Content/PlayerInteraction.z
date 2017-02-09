@@ -22,8 +22,6 @@ class PlayerInteraction : ZilchComponent
         }
         if(Zero.Keyboard.KeyIsPressed(Keys.Space)) //OBJECT INTERACTIONS
         {
-            Console.WriteLine("`this.Space.FindObjectByName("GravitySwitch1").Transform.Translation`");
-            Console.WriteLine("`this.Owner.Transform.Translation` \n WTF");
             //Exit
             if(this.IMadeIt)
             {
@@ -65,7 +63,6 @@ class PlayerInteraction : ZilchComponent
             }
             else if(this.CurrentItem != null)
             {
-                Console.WriteLine("HI");
                 var dad = this.Parent;
                 
                 if(this.CurrentItem.Pickupable.ImInSomething)
