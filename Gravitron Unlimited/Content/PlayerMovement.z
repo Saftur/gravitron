@@ -68,20 +68,20 @@ class PlayerMovement : ZilchComponent
             if(this.Controls.KeyDown(0))
             {
                 movement.X += -1;
-                //this.Displacement = Real3(-1.5, 0, 0);
-                /*if(this.Hitbox.PlayerInteraction.CurrentItem != null)
+                this.Displacement = Real3(-1.5, 0, 0);
+                if(this.Hitbox.PlayerInteraction.CurrentItem != null)
                 {
                     this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
-                }*/
+                }
             }
             if(this.Controls.KeyDown(1))
             {
                 movement.X += 1;
-                //this.Displacement = Real3(1.5, 0, 0);
-                /*if(this.Hitbox.PlayerInteraction.CurrentItem != null)
+                this.Displacement = Real3(1.5, 0, 0);
+                if(this.Hitbox.PlayerInteraction.CurrentItem != null)
                 {
                     this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
-                }*/
+                }
             }
         }
         

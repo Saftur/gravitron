@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [-1.71610498, 5.28560448, 0],
 		Vec3 Scale = [1, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -63,9 +63,6 @@ Cog =
 		int Health = 4,
 		Vec3 RespawnPoint = [0, 0, 0],
 	},
-	PlayerInteraction = 
-	{
-	},
 	PlayerMovement = 
 	{
 	},
@@ -74,15 +71,15 @@ Cog =
 		Vec3 WorldUp = [0, 1, 0],
 		bool LockZAxis = false,
 		bool ForwardEvents = false,
-		float Gravity = 70,
-		float JumpSpeed = 25,
+		float Gravity = 50,
+		float JumpSpeed = 20,
 		float JumpCancelFactor = 0.5,
 		float MaxMoveSpeed = 12,
 		float MaxFallSpeed = 50,
 		float GroundAcceleration = 50,
-		float AirAcceleration = 50,
-		float GroundDeceleration = 10000,
-		float AirDeceleration = 10000,
+		float AirAcceleration = 40,
+		float GroundDeceleration = 75,
+		float AirDeceleration = 50,
 		float MaxGroundSlope = 45,
 		float MaxCeilingSlope = 45,
 		float GroundSnapDistance = 0.100000001,
@@ -94,37 +91,5 @@ Cog =
 	},
 	Hierarchy = 
 	{
-		Cog = 
-		{
-			LinkId = 
-			{
-				uint Id = 2,
-			},
-			Named = 
-			{
-				string Name = "Camera",
-			},
-			Transform = 
-			{
-				Vec3 Translation = [0, 0, 40],
-				Vec3 Scale = [1, 0.5, 1],
-				Quat Rotation = [0, 0, 0, 1],
-			},
-			Camera = 
-			{
-				ProjectionMode ProjectionMode = Orthographic,
-				Facing Facing = NegativeZ,
-				CameraTransparentSort TransparentSort = InheritFromSpace,
-				float FieldOfView = 45,
-				float NearPlane = 0.5,
-				float FarPlane = 200,
-				float Size = 20,
-			},
-			SoundListener = 
-			{
-				bool Active = true,
-				float Volume = 1,
-			},
-		},
 	},
 },
