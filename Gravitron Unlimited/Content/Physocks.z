@@ -1,0 +1,57 @@
+class Physocks : ZilchComponent
+{
+    [Dependency]
+    var Trans : Transform = null;
+    [Dependency]
+    var RBody : RigidBody = null;
+    
+    [Property]
+    var Speed : Real = 5;
+    
+    [Property]
+    var JumpStrength : Real = 15;
+    function Initialize(init : CogInitializer)
+    {
+    }
+
+    function Update(movement : Real3)
+    {
+        var yvel = this.RBody.Velocity.Y;
+        this.RBody.Velocity = movement*Real3(this.Speed,1,1)+Real3(0, yvel, 0);
+        //Console.WriteLine("`this.Trans.Translation`");
+        //Console.WriteLine(this.Grounded());
+    }
+    
+    function Jump()
+    {
+        var tmp = this.RBody.Velocity;
+        tmp.Y = this.JumpStrength;
+        this.RBody.Velocity = tmp;
+    }
+    
+    function Grounded() : Boolean
+    {
+        var pos = this.Trans.Translation;
+        var width = this.Trans.Scale.X;
+        var ray = Ray();
+        ray.Direction = Real3(0, -1, 0);
+        ray.Start = pos;
+        if (this.CastRay(ray)) return true;
+        ray.Start = pos + Real3(width/2, 0, 0);
+        if (this.CastRay(ray)) return true;
+        ray.Start = pos + Real3(-width/2, 0, 0);
+        if (this.CastRay(ray)) return true;
+        return false;
+    }
+    
+    function CastRay(ray : Ray) : Boolean
+    {
+        var objHit = this.Space.PhysicsSpace.CastRayFirst(ray);
+        if(objHit != null && objHit.Distance <= this.Trans.Scale.Y/2)
+        {
+            //Console.WriteLine(objHit.Distance);
+            return true;
+        }
+        return false;
+    }
+}

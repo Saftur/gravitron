@@ -63,7 +63,7 @@ Cog =
 			CogPathPreference PathPreference1 = SpaceRelative,
 			CogPathPreference PathPreference2 = Absolute,
 		},
-		Vec3 Displacement = [0, 0, -0.100000001],
+		Vec3 Displacement = [0, 0, 0],
 	},
 	PlayerInteraction = 
 	{

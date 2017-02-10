@@ -2,7 +2,7 @@ TextContent =
 {
 	ZilchScriptBuilder = 
 	{
-		string Name = "OurOwnSweptController",
+		string Name = "Physocks",
 		uint64 ResourceId = 58fbbc8e2fd0becb,
 	},
 },

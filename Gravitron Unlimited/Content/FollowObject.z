@@ -1,6 +1,8 @@
 class FollowObject : ZilchComponent
 {
     [Property]
+    var Active : Boolean = true;
+    [Property]
     var ObjectToFollow : CogPath = null;
     [Property]
     var Displacement : Real3 = Real3(0,0,0);
@@ -12,14 +14,16 @@ class FollowObject : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if(this.ObjectToFollow.Cog != null)
-        {
-            this.Owner.Transform.Translation = this.ObjectToFollow.Cog.Transform.Translation + this.Displacement;
-            
-            //For gravity
-            if(this.Owner.RigidBody != null)
+        if(this.Active) {
+            if(this.ObjectToFollow.Cog != null)
             {
-                this.Owner.RigidBody.Velocity = Real3(0,0,0);
+                this.Owner.Transform.Translation = this.ObjectToFollow.Cog.Transform.Translation + this.Displacement;
+                
+                //For gravity
+                if(this.Owner.RigidBody != null)
+                {
+                    this.Owner.RigidBody.Velocity = Real3(0,0,0);
+                }
             }
         }
     }
