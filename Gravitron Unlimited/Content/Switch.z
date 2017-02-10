@@ -6,6 +6,9 @@ class Switch : ZilchComponent
     [Property]
     var Gravity : Boolean = true;
     
+    [Property]
+    var Light : Boolean = false;
+    
     function Initialize(init : CogInitializer) //Because colors in the editor don't match code
     {
         if(this.Gravity)

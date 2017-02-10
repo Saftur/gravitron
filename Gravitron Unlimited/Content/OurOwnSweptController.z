@@ -1,12 +1,23 @@
 class OurOwnSweptController : ZilchComponent
 {
+    [Dependency]
+    var RBody : RigidBody = null;
+    
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function Update(v : Real3)
     {
-        this.Owner.RigidBody.Velocity = v;
+        this.RBody.Velocity = v;
+    }
+    function Jump()
+    {
+        
+    }
+    function Grounded(pos : Real3) : Boolean
+    {
+        var ray = Ray();
+        return false;
     }
 }
