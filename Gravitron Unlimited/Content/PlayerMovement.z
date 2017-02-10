@@ -4,11 +4,10 @@
 
 class PlayerMovement : ZilchComponent
 {
-    var MaxMoveSpeed : Real = 0;
     var CeilingDistance : Real = 0;
     var CrawlOffset : Real3 = Real3(0, -0.25, 0);
     
-    var Hitbox : Cog = null;    //For holding items
+    var Grabbox : Cog = null;    //For holding items
     var Displacement : Real3 = Real3(1.5,0,0);
     
     var Controls : Input;
@@ -16,8 +15,7 @@ class PlayerMovement : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        this.MaxMoveSpeed = this.Owner.SweptController.MaxMoveSpeed;
-        this.Hitbox = this.Space.FindObjectByName("Hitbox");
+        this.Grabbox = this.Space.FindObjectByName("Grabbox");
         this.Controls = new Input();
     }
 
@@ -30,27 +28,26 @@ class PlayerMovement : ZilchComponent
         var movement = Real3(0,0,0);
         
         //Jumping
-        if(this.Controls.KeyPressed(2))
+        if(this.Controls.KeyDown(2) && this.Owner.Physocks.Grounded())
         {
-            this.Owner.SweptController.Jump();
+            this.Owner.Physocks.Jump();
         }
         if(this.Controls.KeyReleased(2))
         {
-            this.Owner.SweptController.JumpCancel();
+            //this.Owner.SweptController.JumpCancel();
         }
         
         //Crawling
-        if(this.Controls.KeyPressed(3) && this.Owner.SweptController.Grounded)
+        if(this.Controls.KeyDown(3))
         {
-            this.Owner.SweptController.MaxMoveSpeed = 5;        //Crawling Speed
+            //this.Speed = 5;        //Crawling Speed
             //Crawling Sprite
             this.Owner.Sprite.Color = Real4(1,0,0,1);
             this.Owner.BoxCollider.Size = Real3(2, 0.5, 1);
             this.Owner.BoxCollider.Offset = this.CrawlOffset;
         }
-        if(this.Controls.KeyReleased(3))
+        else
         {
-            this.Owner.SweptController.MaxMoveSpeed = this.MaxMoveSpeed;
             //Walking Sprite
             this.Owner.Sprite.Color = Real4(1,1,1,1);
             this.Owner.BoxCollider.Size = Real3(1, 1, 1);
@@ -69,25 +66,27 @@ class PlayerMovement : ZilchComponent
             {
                 movement.X += -1;
                 this.Displacement = Real3(-1.5, 0, 0);
-                if(this.Hitbox.PlayerInteraction.CurrentItem != null)
+                if(this.Grabbox.PlayerInteraction.CurrentItem != null)
                 {
-                    this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
+                    this.Grabbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
                 }
             }
             if(this.Controls.KeyDown(1))
             {
                 movement.X += 1;
                 this.Displacement = Real3(1.5, 0, 0);
-                if(this.Hitbox.PlayerInteraction.CurrentItem != null)
+                if(this.Grabbox.PlayerInteraction.CurrentItem != null)
                 {
-                    this.Hitbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
+                    this.Grabbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
                 }
             }
         }
         
         //Console.WriteLine(movement);
         
-        this.Owner.SweptController.Update(movement, event.Dt);
+        this.Owner.Physocks.Update(movement);
+        
+        //this.Owner.SweptController.Update(movement, event.Dt);
     }
 }
 

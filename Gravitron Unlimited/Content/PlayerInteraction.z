@@ -4,19 +4,19 @@ class PlayerInteraction : ZilchComponent
     var CurrentSwitch : Cog = null;
     var HoldingItem : Boolean = false;
     var IMadeIt : Boolean = false; //reached exit
-    var Parent : Cog = null;
+    var Player : Cog = null;
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
-        this.Parent = this.Owner.FollowObject.ObjectToFollow.Cog;
+        this.Player = this.Owner.FollowObject.ObjectToFollow.Cog;
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if(this.Parent.PlayerHealth.Health <= 0)
+        if(this.Player.PlayerHealth.Health <= 0)
         {
             return;
         }
@@ -48,8 +48,7 @@ class PlayerInteraction : ZilchComponent
                             s.Sprite.Color = Real4(0.329412, 0.20625, 0.625, 1);
                         }
                     }
-                    this.Parent.SweptController.WorldUp *= Real3(1,-1,1);
-                    this.Parent.PlayerMovement.CrawlOffset *= Real3(1,-1,1);
+                    this.Player.PlayerMovement.CrawlOffset *= Real3(1,-1,1);
                     
                     this.Space.LevelSettings.GravityEffect.Direction *= Real3(1,-1,1);
                 }
@@ -58,12 +57,12 @@ class PlayerInteraction : ZilchComponent
             else if(this.CurrentItem != null && !this.HoldingItem)
             {
                 this.CurrentItem.FollowObject.ObjectToFollow.Cog = this.Owner;
-                this.CurrentItem.FollowObject.Displacement = this.Parent.PlayerMovement.Displacement;
+                this.CurrentItem.FollowObject.Displacement = this.Player.PlayerMovement.Displacement;
                 this.HoldingItem = true;
             }
             else if(this.CurrentItem != null)
             {
-                var dad = this.Parent;
+                var dad = this.Player;
                 
                 if(this.CurrentItem.Pickupable.ImInSomething)
                 {

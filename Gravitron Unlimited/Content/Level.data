@@ -15,7 +15,7 @@ Level =
 			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
-			float Strength = 10,
+			float Strength = 25,
 			Vec3 Direction = [0, -1, 0],
 		},
 		DragEffect = 
@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [2.78730011, 4.38727522, 50],
+			Vec3 Translation = [2.33283758, 2.49986601, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 22.1034374,
+			float Size = 10.9762497,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [2.78730011, 4.38727522, -3.73025841e-07],
+			Vec3 LookTarget = [2.33283758, 2.49986601, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -169,6 +169,7 @@ Level =
 		},
 		FollowObject = 
 		{
+			bool Active = true,
 			CogPath ObjectToFollow = 
 			{
 				string Path = ":/Player",
@@ -203,9 +204,31 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-1.71610498, 5.28560448, 0],
+			Vec3 Translation = [-1.71610498, 5.5, 0],
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
+		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = false,
+			bool RotationLocked = true,
+			bool Mode2D = true,
+			bool AllowSleep = true,
+			bool Inherit2DMode = true,
+			Vec3 Velocity = [0, 0, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "58fbc55275a025d1:Player",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.5, 0.5, 0.5],
 		},
 		Sprite = 
 		{
@@ -225,35 +248,18 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
-		BoxCollider = 
+		Physocks = 
 		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
+			float Speed = 5,
+			float JumpStrength = 15,
 		},
-		RigidBody = 
+		PlayerMovement = 
 		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = false,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
 		},
 		PlayerHealth = 
 		{
 			int Health = 4,
 			Vec3 RespawnPoint = [0, 0, 0],
-		},
-		PlayerMovement = 
-		{
 		},
 		Hierarchy = 
 		{
@@ -331,7 +337,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Hitbox",
+			string Name = "Grabbox",
 		},
 		Archetyped = 
 		{
@@ -367,12 +373,13 @@ Level =
 			bool SendsMessages = true,
 			bool Seamless = true,
 			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			string SerializedGroupName = "58fbc52e7007cf67:Grabbox",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 0.5],
 		},
 		FollowObject = 
 		{
+			bool Active = true,
 			CogPath ObjectToFollow = 
 			{
 				string Path = ":/Player",
@@ -388,10 +395,22 @@ Level =
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
 			},
-			Vec3 Displacement = [0, 0, 0],
+			Vec3 Displacement = [0, 0, -0.00999999978],
 		},
 		PlayerInteraction = 
 		{
+		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = true,
+			bool RotationLocked = false,
+			bool Mode2D = true,
+			bool AllowSleep = true,
+			bool Inherit2DMode = true,
+			Vec3 Velocity = [0, 0, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
 		},
 		Hierarchy = 
 		{
@@ -507,6 +526,7 @@ Level =
 		},
 		FollowObject = 
 		{
+			bool Active = true,
 			CogPath ObjectToFollow = 
 			{
 				string Path = "",
@@ -550,7 +570,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.02854395, 5.59983206, 0],
+			Vec3 Translation = [-4.02854395, 5.59983206, -0.00999999978],
 			Vec3 Scale = [2.0142405, 3.06345272, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -581,7 +601,7 @@ Level =
 			bool Mode2D = true,
 			bool AllowSleep = true,
 			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
+			Vec3 Velocity = [0, 0, -0.62499994],
 			Vec3 AngularVelocity = [0, 0, 0],
 		},
 		BoxCollider = 
@@ -610,7 +630,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "GravitySwitch1",
+			string Name = "GravitySwitch",
 		},
 	},
 	Cog = 
@@ -665,6 +685,7 @@ Level =
 		{
 			bool Active = false,
 			bool Gravity = true,
+			bool Light = false,
 		},
 	},
 	Cog = 

@@ -51,7 +51,7 @@ Cog =
 		bool Static = false,
 		bool Asleep = false,
 		bool Kinematic = false,
-		bool RotationLocked = false,
+		bool RotationLocked = true,
 		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
@@ -66,28 +66,9 @@ Cog =
 	PlayerMovement = 
 	{
 	},
-	SweptController = 
+	OurOwnSweptController = 
 	{
-		Vec3 WorldUp = [0, 1, 0],
-		bool LockZAxis = false,
-		bool ForwardEvents = false,
-		float Gravity = 50,
-		float JumpSpeed = 20,
-		float JumpCancelFactor = 0.5,
-		float MaxMoveSpeed = 12,
-		float MaxFallSpeed = 50,
-		float GroundAcceleration = 50,
-		float AirAcceleration = 40,
-		float GroundDeceleration = 75,
-		float AirDeceleration = 50,
-		float MaxGroundSlope = 45,
-		float MaxCeilingSlope = 45,
-		float GroundSnapDistance = 0.100000001,
-		Vec3 ControllerVelocity = [0, 0, 0],
-		bool Grounded = true,
-		bool Jumping = false,
-		float GroundTraction = 1,
-		float AirTraction = 1,
+		float Speed = 5,
 	},
 	Hierarchy = 
 	{
