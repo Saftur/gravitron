@@ -52,6 +52,20 @@ class PlayerInteraction : ZilchComponent
                     
                     this.Space.LevelSettings.GravityEffect.Direction *= Real3(1,-1,1);
                 }
+                //Light
+                if(this.CurrentSwitch.Switch.Light)
+                {
+                    var lightOn = Real4(0, 0, 0, 0);
+                    var lightOff = Real4(0, 0, 0, 0.45);
+                    if(this.Space.FindObjectByName("LightBox").Sprite.Color == lightOn)
+                    {
+                        this.Space.FindObjectByName("LightBox").Sprite.Color = lightOff;
+                    }
+                    else
+                    {
+                        this.Space.FindObjectByName("LightBox").Sprite.Color = lightOn;
+                    }
+                }
             }
             //Picking up and putting down objects
             else if(this.CurrentItem != null && !this.HoldingItem)
