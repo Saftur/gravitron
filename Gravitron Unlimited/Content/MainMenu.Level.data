@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 40.6570053,
+			float Size = 81.8730927,
 		},
 		EditorCameraController = 
 		{
@@ -160,7 +160,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 200,
-			float Size = 20,
+			float Size = 50,
 		},
 		SoundListener = 
 		{
@@ -176,11 +176,11 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Sprite",
+			string Name = "Background",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0.0556926727, 0],
+			Vec3 Translation = [0, 0.0556926727, -0.200000003],
 			Vec3 Scale = [90, 50, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -211,7 +211,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "SpriteText",
+			string Name = "Title",
 		},
 		Transform = 
 		{
@@ -245,7 +245,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Sprite",
+			string Name = "ControlsBackground",
 		},
 		Transform = 
 		{
@@ -280,38 +280,7 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "Light",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0, 0, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Light = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			LightType LightType = Point,
-			Vec4 Color = [1, 1, 1, 1],
-			float Intensity = 1,
-			float Range = 50,
-			float Falloff = 1,
-			float Angle = 10,
-			float Size = 20,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 8,
-		},
-		Named = 
-		{
-			string Name = "Sprite",
+			string Name = "StartBackground",
 		},
 		Transform = 
 		{
@@ -342,11 +311,11 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 9,
+			uint Id = 8,
 		},
 		Named = 
 		{
-			string Name = "SpriteText",
+			string Name = "Start",
 		},
 		Transform = 
 		{
@@ -371,16 +340,21 @@ Level =
 			float PixelsPerUnit = 64,
 			bool Smoothing = true,
 		},
+		NextLevel = 
+		{
+			Enum KeyToPress = Enter,
+			string NextLevel = "554cea0f94af672f:Level",
+		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 10,
+			uint Id = 9,
 		},
 		Named = 
 		{
-			string Name = "SpriteText",
+			string Name = "Controls",
 		},
 		Transform = 
 		{
