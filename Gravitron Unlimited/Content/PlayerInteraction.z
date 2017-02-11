@@ -38,7 +38,7 @@ class PlayerInteraction : ZilchComponent
                     foreach(var s in switches)
                     {
                         //Changing the different switch states
-                        Console.WriteLine("`s.Sprite.Color`");
+                        //Console.WriteLine("`s.Sprite.Color`");
                         if(s.Sprite.Color == Real4(0.329412, 0.20625, 0.625, 1))
                         {
                             s.Sprite.Color = Real4(24, 86, 159, 1);

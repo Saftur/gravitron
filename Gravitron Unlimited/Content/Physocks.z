@@ -25,7 +25,7 @@ class Physocks : ZilchComponent
     function Jump()
     {
         var tmp = this.RBody.Velocity;
-        tmp.Y = this.JumpStrength;
+        tmp.Y = this.JumpStrength * -this.Space.LevelSettings.GravityEffect.Direction.Y;
         this.RBody.Velocity = tmp;
     }
     
@@ -34,12 +34,12 @@ class Physocks : ZilchComponent
         var pos = this.Trans.Translation;
         var width = this.Trans.Scale.X;
         var ray = Ray();
-        ray.Direction = Real3(0, -1, 0);
+        ray.Direction = this.Space.LevelSettings.GravityEffect.Direction;
         ray.Start = pos;
         if (this.CastRay(ray)) return true;
-        ray.Start = pos + Real3(width/2, 0, 0);
+        ray.Start = pos + Real3(width/2-15, 0, 0); // -15 is wall jump fix, remove when fixing going in walls
         if (this.CastRay(ray)) return true;
-        ray.Start = pos + Real3(-width/2, 0, 0);
+        ray.Start = pos + Real3(-width/2+15, 0, 0);
         if (this.CastRay(ray)) return true;
         return false;
     }
