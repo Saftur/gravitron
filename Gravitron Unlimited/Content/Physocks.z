@@ -37,9 +37,9 @@ class Physocks : ZilchComponent
         ray.Direction = this.Space.LevelSettings.GravityEffect.Direction;
         ray.Start = pos;
         if (this.CastRay(ray)) return true;
-        ray.Start = pos + Real3(width/2-15, 0, 0); // -15 is wall jump fix, remove when fixing going in walls
+        ray.Start = pos + Real3(width/2-0.1, 0, 0); // -15 is wall jump fix, remove when fixing going in walls
         if (this.CastRay(ray)) return true;
-        ray.Start = pos + Real3(-width/2+15, 0, 0);
+        ray.Start = pos + Real3(-width/2+0.1, 0, 0);
         if (this.CastRay(ray)) return true;
         return false;
     }
