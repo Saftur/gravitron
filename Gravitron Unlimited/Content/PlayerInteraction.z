@@ -55,15 +55,29 @@ class PlayerInteraction : ZilchComponent
                 //Light
                 if(this.CurrentSwitch.Switch.Light)
                 {
-                    var lightOn = Real4(0, 0, 0, 0);
-                    var lightOff = Real4(0, 0, 0, 0.45);
-                    if(this.Space.FindObjectByName("LightBox").Sprite.Color == lightOn)
+                    var lightOn = Real4(1, 0.972549, 0.596078, 0.5);
+                    var lightOff = Real4(0, 0, 0, 0);
+                    var lightBox = this.Space.FindObjectByName("LightBox");
+                    if(lightBox.Sprite.Color == lightOn)
                     {
-                        this.Space.FindObjectByName("LightBox").Sprite.Color = lightOff;
+                        lightBox.Sprite.Color = lightOff;
+                        
                     }
                     else
                     {
-                        this.Space.FindObjectByName("LightBox").Sprite.Color = lightOn;
+                        lightBox.Sprite.Color = lightOn;
+                    }
+                    var switches = this.Space.FindAllObjectsByName("LightSwitch");
+                    foreach(var s in switches)
+                    {
+                        if(s.Sprite.Color == Real4(0.360784, 0.654901, 0.2, 1))
+                        {
+                            s.Sprite.Color = Real4(0.360784, 0.654901, 0.9, 1);
+                        }
+                        else
+                        {
+                            s.Sprite.Color = Real4(0.360784, 0.654901, 0.2, 1);
+                        }
                     }
                 }
             }
