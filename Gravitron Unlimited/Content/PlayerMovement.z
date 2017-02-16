@@ -21,7 +21,7 @@ class PlayerMovement : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if(this.Owner.PlayerHealth.Health <= 0)
+        if(this.Owner.PlayerStatus.Caught)
         {
             return;
         }

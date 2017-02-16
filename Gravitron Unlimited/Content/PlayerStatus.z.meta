@@ -2,7 +2,7 @@ TextContent =
 {
 	ZilchScriptBuilder = 
 	{
-		string Name = "PlayerHealth",
+		string Name = "PlayerStatus",
 		uint64 ResourceId = 584a8950f86bd5f6,
 	},
 },

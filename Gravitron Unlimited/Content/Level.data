@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 33.2871628,
+			float Size = 60.6531868,
 		},
 		EditorCameraController = 
 		{
@@ -256,9 +256,8 @@ Level =
 		PlayerMovement = 
 		{
 		},
-		PlayerHealth = 
+		PlayerStatus = 
 		{
-			int Health = 4,
 			Vec3 RespawnPoint = [0, 0, 0],
 		},
 		Hierarchy = 
@@ -281,7 +280,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [17.1045113, -1.60035276, 0],
+			Vec3 Translation = [-7.17759895, -1.81058884, 0],
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -825,7 +824,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0.743836403, 4.10913849, 10],
+			Vec3 Translation = [-0.91017133, -27.72159, 10],
 			Vec3 Scale = [29.4992867, 19.7411346, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
