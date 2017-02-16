@@ -15,9 +15,37 @@ class NextLevel : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
          
-        if( Zero.Keyboard.KeyIsPressed(this.KeyToPress))
+        if( Zero.Keyboard.KeyIsPressed(this.KeyToPress) || this.ButtonClicked())
         {
             this.Space.LoadLevel(this.NextLevel);
+        }
+    }
+    
+    function ButtonClicked() : Boolean
+    {
+        if (Zero.Mouse.IsButtonDown(MouseButtons.Left))
+        {
+            var mouseScreen = Zero.Mouse.ScreenPosition;
+            var mouseWorld = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(mouseScreen, 0);
+            var mx = mouseWorld.X;
+            var my = mouseWorld.Y;
+            Console.WriteLine("`mx`, `my`");
+            var left = this.Owner.Transform.Translation.X-this.Owner.Transform.Scale.X/2;
+            var right = left+this.Owner.Transform.Scale.X;
+            var down = this.Owner.Transform.Translation.Y-this.Owner.Transform.Scale.Y/2;
+            var up = down+this.Owner.Transform.Scale.Y;
+            if (mx >= left && mx <= right && my >= down && my <= up)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
         }
     }
 }

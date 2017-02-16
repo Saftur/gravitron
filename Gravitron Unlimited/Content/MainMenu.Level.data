@@ -271,6 +271,11 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
+		NextLevel = 
+		{
+			Enum KeyToPress = C,
+			string NextLevel = "58fd0fc9a6f10b62:Controls",
+		},
 	},
 	Cog = 
 	{
@@ -306,6 +311,11 @@ Level =
 			float AnimationSpeed = 1,
 			uint StartFrame = 0,
 		},
+		NextLevel = 
+		{
+			Enum KeyToPress = Enter,
+			string NextLevel = "554cea0f94af672f:Level",
+		},
 	},
 	Cog = 
 	{
@@ -339,11 +349,6 @@ Level =
 			TextAlign Align = Left,
 			float PixelsPerUnit = 64,
 			bool Smoothing = true,
-		},
-		NextLevel = 
-		{
-			Enum KeyToPress = Enter,
-			string NextLevel = "554cea0f94af672f:Level",
 		},
 	},
 	Cog = 
