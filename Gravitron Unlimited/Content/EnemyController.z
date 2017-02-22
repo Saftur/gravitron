@@ -2,9 +2,9 @@ class EnemyController : ZilchComponent
 {
     
     [Property]
-    var PaceSpeed: Real = 5.0;
+    var PaceSpeed: Real = 3.0;
     [Property]
-    var MaxMoveDistance: Real = 10.0;
+    var MaxMoveDistance: Real = 10.0; //forward and backward, total distance is maxmove*2
     var PaceDirection: Real3 = Real3(1.0, 0.0, 0.0);
     var StartPosition: Real3 = Real3();
     
@@ -47,9 +47,5 @@ class EnemyController : ZilchComponent
 
         // Ensure the PaceDirection is only a direction via normlization
         this.PaceDirection = Math.Normalize(this.PaceDirection);
-
-        // Apply movement
-        this.Owner.Transform.Translation += this.PaceDirection * event.Dt * this.PaceSpeed;
-    
     }
 }
