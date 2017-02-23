@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 16.5299416,
+			float Size = 24.6597652,
 		},
 		EditorCameraController = 
 		{
@@ -783,19 +783,41 @@ Level =
 			uint StartFrame = 0,
 		},
 	},
+	ArchetypeInstance = 
+	{
+		string Name = "58ce2bb8fca89cd3:FloatingGuard",
+		LinkId = 
+		{
+			uint Id = 15,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [5.19516754, 10.3533497, 0],
+			Vec3 Scale = [1, 2, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "FloatingGuard",
+		},
+	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 15,
+			uint Id = 16,
 		},
 		Named = 
 		{
 			string Name = "Guard",
 		},
+		Archetyped = 
+		{
+			string Name = "584b3d0c7ec77112:Guard",
+		},
 		Transform = 
 		{
-			Vec3 Translation = [5.19516754, 10.3533497, 0],
+			Vec3 Translation = [-6.98812294, -1.9478209, 40],
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -805,7 +827,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [1, 0, 0, 1],
+			Vec4 Color = [0.162524998, 0.836954653, 0.985000014, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -831,18 +853,28 @@ Level =
 		{
 			bool Static = false,
 			bool Asleep = false,
-			bool Kinematic = true,
+			bool Kinematic = false,
 			bool RotationLocked = false,
 			bool Mode2D = true,
 			bool AllowSleep = true,
 			bool Inherit2DMode = true,
-			Vec3 Velocity = [211.85376, 769.887634, 0],
+			Vec3 Velocity = [0, 0, 0],
 			Vec3 AngularVelocity = [0, 0, 0],
 		},
-		EnemyController = 
+		Physocks = 
 		{
-			float PaceSpeed = 3,
-			float MaxMoveDistance = 10,
+			float Speed = 5,
+			float JumpStrength = 15,
+		},
+		Guard = 
+		{
+			Vec3 LeftPoint = [0, 0, 0],
+			Vec3 RightPoint = [1, 0, 0],
+			Vec3 Speed = [5, 0, 0],
+			int Type = 1,
+		},
+		Hierarchy = 
+		{
 		},
 	},
 },

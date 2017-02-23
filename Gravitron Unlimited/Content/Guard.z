@@ -7,7 +7,9 @@ class Guard : ZilchComponent
     [Property]
     var RightPoint : Real3 = Real3(1,0,0);
     [Property]
-    var Speed : Real3 = Real3(5,0,0);
+    var VisionRange : Real = 5;
+    
+    var Dir : Real3 = Real3();
     
     
     [Property]
@@ -24,16 +26,48 @@ class Guard : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        this.Patrol();
+    }
+    function Patrol()
+    {
         //Patrolling
         var pos = this.Owner.Transform.Translation;
         if(pos.X > this.RightPoint.X)
         {
-            this.Speed = Real3(-5,0,0);
+            this.Owner.Sprite.FlipX = true;
+            this.Dir = Real3(-1,0,0);
         }
         else if(pos.X < this.LeftPoint.X)
         {
-            this.Speed = Real3(5,0,0);
+            this.Dir = Real3(1,0,0);
+            this.Owner.Sprite.FlipX = false;
         }
+        this.Owner.Physocks.Update(this.Dir);
+    }
+    function Look() : Boolean
+    {
+        var ray = Ray();
+        var pos = this.Owner.Transform.Translation;
+        var h = this.Owner.Transform.Scale.Y;
         
+        ray.Start = pos;
+        ray.Direction = this.Dir;
+        
+        if (this.CastRay(ray)) return true; //middle
+        ray.Start = pos + Real3(0, h/2, 0);
+        if (this.CastRay(ray)) return true; //top
+        ray.Start = pos + Real3(0, -h/2, 0);
+        if (this.CastRay(ray)) return true; //bottom
+        return false;
+    }
+    function CastRay(ray : Ray) : Boolean
+    {
+        var objHit = this.Space.PhysicsSpace.CastRayFirst(ray);
+        if(objHit != null && objHit.Distance <= this.VisionRange)
+        {
+            //Console.WriteLine(objHit.Distance);
+            return true;
+        }
+        return false;
     }
 }
