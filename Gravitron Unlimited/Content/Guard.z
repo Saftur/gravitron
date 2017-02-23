@@ -1,7 +1,10 @@
 class Guard : ZilchComponent
 {
-    var Health : Integer = 0;
+    [Dependency]
+    var Socks : Physocks = null;
     
+    [Property]
+    var Active : Boolean = true;
     [Property]
     var LeftPoint : Real3 = Real3(0,0,0);
     [Property]
@@ -11,6 +14,7 @@ class Guard : ZilchComponent
     
     var Dir : Real3 = Real3();
     
+    var Player : Cog = null;
     
     [Property]
     var Type : Integer = 1; //Differentiate types of guards here
@@ -18,15 +22,42 @@ class Guard : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        if(this.Type == 1)
-        {
-            this.Health = 2;
-        }
+        this.Player = this.Space.FindObjectByName("Player");
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.Patrol();
+        if(!this.Active) return;
+        var ray = Ray();
+        var pos = this.Owner.Transform.Translation;
+        var h = this.Owner.Transform.Scale.Y;
+        
+        ray.Start = pos;
+        ray.Direction = this.Dir;
+        
+        if(this.Look())
+        {
+            this.Chase();
+        }
+        else
+        {
+            this.Patrol();
+        }
+        //Console.WriteLine("`this.CastRay(ray, 2, null)`");
+        //Jumping
+        if(this.Socks.Grounded())
+        {
+            if(this.CastRay(ray, 0.3, null)) this.Socks.Jump(); //middle
+            
+            //ray.Start = pos + Real3(0, h/2, 0);
+            //if(this.CastRay(ray, 0.3, null)) this.Socks.Jump(); //top
+            
+            ray.Start = pos + Real3(0, -h/2, 0);
+            if(this.CastRay(ray, 0.3, null)) this.Socks.Jump(); //bottom
+        }
+    }
+    function Chase()
+    {
     }
     function Patrol()
     {
@@ -42,10 +73,11 @@ class Guard : ZilchComponent
             this.Dir = Real3(1,0,0);
             this.Owner.Sprite.FlipX = false;
         }
-        this.Owner.Physocks.Update(this.Dir);
+        this.Socks.Update(this.Dir);
     }
     function Look() : Boolean
     {
+        debug return false;
         var ray = Ray();
         var pos = this.Owner.Transform.Translation;
         var h = this.Owner.Transform.Scale.Y;
@@ -53,20 +85,31 @@ class Guard : ZilchComponent
         ray.Start = pos;
         ray.Direction = this.Dir;
         
-        if (this.CastRay(ray)) return true; //middle
+        ray.Start = pos;
+        if(this.CastRay(ray, this.VisionRange, this.Player)) return true;
+            
         ray.Start = pos + Real3(0, h/2, 0);
-        if (this.CastRay(ray)) return true; //top
-        ray.Start = pos + Real3(0, -h/2, 0);
-        if (this.CastRay(ray)) return true; //bottom
+        if(this.CastRay(ray, this.VisionRange, this.Player)) return true; //top
+        
+        ray.Start = pos + Real3(0, -h +0.1, 0);
+        if(this.CastRay(ray, this.VisionRange, this.Player)) return true; //bottom
+        
         return false;
     }
-    function CastRay(ray : Ray) : Boolean
+    function CastRay(ray : Ray, dis : Real, cog : Cog) : Boolean
     {
         var objHit = this.Space.PhysicsSpace.CastRayFirst(ray);
-        if(objHit != null && objHit.Distance <= this.VisionRange)
+        if(objHit != null && objHit.Distance <= dis)
         {
-            //Console.WriteLine(objHit.Distance);
-            return true;
+            if(cog != null && objHit.ObjectHit == cog)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
+                return true;
+            }
         }
         return false;
     }

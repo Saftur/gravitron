@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [7.78177643, 0.803689718, 40],
+		Vec3 Translation = [-6.98812294, -1.9478209, 0],
 		Vec3 Scale = [1, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -51,7 +51,7 @@ Cog =
 		bool Static = false,
 		bool Asleep = false,
 		bool Kinematic = false,
-		bool RotationLocked = false,
+		bool RotationLocked = true,
 		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
@@ -62,6 +62,14 @@ Cog =
 	{
 		float Speed = 5,
 		float JumpStrength = 15,
+	},
+	Guard = 
+	{
+		bool Active = true,
+		Vec3 LeftPoint = [-5, 0, 0],
+		Vec3 RightPoint = [1, 0, 0],
+		float VisionRange = 5,
+		int Type = 1,
 	},
 	Hierarchy = 
 	{

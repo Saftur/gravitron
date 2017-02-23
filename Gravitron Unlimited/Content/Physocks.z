@@ -36,20 +36,20 @@ class Physocks : ZilchComponent
         var ray = Ray();
         ray.Direction = this.Space.LevelSettings.GravityEffect.Direction;
         ray.Start = pos;
-        if (this.CastRay(ray)) return true;
+        if (this.CastGroundRay(ray)) return true;
         ray.Start = pos + Real3(width/2-0.1, 0, 0); // -0.1 is wall jump fix, remove when fixing going in walls
-        if (this.CastRay(ray)) return true;
+        if (this.CastGroundRay(ray)) return true;
         ray.Start = pos + Real3(-width/2+0.1, 0, 0);
-        if (this.CastRay(ray)) return true;
+        if (this.CastGroundRay(ray)) return true;
         return false;
     }
     
-    function CastRay(ray : Ray) : Boolean
+    function CastGroundRay(ray : Ray) : Boolean
     {
         var objHit = this.Space.PhysicsSpace.CastRayFirst(ray);
         if(objHit != null && objHit.Distance <= this.Trans.Scale.Y/2)
         {
-            //Console.WriteLine(objHit.Distance);
+            Console.WriteLine("`this.Owner.Name`: `objHit.Distance`");
             return true;
         }
         return false;
