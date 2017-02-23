@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "LightboxSpawner",
+		uint64 ResourceId = 58c50530157a3673,
+	},
+},

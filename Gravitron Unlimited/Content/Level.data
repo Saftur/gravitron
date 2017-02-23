@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [2.66811967, 4.33393002, 90],
+			Vec3 Translation = [-20.8051548, 2.8565073, 59.9990005],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 16.5299416,
+			float Size = 36.7880325,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [2.66811967, 4.33393002, 40],
+			Vec3 LookTarget = [-20.8051548, 2.8565073, 9.9989996],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -709,43 +709,22 @@ Level =
 			float MeshThickness = 1.20000005,
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "58fd1dcfe8e2c3b4:LightBox",
 		LinkId = 
 		{
 			uint Id = 13,
 		},
-		Named = 
-		{
-			string Name = "LightBox",
-		},
-		Archetyped = 
-		{
-			string Name = "58fd1dcfe8e2c3b4:LightBox",
-		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.0515799522, 0.0886287689, 10],
+			Vec3 Translation = [-36.2762909, -7.87753582, 10],
 			Vec3 Scale = [8.50576591, 5.74768448, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 0.971650004, 0.595000029, 0],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
+			string Name = "LightBox",
 		},
 	},
 	Cog = 
@@ -836,13 +815,56 @@ Level =
 			bool Mode2D = true,
 			bool AllowSleep = true,
 			bool Inherit2DMode = true,
-			Vec3 Velocity = [211.85376, 769.887634, 0],
+			Vec3 Velocity = [324.697937, 647.08429, 0],
 			Vec3 AngularVelocity = [0, 0, 0],
 		},
 		EnemyController = 
 		{
 			float PaceSpeed = 3,
 			float MaxMoveDistance = 10,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 16,
+		},
+		Named = 
+		{
+			string Name = "Lightbulb",
+		},
+		Archetyped = 
+		{
+			string Name = "58ce2c4b165bc29e:Lightbulb",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0.308218718, 2.4454689, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0.370553523, 0.415000021, 0.0975250006, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		LightboxSpawner = 
+		{
+			string LightboxType = "58fd1dcfe8e2c3b4:LightBox",
 		},
 	},
 },
