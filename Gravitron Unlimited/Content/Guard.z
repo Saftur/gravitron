@@ -12,7 +12,7 @@ class Guard : ZilchComponent
     [Property]
     var VisionRange : Real = 5;
     
-    var Dir : Real3 = Real3();
+    var Dir : Real3 = Real3(1,0,0);
     
     var Player : Cog = null;
     
@@ -32,7 +32,6 @@ class Guard : ZilchComponent
         var pos = this.Owner.Transform.Translation;
         var h = this.Owner.Transform.Scale.Y;
         
-        ray.Start = pos;
         ray.Direction = this.Dir;
         
         if(this.Look())
@@ -43,17 +42,28 @@ class Guard : ZilchComponent
         {
             this.Patrol();
         }
-        //Console.WriteLine("`this.CastRay(ray, 2, null)`");
+        Console.WriteLine("`this.CastRay(ray, 0.3, null)`");
         //Jumping
         if(this.Socks.Grounded())
         {
-            if(this.CastRay(ray, 0.3, null)) this.Socks.Jump(); //middle
-            
-            //ray.Start = pos + Real3(0, h/2, 0);
-            //if(this.CastRay(ray, 0.3, null)) this.Socks.Jump(); //top
-            
-            ray.Start = pos + Real3(0, -h/2, 0);
-            if(this.CastRay(ray, 0.3, null)) this.Socks.Jump(); //bottom
+            ray.Start = pos + Real3(0, this.Owner.Transform.Scale.Y/2 + 1, 0); //Check if object is jumpable
+            var dist = this.Owner.Transform.Scale.X/2 + 0.75;
+            if((this.CastRay(ray, dist, null)))
+            {
+                this.Dir *= Real3(1,-1,1);
+                this.Owner.Sprite.FlipX = !this.Owner.Sprite.FlipX;
+            }
+            else
+            {
+                ray.Start = pos;
+                if(this.CastRay(ray, dist, null)) this.Socks.Jump(); //middle
+                
+                ray.Start = pos + Real3(0, h/2, 0);
+                if(this.CastRay(ray, dist, null)) this.Socks.Jump(); //top
+                
+                ray.Start = pos + Real3(0, -h/2, 0);
+                if(this.CastRay(ray, dist, null)) this.Socks.Jump(); //bottom
+            }
         }
     }
     function Chase()
@@ -86,13 +96,13 @@ class Guard : ZilchComponent
         ray.Direction = this.Dir;
         
         ray.Start = pos;
-        if(this.CastRay(ray, this.VisionRange, this.Player)) return true;
+        if(this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)) return true;
             
         ray.Start = pos + Real3(0, h/2, 0);
-        if(this.CastRay(ray, this.VisionRange, this.Player)) return true; //top
+        if(this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)) return true; //top
         
         ray.Start = pos + Real3(0, -h +0.1, 0);
-        if(this.CastRay(ray, this.VisionRange, this.Player)) return true; //bottom
+        if(this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)) return true; //bottom
         
         return false;
     }

@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-6.98812294, -1.9478209, 0],
+		Vec3 Translation = [-6.68055677, -1.84639168, 0],
 		Vec3 Scale = [1, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -41,7 +41,7 @@ Cog =
 		bool Ghost = false,
 		bool SendsMessages = true,
 		bool Seamless = true,
-		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+		string MaterialName = "58cf7875009ddbd3:Physocks",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.5, 0.5, 0.5],
@@ -61,13 +61,13 @@ Cog =
 	Physocks = 
 	{
 		float Speed = 5,
-		float JumpStrength = 15,
+		float JumpStrength = 13,
 	},
 	Guard = 
 	{
 		bool Active = true,
-		Vec3 LeftPoint = [-5, 0, 0],
-		Vec3 RightPoint = [1, 0, 0],
+		Vec3 LeftPoint = [-1, 0, 0],
+		Vec3 RightPoint = [0, 0, 0],
 		float VisionRange = 5,
 		int Type = 1,
 	},
