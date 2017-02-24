@@ -1,4 +1,4 @@
-class EnemyController : ZilchComponent
+class Guard : ZilchComponent
 {
     var Health : Integer = 0;
     

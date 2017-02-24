@@ -1,39 +1,142 @@
 class Guard : ZilchComponent
 {
-    var Health : Integer = 0;
+    [Dependency]
+    var Socks : Physocks = null;
+    
+    [Property]
+    var Active : Boolean = true;
     
     [Property]
     var LeftPoint : Real3 = Real3(0,0,0);
     [Property]
     var RightPoint : Real3 = Real3(1,0,0);
-    [Property]
-    var Speed : Real3 = Real3(5,0,0);
-    
     
     [Property]
     var Type : Integer = 1; //Differentiate types of guards here
     
+    [Property]
+    var VisionRange : Real = 5;
+    [Property]
+    var ChaseSpeed : Real = 6;
+    
+    var Dir : Real3 = Real3(1,0,0);
+    
+    var Player : Cog = null;
+    
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        if(this.Type == 1)
-        {
-            this.Health = 2;
-        }
+        this.Player = this.Space.FindObjectByName("Player");
     }
 
     function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(!this.Active) return;
+        
+        var ray = Ray();
+        var pos = this.Owner.Transform.Translation;
+        var h = this.Owner.Transform.Scale.Y;
+        
+        ray.Direction = this.Dir;
+        
+        if(this.Look())
+        {
+            this.Chase();
+        }
+        else
+        {
+            this.Patrol();
+        }
+        //Jumping
+        if(this.Socks.Grounded())
+        {
+            ray.Start = pos + Real3(0, this.Owner.Transform.Scale.Y/2 + 1, 0); //Check if object is jumpable
+            var dist = this.Owner.Transform.Scale.X/2 + 0.75;
+            if(this.CastRay(ray, dist, null) && !this.CastRay(ray,dist,this.Player))
+            {
+                if(this.Dir.X == 1) this.RightPoint = this.Owner.Transform.Translation;
+                else this.LeftPoint = this.Owner.Transform.Translation;
+                    
+                this.Dir *= Real3(1,-1,1);
+                this.Owner.Sprite.FlipX = !this.Owner.Sprite.FlipX;
+            }
+            else
+            {
+                ray.Start = pos;
+                if(this.CastRay(ray, dist, null) && !this.CastRay(ray, dist, this.Player)) this.Socks.Jump(); //middle
+                
+                ray.Start = pos + Real3(0, h/2, 0);
+                if(this.CastRay(ray, dist, null) && !this.CastRay(ray, dist, this.Player)) this.Socks.Jump(); //top
+                
+                ray.Start = pos + Real3(0, -h/2, 0);
+                if(this.CastRay(ray, dist, null) && !this.CastRay(ray, dist, this.Player)) this.Socks.Jump(); //bottom
+            }
+        }
+    }
+    function Chase()
+    {
+        this.Dir = Real3(Math.Round(this.Player.Transform.Translation.X - this.Owner.Transform.Translation.X),0,0);
+        if(this.Dir.X > 0) this.Owner.Sprite.FlipX = false;
+        else this.Owner.Sprite.FlipX = true;
+        var speed = this.Socks.Speed;
+        this.Socks.Speed = this.ChaseSpeed;
+        this.Socks.Update(this.Dir);
+        this.Socks.Speed = speed;
+    }
+    function Patrol()
     {
         //Patrolling
         var pos = this.Owner.Transform.Translation;
         if(pos.X > this.RightPoint.X)
         {
-            this.Speed = Real3(-5,0,0);
+            this.Dir = Real3(-1,0,0);
+            this.Owner.Sprite.FlipX = true;
         }
-        else if(pos.X < this.LeftPoint.X)
+        if(pos.X < this.LeftPoint.X)
         {
-            this.Speed = Real3(5,0,0);
+            this.Dir = Real3(1,0,0);
+            this.Owner.Sprite.FlipX = false;
         }
-        
+        this.Socks.Update(this.Dir);
     }
+    function Look() : Boolean
+    {
+        var ray = Ray();
+        var pos = this.Owner.Transform.Translation;
+        var h = this.Owner.Transform.Scale.Y;
+        
+        ray.Start = pos;
+        ray.Direction = this.Dir;
+        
+        ray.Start = pos;
+        Console.WriteLine("`this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)`");
+        if(this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)) return true; //middle
+            
+        ray.Start = pos + Real3(0, h/2, 0);
+        if(this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)) return true; //top
+        
+        ray.Start = pos + Real3(0, -h/2 +0.1, 0);
+        if(this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)) return true; //bottom
+        
+        return false;
+    }
+    function CastRay(ray : Ray, dis : Real, cog : Cog) : Boolean
+    {
+        var objHit = this.Space.PhysicsSpace.CastRayFirst(ray);
+        if(objHit != null && objHit.Distance <= dis)
+        {
+            if(cog != null && objHit.ObjectHit == cog)
+            {
+                return true;
+            }
+            else if(cog == null)
+            {
+                //Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }

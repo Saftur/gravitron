@@ -8,9 +8,13 @@ Cog =
 	{
 		string Name = "Guard",
 	},
+	Archetyped = 
+	{
+		string Name = "584b3d0c7ec77112:Guard",
+	},
 	Transform = 
 	{
-		Vec3 Translation = [14.871047, 1.46349859, 0],
+		Vec3 Translation = [-2.13380313, -1.28250837, 0],
 		Vec3 Scale = [1, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -20,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [1, 1, 1, 1],
+		Vec4 Color = [0.162524998, 0.836954653, 0.985000014, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -37,7 +41,7 @@ Cog =
 		bool Ghost = false,
 		bool SendsMessages = true,
 		bool Seamless = true,
-		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+		string MaterialName = "58cf7875009ddbd3:Physocks",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.5, 0.5, 0.5],
@@ -47,12 +51,26 @@ Cog =
 		bool Static = false,
 		bool Asleep = false,
 		bool Kinematic = false,
-		bool RotationLocked = false,
+		bool RotationLocked = true,
 		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
+	},
+	Physocks = 
+	{
+		float Speed = 2.5,
+		float JumpStrength = 13,
+	},
+	Guard = 
+	{
+		bool Active = true,
+		Vec3 LeftPoint = [-7, 0, 0],
+		Vec3 RightPoint = [7, 0, 0],
+		int Type = 1,
+		float VisionRange = 5,
+		float ChaseSpeed = 6,
 	},
 	Hierarchy = 
 	{
