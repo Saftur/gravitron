@@ -8,13 +8,9 @@ Cog =
 	{
 		string Name = "Guard",
 	},
-	Archetyped = 
-	{
-		string Name = "584b3d0c7ec77112:Guard",
-	},
 	Transform = 
 	{
-		Vec3 Translation = [-6.98812294, -1.9478209, 0],
+		Vec3 Translation = [5.19516754, 10.3533497, 0],
 		Vec3 Scale = [1, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -24,7 +20,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.162524998, 0.836954653, 0.985000014, 1],
+		Vec4 Color = [1, 0, 0, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -50,28 +46,17 @@ Cog =
 	{
 		bool Static = false,
 		bool Asleep = false,
-		bool Kinematic = false,
-		bool RotationLocked = true,
+		bool Kinematic = true,
+		bool RotationLocked = false,
 		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
-		Vec3 Velocity = [0, 0, 0],
+		Vec3 Velocity = [324.697937, 647.08429, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	Physocks = 
+	EnemyController = 
 	{
-		float Speed = 5,
-		float JumpStrength = 15,
-	},
-	Guard = 
-	{
-		bool Active = true,
-		Vec3 LeftPoint = [-5, 0, 0],
-		Vec3 RightPoint = [1, 0, 0],
-		float VisionRange = 5,
-		int Type = 1,
-	},
-	Hierarchy = 
-	{
+		float PaceSpeed = 3,
+		float MaxMoveDistance = 10,
 	},
 },

@@ -1,10 +1,13 @@
 class Guard : ZilchComponent
 {
-    var Health : Integer = 0;
+    [Dependency]
+    var Socks : Physocks = null;
     
     // Pacing Properties and variables
     [Property]
-    var PaceSpeed: Real = 5.0;
+    var Active : Boolean = true;
+    [Property]
+    var LeftPoint : Real3 = Real3(0,0,0);
     [Property]
     var MaxMoveDistance: Real = 10.0;
     var PaceDirection: Real3 = Real3(1.0, 0.0, 0.0);
@@ -15,21 +18,11 @@ class Guard : ZilchComponent
     [Property]
     var TargetObject: CogPath = null;
     [Property]
-    var ChaseSpeed: Real = 5.0;
-    var ChaseTriggerDistance: Real = 5.0;
-    var DistanceFromTarget: Real = 0.0;
-    var ChaseDirection: Real3 = Real3();
-    var ChaseColor:Real4 = Real4(1.0, 0.0, 0.0, 1.0);
-    var TargetIsWithinRange: Boolean = false;
+    var VisionRange : Real = 5;
     
-    // Variables for smoothing state transitions
-    var OriginalColor: Real4 = Real4();
-
-    // Dependencies
-    [Dependency]
-    var Transform: Transform = null;
-    [Dependency]
-    var Sprite: Sprite = null;
+    var Dir : Real3 = Real3();
+    
+    var Player : Cog = null;
     
     [Property]
     var Type : Integer = 1; //Differentiate types of guards here
@@ -37,16 +30,44 @@ class Guard : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        if(this.Type == 1)
-        {
-            this.Health = 2;
-        }
-        this.StartPosition = this.Owner.Transform.Translation;
-        this.OriginalColor = this.Owner.Sprite.Color;
-    
+        this.Player = this.Space.FindObjectByName("Player");
     }
 
     function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(!this.Active) return;
+        var ray = Ray();
+        var pos = this.Owner.Transform.Translation;
+        var h = this.Owner.Transform.Scale.Y;
+        
+        ray.Start = pos;
+        ray.Direction = this.Dir;
+        
+        if(this.Look())
+        {
+            this.Chase();
+        }
+        else
+        {
+            this.Patrol();
+        }
+        //Console.WriteLine("`this.CastRay(ray, 2, null)`");
+        //Jumping
+        if(this.Socks.Grounded())
+        {
+            if(this.CastRay(ray, 0.3, null)) this.Socks.Jump(); //middle
+            
+            //ray.Start = pos + Real3(0, h/2, 0);
+            //if(this.CastRay(ray, 0.3, null)) this.Socks.Jump(); //top
+            
+            ray.Start = pos + Real3(0, -h/2, 0);
+            if(this.CastRay(ray, 0.3, null)) this.Socks.Jump(); //bottom
+        }
+    }
+    function Chase()
+    {
+    }
+    function Patrol()
     {
         //Patrolling
         var displacement = this.Owner.Transform.Translation - this.StartPosition;
@@ -56,8 +77,8 @@ class Guard : ZilchComponent
         // If we have travelled past our max distance
         if (distanceFromStart >= this.MaxMoveDistance)
         {
-            // Change direction to go back the way we came
-            this.PaceDirection = -displacement;
+            this.Owner.Sprite.FlipX = true;
+            this.Dir = Real3(-1,0,0);
         }
 
         // Ensure the PaceDirection is only a direction via normlization
@@ -71,51 +92,49 @@ class Guard : ZilchComponent
         // If our target exists
         if (this.TargetObject.Cog != null)
         {
-            // Calculate the direction and distance of target
-            this.CalculateChaseDirectionAndDistance();
-            // Evaluate whether Ai should chase or pace
-            this.TargetIsWithinRange = (this.DistanceFromTarget <= this.ChaseTriggerDistance);
-
-            if (this.TargetIsWithinRange)
+            this.Dir = Real3(1,0,0);
+            this.Owner.Sprite.FlipX = false;
+        }
+        this.Socks.Update(this.Dir);
+    }
+    function Look() : Boolean
+    {
+        debug return false;
+        var ray = Ray();
+        var pos = this.Owner.Transform.Translation;
+        var h = this.Owner.Transform.Scale.Y;
+        
+        ray.Start = pos;
+        ray.Direction = this.Dir;
+        
+        ray.Start = pos;
+        if(this.CastRay(ray, this.VisionRange, this.Player)) return true;
+            
+        ray.Start = pos + Real3(0, h/2, 0);
+        if(this.CastRay(ray, this.VisionRange, this.Player)) return true; //top
+        
+        ray.Start = pos + Real3(0, -h +0.1, 0);
+        if(this.CastRay(ray, this.VisionRange, this.Player)) return true; //bottom
+        
+        return false;
+    }
+    function CastRay(ray : Ray, dis : Real, cog : Cog) : Boolean
+    {
+        var objHit = this.Space.PhysicsSpace.CastRayFirst(ray);
+        if(objHit != null && objHit.Distance <= dis)
+        {
+            if(cog != null && objHit.ObjectHit == cog)
             {
-                // Chase target
-                this.ChaseTarget(event);
+                return true;
             }
-            else // If target not in range
+            else
             {
-                // Pace back and forth
-                this.PaceBackAndForth(event);
-            }
-            }
-            else // if there is no target, pace
-            {
-                // Logic for pacing back and forth
-                this.PaceBackAndForth(event);
+                Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
+                return true;
             }
         }
-    function PaceBackAndForth(event: UpdateEvent)
-    {
-      // Set pacing color
-      this.Owner.Sprite.Color = this.OriginalColor;
-    }
-    function CalculateChaseDirectionAndDistance()
-    {
-        // Get direction toward target
-        this.ChaseDirection = this.TargetObject.Cog.Transform.Translation - this.Owner.Transform.Translation;
-        // Extract distance by finding magnitude
-        this.DistanceFromTarget = Math.Length(this.ChaseDirection);
-        // Extract direction by normalizing
-        this.ChaseDirection = Math.Normalize(this.ChaseDirection);
-    }
-  
-    function ChaseTarget(event: UpdateEvent)
-    {
-        // Set Chase Color
-        this.Owner.Sprite.Color = this.ChaseColor;
-        
-         // Apply movement
-        this.Owner.Transform.Translation += this.ChaseDirection * event.Dt * this.ChaseSpeed;
-    
+        return false;
+>>>>>>> origin/master
     }
     
 }

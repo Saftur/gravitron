@@ -1,0 +1,34 @@
+class Flash : ZilchComponent
+{
+    var Flashing : Boolean = true;
+    var Increase : Boolean = false;
+    var FlashSpeed : Real = 0.01;
+    var Max : Real = 0.25;
+    var Min : Real = 0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if (this.Flashing)
+        {
+            Console.WriteLine(this.Owner.Sprite.Color.W);
+            if (this.Owner.Sprite.Color.W >= this.Max)
+                this.FlashSpeed = -Math.Abs(this.FlashSpeed);
+            else if (this.Owner.Sprite.Color.W <= this.Min)
+                this.FlashSpeed = Math.Abs(this.FlashSpeed);
+            var newColor = this.Owner.Sprite.Color;
+            newColor.W += this.FlashSpeed;
+            if (newColor.W < this.Min) newColor.W = this.Min;
+            if (newColor.W > this.Max) newColor.W = this.Max;
+            this.Owner.Sprite.Color = newColor;
+        }
+        else
+        {
+            
+        }
+    }
+}

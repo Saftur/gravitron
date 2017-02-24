@@ -6,16 +6,12 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "LightBox",
-	},
-	Archetyped = 
-	{
-		string Name = "58fd1dcfe8e2c3b4:LightBox",
+		string Name = "Lightbulb",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-0.0515799522, 0.0886287689, 10],
-		Vec3 Scale = [8.50576591, 5.74768448, 1],
+		Vec3 Translation = [-0.0810706615, 2.50693607, 40],
+		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -24,7 +20,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [1, 0.971650004, 0.595000029, 0],
+		Vec4 Color = [1, 1, 1, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
