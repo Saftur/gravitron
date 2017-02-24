@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-3.61277199, 0.79126811, 59.9990005],
+			Vec3 Translation = [2.63331962, 4.33393002, 90],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 20.1897221,
+			float Size = 20,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-3.61277199, 0.79126811, 9.9989996],
+			Vec3 LookTarget = [2.63331962, 4.33393002, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -188,12 +188,19 @@ Level =
 			Vec3 Displacement = [0, 0, 40],
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "58f3cc3555d5a99b:Player",
 		LinkId = 
 		{
 			uint Id = 4,
+		},
+		Named = 
+		{
+			string Name = "Player",
+		},
+		Archetyped = 
+		{
+			string Name = "58f3cc3555d5a99b:Player",
 		},
 		Transform = 
 		{
@@ -201,9 +208,60 @@ Level =
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		Sprite = 
 		{
-			string Name = "Player",
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = false,
+			bool RotationLocked = true,
+			bool Mode2D = true,
+			bool AllowSleep = true,
+			bool Inherit2DMode = true,
+			Vec3 Velocity = [0, 0, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "58cf7875009ddbd3:Physocks",
+			string SerializedGroupName = "58fbc55275a025d1:Player",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+		Physocks = 
+		{
+			float Speed = 5,
+			float JumpStrength = 15,
+		},
+		PlayerMovement = 
+		{
+		},
+		PlayerStatus = 
+		{
+			Vec3 RespawnPoint = [0, 0, 0],
+		},
+		Hierarchy = 
+		{
 		},
 	},
 	Cog = 
@@ -338,22 +396,97 @@ Level =
 			Vec3 Size = [0.5, 0.5, 0.5],
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "584a1a65771c5643:Crate",
 		LinkId = 
 		{
 			uint Id = 7,
 		},
-		Transform = 
-		{
-			Vec3 Translation = [-2.995188, -2.20852804, 0],
-			Vec3 Scale = [1.48963308, 1.48963284, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
 		Named = 
 		{
 			string Name = "Crate",
+		},
+		Archetyped = 
+		{
+			string Name = "584a1a65771c5643:Crate",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [0.780599356, -1.99972868, 0],
+			Vec3 Scale = [1.48963308, 1.48963284, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0.625, 0.206249982, 0.583124876, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = false,
+			bool RotationLocked = true,
+			bool Mode2D = true,
+			bool AllowSleep = true,
+			bool Inherit2DMode = true,
+			Vec3 Velocity = [0, 0, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
+		},
+		Pickupable = 
+		{
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "58cce064aa15d624:Crate",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+		FollowObject = 
+		{
+			bool Active = true,
+			CogPath ObjectToFollow = 
+			{
+				string Path = "",
+				bool ErrorOnResolveToNull = false,
+				bool ErrorOnPathCantCompute = false,
+				bool ErrorOnDirectLinkFail = false,
+				bool UpdateCogOnPathChange = true,
+				bool UpdatePathOnCogChange = true,
+				bool UpdateCogOnInitialize = true,
+				bool ResolvedNullErrorOccurred = false,
+				uint ResolvedCog = 4294967293,
+				CogPathPreference PathPreference0 = CogRelative,
+				CogPathPreference PathPreference1 = SpaceRelative,
+				CogPathPreference PathPreference2 = Absolute,
+			},
+			Vec3 Displacement = [0, 0, 0],
+		},
+		MassOverride = 
+		{
+			bool Active = true,
+			float invMass = 0.0199999996,
+			Vec3 invInertiaX = [0.0745571554, 0, 0],
+			Vec3 invInertiaY = [0, 0.0745571479, 0],
+			Vec3 invInertiaZ = [0, 0, 0.0540782437],
+			Vec3 LocalCenterOfMass = [0, 0, 0],
 		},
 	},
 	Cog = 
@@ -483,7 +616,7 @@ Level =
 		{
 			bool Active = false,
 			bool Gravity = false,
-			bool Light = true,
+			bool Light = false,
 		},
 	},
 	Cog = 
@@ -576,22 +709,43 @@ Level =
 			float MeshThickness = 1.20000005,
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "58fd1dcfe8e2c3b4:LightBox",
 		LinkId = 
 		{
 			uint Id = 13,
 		},
-		Transform = 
-		{
-			Vec3 Translation = [-36.2762909, -7.87753582, 10],
-			Vec3 Scale = [8.50576591, 5.74768448, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
 		Named = 
 		{
 			string Name = "LightBox",
+		},
+		Archetyped = 
+		{
+			string Name = "58fd1dcfe8e2c3b4:LightBox",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-0.0515799522, 0.0886287689, 10],
+			Vec3 Scale = [8.50576591, 5.74768448, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 0.971650004, 0.595000029, 0],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
 		},
 	},
 	Cog = 
@@ -631,81 +785,20 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "58ce2bb8fca89cd3:FloatingGuard",
+		string Name = "584b3d0c7ec77112:Guard",
 		LinkId = 
 		{
 			uint Id = 15,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [5.19516754, 10.3533497, 0],
-			Vec3 Scale = [1, 2, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "FloatingGuard",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "584b3d0c7ec77112:Guard",
-		LinkId = 
-		{
-			uint Id = 16,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-6.68055677, -1.84639168, 0],
+			Vec3 Translation = [-2.13380313, -1.28250837, 0],
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
 		{
 			string Name = "Guard",
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 17,
-		},
-		Named = 
-		{
-			string Name = "Lightbulb",
-		},
-		Archetyped = 
-		{
-			string Name = "58ce2c4b165bc29e:Lightbulb",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [0.308218718, 2.4454689, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [0.370553523, 0.415000021, 0.0975250006, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		LightboxSpawner = 
-		{
-			string LightboxType = "58fd1dcfe8e2c3b4:LightBox",
 		},
 	},
 },

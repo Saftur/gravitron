@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-6.68055677, -1.84639168, 0],
+		Vec3 Translation = [-2.13380313, -1.28250837, 0],
 		Vec3 Scale = [1, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -60,16 +60,17 @@ Cog =
 	},
 	Physocks = 
 	{
-		float Speed = 5,
+		float Speed = 2.5,
 		float JumpStrength = 13,
 	},
 	Guard = 
 	{
 		bool Active = true,
-		Vec3 LeftPoint = [-1, 0, 0],
-		Vec3 RightPoint = [0, 0, 0],
-		float VisionRange = 5,
+		Vec3 LeftPoint = [-7, 0, 0],
+		Vec3 RightPoint = [7, 0, 0],
 		int Type = 1,
+		float VisionRange = 5,
+		float ChaseSpeed = 6,
 	},
 	Hierarchy = 
 	{
