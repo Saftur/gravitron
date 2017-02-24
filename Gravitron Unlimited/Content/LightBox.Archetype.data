@@ -14,8 +14,8 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-0.0515799522, 0.0886287689, 10],
-		Vec3 Scale = [8.50576591, 5.74768448, 1],
+		Vec3 Translation = [-16.7760887, 5.08375025, 0],
+		Vec3 Scale = [0.330000013, 0.629999995, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -24,16 +24,29 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [1, 0.971650004, 0.595000029, 0],
+		Vec4 Color = [1, 0.972549081, 0.596078455, 0],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5275aa4d802dd6dc:Square",
+		string SpriteSource = "58ce3ae53f10b133:triangle",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,
 		bool AnimationActive = true,
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
+	},
+	MultiConvexMeshCollider = 
+	{
+		bool Ghost = true,
+		bool SendsMessages = true,
+		bool Seamless = true,
+		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+		Vec3 Offset = [0, 0, 0],
+		string MeshName = "58cf8a36bd260908:Triangle2",
+	},
+	LightCollide = 
+	{
 	},
 },

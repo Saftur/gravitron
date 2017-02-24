@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-20.8051548, 2.8565073, 59.9990005],
+			Vec3 Translation = [-3.58559108, 4.26627493, 59.9990005],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 36.7880325,
+			float Size = 18.2683868,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-20.8051548, 2.8565073, 9.9989996],
+			Vec3 LookTarget = [-3.58559108, 4.26627493, 9.9989996],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -709,29 +709,11 @@ Level =
 			float MeshThickness = 1.20000005,
 		},
 	},
-	ArchetypeInstance = 
-	{
-		string Name = "58fd1dcfe8e2c3b4:LightBox",
-		LinkId = 
-		{
-			uint Id = 13,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-36.2762909, -7.87753582, 10],
-			Vec3 Scale = [8.50576591, 5.74768448, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "LightBox",
-		},
-	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 13,
 		},
 		Named = 
 		{
@@ -766,7 +748,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 15,
+			uint Id = 14,
 		},
 		Named = 
 		{
@@ -828,7 +810,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 16,
+			uint Id = 15,
 		},
 		Named = 
 		{
@@ -865,6 +847,25 @@ Level =
 		LightboxSpawner = 
 		{
 			string LightboxType = "58fd1dcfe8e2c3b4:LightBox",
+			Vec3 Lightboxdisplace = [0, 2.45000005, 0],
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "58fd1dcfe8e2c3b4:LightBox",
+		LinkId = 
+		{
+			uint Id = 16,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-16.7760887, 5.08375025, 0],
+			Vec3 Scale = [0.330000013, 0.629999995, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "LightBox",
 		},
 	},
 },

@@ -5,11 +5,14 @@ class LightboxSpawner : ZilchComponent
     
     var Spawnpos : Real3 = Real3();
     
+    [Property]
+    var Lightboxdisplace : Real3 = Real3();
+    
     function Initialize(init : CogInitializer)
     {
         //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         this.Spawnpos = this.Owner.Transform.Translation;
         
-        this.Space.CreateAtPosition(this.LightboxType, this.Spawnpos);
+        this.Space.CreateAtPosition(this.LightboxType, this.Spawnpos - this.Lightboxdisplace);
     }
 }
