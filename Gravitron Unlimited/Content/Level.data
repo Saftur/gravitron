@@ -614,9 +614,9 @@ Level =
 		},
 		Switch = 
 		{
-			bool Active = false,
+			bool Active = true,
 			bool Gravity = false,
-			bool Light = false,
+			bool Light = true,
 		},
 	},
 	Cog = 
@@ -752,7 +752,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 13,
+			uint Id = 14,
 		},
 		Named = 
 		{
@@ -787,7 +787,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 15,
 		},
 		Named = 
 		{
@@ -847,6 +847,23 @@ Level =
 		{
 			float PaceSpeed = 3,
 			float MaxMoveDistance = 10,
+			CogPath TargetObject = 
+			{
+				string Path = "",
+				bool ErrorOnResolveToNull = false,
+				bool ErrorOnPathCantCompute = false,
+				bool ErrorOnDirectLinkFail = false,
+				bool UpdateCogOnPathChange = true,
+				bool UpdatePathOnCogChange = true,
+				bool UpdateCogOnInitialize = true,
+				bool ResolvedNullErrorOccurred = false,
+				uint ResolvedCog = 4294967293,
+				CogPathPreference PathPreference0 = CogRelative,
+				CogPathPreference PathPreference1 = SpaceRelative,
+				CogPathPreference PathPreference2 = Absolute,
+			},
+			float ChaseSpeed = 5,
+			int Type = 1,
 		},
 	},
 	ArchetypeInstance = 
@@ -865,6 +882,50 @@ Level =
 		Named = 
 		{
 			string Name = "LightBox",
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 17,
+		},
+		Named = 
+		{
+			string Name = "Lightbulb",
+		},
+		Archetyped = 
+		{
+			string Name = "58ce2c4b165bc29e:Lightbulb",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-0.482468724, 2.50235081, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		LightboxSpawner = 
+		{
+			string LightboxType = "58fd1dcfe8e2c3b4:LightBox",
+			Vec3 Lightboxdisplace = [0, 2.5, 0],
 		},
 	},
 },
