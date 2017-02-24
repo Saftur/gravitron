@@ -33,6 +33,7 @@ class Guard : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         if(!this.Active) return;
+        
         var ray = Ray();
         var pos = this.Owner.Transform.Translation;
         var h = this.Owner.Transform.Scale.Y;
@@ -52,8 +53,11 @@ class Guard : ZilchComponent
         {
             ray.Start = pos + Real3(0, this.Owner.Transform.Scale.Y/2 + 1, 0); //Check if object is jumpable
             var dist = this.Owner.Transform.Scale.X/2 + 0.75;
-            if((this.CastRay(ray, dist, null)))
+            if(this.CastRay(ray, dist, null) && !this.CastRay(ray,dist,this.Player))
             {
+                if(this.Dir.X == 1) this.RightPoint = this.Owner.Transform.Translation;
+                else this.LeftPoint = this.Owner.Transform.Translation;
+                    
                 this.Dir *= Real3(1,-1,1);
                 this.Owner.Sprite.FlipX = !this.Owner.Sprite.FlipX;
             }
