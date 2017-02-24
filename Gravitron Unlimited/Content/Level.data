@@ -841,7 +841,8 @@ Level =
 		},
 		Guard = 
 		{
-			float PaceSpeed = 5,
+			bool Active = true,
+			Vec3 LeftPoint = [0, 0, 0],
 			float MaxMoveDistance = 3,
 			CogPath TargetObject = 
 			{
@@ -858,8 +859,13 @@ Level =
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
 			},
-			float ChaseSpeed = 6,
+			float VisionRange = 5,
 			int Type = 1,
+		},
+		Physocks = 
+		{
+			float Speed = 5,
+			float JumpStrength = 15,
 		},
 	},
 	Cog = 
