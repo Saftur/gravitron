@@ -49,7 +49,7 @@ class Physocks : ZilchComponent
         var objHit = this.Space.PhysicsSpace.CastRayFirst(ray);
         if(objHit != null && objHit.Distance <= this.Trans.Scale.Y/2)
         {
-            Console.WriteLine("`this.Owner.Name`: `objHit.Distance`");
+            //Console.WriteLine("`this.Owner.Name`: `objHit.Distance`");
             return true;
         }
         return false;

@@ -110,7 +110,7 @@ class PlayerInteraction : ZilchComponent
     }
     function OnCollisionStarted(event : CollisionEvent)
     {
-        Console.WriteLine("`event.OtherObject.Name`");
+        //Console.WriteLine("`event.OtherObject.Name`");
         if(event.OtherObject.Name == "Exit")
         {
             this.IMadeIt = true;
