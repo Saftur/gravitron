@@ -3,7 +3,7 @@ class LightCollide : ZilchComponent
     var FindGuards : CogPath = null;
     
     [Property]
-    var DetectDistance : Real3 = Real3(5.0, 0, 0);
+    var DetectDistance : Real = 5.0;
     
     function Initialize(init : CogInitializer)
     {
@@ -18,9 +18,13 @@ class LightCollide : ZilchComponent
             
             if(this.FindGuards.Cog != null)
             {
-                if(this.FindGuards.Cog.Transform.Translation.X - this.Owner.Transform.Translation.X <= this.DetectDistance.X)
+                if(this.FindGuards.Cog.Transform.Translation.X - this.Owner.Transform.Translation.X <= this.DetectDistance)
                 {
-                    //this.FindGuards.Cog.Guard.Spotted = true;
+                    this.FindGuards.Cog.Guard.Spotted = true;
+                }
+                else
+                {
+                    this.FindGuards.Cog.Guard.Spotted = false;
                 }
             }
         }
