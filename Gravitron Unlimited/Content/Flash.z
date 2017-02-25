@@ -1,5 +1,7 @@
 class Flash : ZilchComponent
 {
+    [Property]
+    var Active : Boolean = true;
     var Flashing : Boolean = true;
     var Increase : Boolean = false;
     var FlashSpeed : Real = 0.01;
@@ -13,22 +15,25 @@ class Flash : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if (this.Flashing)
+        if (this.Active)
         {
-            Console.WriteLine(this.Owner.Sprite.Color.W);
-            if (this.Owner.Sprite.Color.W >= this.Max)
-                this.FlashSpeed = -Math.Abs(this.FlashSpeed);
-            else if (this.Owner.Sprite.Color.W <= this.Min)
-                this.FlashSpeed = Math.Abs(this.FlashSpeed);
-            var newColor = this.Owner.Sprite.Color;
-            newColor.W += this.FlashSpeed;
-            if (newColor.W < this.Min) newColor.W = this.Min;
-            if (newColor.W > this.Max) newColor.W = this.Max;
-            this.Owner.Sprite.Color = newColor;
-        }
-        else
-        {
-            
+            if (this.Flashing)
+            {
+                Console.WriteLine(this.Owner.Sprite.Color.W);
+                if (this.Owner.Sprite.Color.W >= this.Max)
+                    this.FlashSpeed = -Math.Abs(this.FlashSpeed);
+                else if (this.Owner.Sprite.Color.W <= this.Min)
+                    this.FlashSpeed = Math.Abs(this.FlashSpeed);
+                var newColor = this.Owner.Sprite.Color;
+                newColor.W += this.FlashSpeed;
+                if (newColor.W < this.Min) newColor.W = this.Min;
+                if (newColor.W > this.Max) newColor.W = this.Max;
+                this.Owner.Sprite.Color = newColor;
+            }
+            else
+            {
+                
+            }
         }
     }
 }

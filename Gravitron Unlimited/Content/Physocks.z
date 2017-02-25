@@ -3,6 +3,8 @@ class Physocks : ZilchComponent
     [Dependency]
     var Trans : Transform = null;
     [Dependency]
+    var Collider : BoxCollider = null;
+    [Dependency]
     var RBody : RigidBody = null;
     
     [Property]
@@ -32,26 +34,76 @@ class Physocks : ZilchComponent
     function Grounded() : Boolean
     {
         var pos = this.Trans.Translation;
-        var width = this.Trans.Scale.X;
+        var width = this.Collider.Size.X;
+        var dist = this.Trans.Scale.Y/2;
         var ray = Ray();
         ray.Direction = this.Space.LevelSettings.GravityEffect.Direction;
         ray.Start = pos;
-        if (this.CastGroundRay(ray)) return true;
-        ray.Start = pos + Real3(width/2-0.1, 0, 0); // -0.1 is wall jump fix, remove when fixing going in walls
-        if (this.CastGroundRay(ray)) return true;
-        ray.Start = pos + Real3(-width/2+0.1, 0, 0);
-        if (this.CastGroundRay(ray)) return true;
+        if (this.CastGroundRay(ray, dist)) return true;
+        ray.Start = pos + Real3(width/2-0.05, 0, 0); // -0.1 is wall jump fix, remove when fixing going in walls
+        if (this.CastGroundRay(ray, dist)) return true;
+        ray.Start = pos + Real3(-width/2+0.05, 0, 0);
+        if (this.CastGroundRay(ray, dist)) return true;
         return false;
     }
     
-    function CastGroundRay(ray : Ray) : Boolean
+    function UnderBlock() : Boolean
+    {
+        var pos = this.Trans.Translation;
+        var width = this.Collider.Size.X;
+        var dist = this.Trans.Scale.Y/2;
+        var ray = Ray();
+        ray.Direction = this.Space.LevelSettings.GravityEffect.Direction * Real3(1, -1, 1);
+        ray.Start = pos;
+        if (this.CastGroundRay(ray, dist)) return true;
+        ray.Start = pos + Real3(width/2-0.05, 0, 0); // -0.1 is wall jump fix, remove when fixing going in walls
+        if (this.CastGroundRay(ray, dist)) return true;
+        ray.Start = pos + Real3(-width/2+0.05, 0, 0);
+        if (this.CastGroundRay(ray, dist)) return true;
+        return false;
+    }
+    
+    function InPit() : Boolean
+    {
+        var pos = this.Trans.Translation+Real3(0, -0.25, 0);
+        var height = this.Collider.Size.Y/2;
+        var dist = this.Trans.Scale.Y/2;
+        var hitLeft = false;
+        var hitRight = false;
+        var ray = Ray();
+        ray.Direction = Real3(-1, 0, 0);
+        ray.Start = pos;
+        if (this.CastGroundRay(ray, dist)) hitLeft = true;
+        ray.Start = pos + Real3(0, height/2-0.05, 0); // -0.1 is wall jump fix, remove when fixing going in walls
+        if (this.CastGroundRay(ray, dist)) hitLeft = true;
+        ray.Start = pos + Real3(0, -height/2-0.05, 0);
+        if (this.CastGroundRay(ray, dist)) hitLeft = true;
+        ray.Direction = Real3(1, 0, 0);
+        ray.Start = pos;
+        if (this.CastGroundRay(ray, dist)) hitRight = true;
+        ray.Start = pos + Real3(0, height/2-0.05, 0); // -0.1 is wall jump fix, remove when fixing going in walls
+        if (this.CastGroundRay(ray, dist)) hitRight = true;
+        ray.Start = pos + Real3(0, -height/2-0.05, 0);
+        if (this.CastGroundRay(ray, dist)) hitRight = true;
+        if (hitLeft && hitRight) return true;
+        return false;
+    }
+    
+    function CastGroundRay(ray : Ray, dist : Real) : Boolean
+    {
+        var rayDist = this.CastGroundRay(ray);
+        if (rayDist == -1) return false;
+        else return (rayDist <= dist);
+    }
+    
+    function CastGroundRay(ray : Ray) : Real
     {
         var objHit = this.Space.PhysicsSpace.CastRayFirst(ray);
-        if(objHit != null && objHit.Distance <= this.Trans.Scale.Y/2)
+        if(objHit != null)
         {
             //Console.WriteLine("`this.Owner.Name`: `objHit.Distance`");
-            return true;
+            return objHit.Distance;
         }
-        return false;
+        return -1;
     }
 }

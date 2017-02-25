@@ -4,6 +4,8 @@
 
 class PlayerMovement : ZilchComponent
 {
+    [Dependency]
+    var Socks : Physocks = null;
     var CeilingDistance : Real = 0;
     var CrawlOffset : Real3 = Real3(0, -0.25, 0);
     
@@ -28,7 +30,7 @@ class PlayerMovement : ZilchComponent
         var movement = Real3(0,0,0);
         
         //Jumping
-        if(this.Controls.KeyDown(2) && this.Owner.Physocks.Grounded())
+        if(this.Controls.KeyDown(2) && this.Socks.Grounded())
         {
             this.Owner.Physocks.Jump();
         }
@@ -38,7 +40,7 @@ class PlayerMovement : ZilchComponent
         }
         
         //Crawling
-        if(this.Controls.KeyDown(3))
+        if(this.Controls.KeyDown(3) && this.Socks.Grounded() && !this.Socks.InPit())
         {
             //this.Speed = 5;        //Crawling Speed
             //Crawling Sprite
@@ -46,7 +48,7 @@ class PlayerMovement : ZilchComponent
             this.Owner.BoxCollider.Size = Real3(2, 0.5, 1);
             this.Owner.BoxCollider.Offset = this.CrawlOffset;
         }
-        else
+        else if (!this.Socks.UnderBlock())
         {
             //Walking Sprite
             this.Owner.Sprite.Color = Real4(1,1,1,1);
