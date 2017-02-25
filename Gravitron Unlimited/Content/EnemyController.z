@@ -7,6 +7,7 @@ class EnemyController : ZilchComponent
     var PaceSpeed: Real = 5.0;
     [Property]
     var MaxMoveDistance: Real = 10.0;
+    [Property]
     var PaceDirection: Real3 = Real3(1.0, 0.0, 0.0);
     var StartPosition: Real3 = Real3();
 
@@ -16,7 +17,7 @@ class EnemyController : ZilchComponent
     var TargetObject: CogPath = null;
     [Property]
     var ChaseSpeed: Real = 5.0;
-    var ChaseTriggerDistance: Real = 2.0;
+    var ChaseTriggerDistance: Real = 5.0;
     var DistanceFromTarget: Real = 0.0;
     var ChaseDirection: Real3 = Real3();
     var ChaseColor:Real4 = Real4(1.0, 0.0, 0.0, 1.0);
