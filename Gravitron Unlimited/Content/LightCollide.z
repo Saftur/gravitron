@@ -1,5 +1,10 @@
 class LightCollide : ZilchComponent
 {
+    var FindGuards : CogPath = null;
+    
+    [Property]
+    var DetectDistance : Real = 5.0;
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
@@ -10,6 +15,18 @@ class LightCollide : ZilchComponent
         if(event.OtherObject.Name == "Player")
         {
             Console.WriteLine("Collided with light");
+            
+            if(this.FindGuards.Cog != null)
+            {
+                if(this.FindGuards.Cog.Transform.Translation.X - this.Owner.Transform.Translation.X <= this.DetectDistance)
+                {
+                    this.FindGuards.Cog.Guard.Spotted = true;
+                }
+                else
+                {
+                    this.FindGuards.Cog.Guard.Spotted = false;
+                }
+            }
         }
     }
 }

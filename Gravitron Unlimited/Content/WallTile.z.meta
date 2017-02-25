@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "WallTile",
+		uint64 ResourceId = 58d0e24395b821e9,
+	},
+},

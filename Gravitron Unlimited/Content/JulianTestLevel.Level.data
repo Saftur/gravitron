@@ -15,7 +15,7 @@ Level =
 			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
-			float Strength = 10,
+			float Strength = 25,
 			Vec3 Direction = [0, -1, 0],
 		},
 		DragEffect = 
@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [5.4255991, 1.7485342, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 24.428051,
+			float Size = 16.3746185,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [5.4255991, 1.7485342, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -204,11 +204,29 @@ Level =
 			string Name = "Lightbulb",
 		},
 	},
+	ArchetypeInstance = 
+	{
+		string Name = "58f3cc3555d5a99b:Player",
+		LinkId = 
+		{
+			uint Id = 6,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [9.46317673, 1.05317402, 0],
+			Vec3 Scale = [1, 2, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Player",
+		},
+	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 6,
+			uint Id = 7,
 		},
 		Named = 
 		{
@@ -233,7 +251,7 @@ Level =
 		},
 		TileMap = 
 		{
-			string SourceName = "58d0c516f897c80c:JulianTestLevel_TileMap00",
+			string SourceName = "58d0c6deba4f89e1:JulianTestLevel_TileMap01",
 			string PaletteName = "58f3d4fff60129ba:TilePalette1",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
@@ -241,20 +259,38 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "58f3cc3555d5a99b:Player",
+		string Name = "584bb8ed28240fd1:Grabbox",
 		LinkId = 
 		{
-			uint Id = 7,
+			uint Id = 8,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [5.4255991, 1.74853432, 0],
-			Vec3 Scale = [1, 2, 1],
+			Vec3 Translation = [5.48002815, 1.74549031, 0],
+			Vec3 Scale = [1.41139269, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
 		{
-			string Name = "Player",
+			string Name = "Grabbox",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "58d0cd8b570d37a7:LightSwitch",
+		LinkId = 
+		{
+			uint Id = 9,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [7.50966835, 0.507409751, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "LightSwitch",
 		},
 	},
 },

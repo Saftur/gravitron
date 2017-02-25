@@ -37,6 +37,7 @@ class EnemyController : ZilchComponent
     
     function Initialize(init : CogInitializer)
     {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         if(this.Type == 1)
         {
@@ -44,7 +45,7 @@ class EnemyController : ZilchComponent
         }
         this.StartPosition = this.Owner.Transform.Translation;
         this.OriginalColor = this.Owner.Sprite.Color;
-    
+       
     }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -94,6 +95,15 @@ class EnemyController : ZilchComponent
                 this.PaceBackAndForth(event);
             }
         }
+    
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        if(event.OtherObject.WallTile != null)
+        {
+            if(this.PaceDirection.X != 0.0) this.PaceDirection.X = (this.PaceDirection.X) * -1;
+            if(this.PaceDirection.Y != 0.0) this.PaceDirection.Y = (this.PaceDirection.Y) * -1;
+        }
+    }
     function PaceBackAndForth(event: UpdateEvent)
     {
       // Set pacing color
