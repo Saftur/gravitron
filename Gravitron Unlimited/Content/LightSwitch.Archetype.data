@@ -6,15 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Lightbulb",
-	},
-	Archetyped = 
-	{
-		string Name = "58ce2c4b165bc29e:Lightbulb",
+		string Name = "LightSwitch",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-0.482468724, 2.50235081, 0],
+		Vec3 Translation = [1.48685455, 4.53785276, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -24,7 +20,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [1, 1, 1, 1],
+		Vec4 Color = [0.359103799, 0.654999971, 0.19977501, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -36,9 +32,20 @@ Cog =
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
 	},
-	LightboxSpawner = 
+	BoxCollider = 
 	{
-		string LightboxType = "58fd1dcfe8e2c3b4:LightBox",
-		Vec3 Lightboxdisplace = [0, 2.5, 0],
+		bool Ghost = true,
+		bool SendsMessages = true,
+		bool Seamless = true,
+		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+		Vec3 Offset = [0, 0, 0],
+		Vec3 Size = [0.5, 0.5, 0.5],
+	},
+	Switch = 
+	{
+		bool Active = true,
+		bool Gravity = false,
+		bool Light = true,
 	},
 },
