@@ -1,0 +1,12 @@
+BinaryContent = 
+{
+	BinaryBuilder = 
+	{
+		string Name = "JulianTestLevel_TileMap01",
+		uint64 ResourceId = 58d0c6deba4f89e1,
+		string LoaderType = "TileMapSource",
+		uint Version = 0,
+		string FilterTag = "",
+		string ResourceOwner = "58f047dc87a61a2a:JulianTestLevel",
+	},
+},
