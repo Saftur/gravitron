@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-2.86778903, 3.99933887, 90],
+			Vec3 Translation = [4.1234479, 2.83357477, 90],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-2.86778903, 3.99933887, 40],
+			Vec3 LookTarget = [4.1234479, 2.83357477, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -264,19 +264,12 @@ Level =
 		{
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "584bb8ed28240fd1:Grabbox",
 		LinkId = 
 		{
 			uint Id = 5,
-		},
-		Named = 
-		{
-			string Name = "Grabbox",
-		},
-		Archetyped = 
-		{
-			string Name = "584bb8ed28240fd1:Grabbox",
 		},
 		Transform = 
 		{
@@ -284,71 +277,9 @@ Level =
 			Vec3 Scale = [1.41139269, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [0.75999999, 0.712879896, 0.288800001, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = true,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "58fbc52e7007cf67:Grabbox",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		FollowObject = 
-		{
-			bool Active = true,
-			CogPath ObjectToFollow = 
-			{
-				string Path = ":/Player",
-				bool ErrorOnResolveToNull = false,
-				bool ErrorOnPathCantCompute = false,
-				bool ErrorOnDirectLinkFail = false,
-				bool UpdateCogOnPathChange = true,
-				bool UpdatePathOnCogChange = true,
-				bool UpdateCogOnInitialize = true,
-				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 4,
-				CogPathPreference PathPreference0 = CogRelative,
-				CogPathPreference PathPreference1 = SpaceRelative,
-				CogPathPreference PathPreference2 = Absolute,
-			},
-			Vec3 Displacement = [0, 0, -0.00999999978],
-		},
-		PlayerInteraction = 
-		{
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = true,
-			bool RotationLocked = false,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [-432.065399, 192.95929, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		Hierarchy = 
-		{
+			string Name = "Grabbox",
 		},
 	},
 	Cog = 
@@ -536,7 +467,7 @@ Level =
 			bool Mode2D = true,
 			bool AllowSleep = true,
 			bool Inherit2DMode = true,
-			Vec3 Velocity = [116.326233, 8.62461281, 5.82076552e-07],
+			Vec3 Velocity = [0, 0, 0],
 			Vec3 AngularVelocity = [0, 0, 0],
 		},
 		BoxCollider = 
@@ -852,7 +783,7 @@ Level =
 		{
 			bool Active = true,
 			Vec3 LeftPoint = [-7, 0, 0],
-			Vec3 RightPoint = [7, 0, 0],
+			Vec3 RightPoint = [10, 0, 0],
 			int Type = 1,
 			float VisionRange = 5,
 			float ChaseSpeed = 6,

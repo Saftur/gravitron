@@ -6,16 +6,16 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Guard",
+		string Name = "StaticCrate",
 	},
 	Archetyped = 
 	{
-		string Name = "584b3d0c7ec77112:Guard",
+		string Name = "586fa0a219e7d914:StaticCrate",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [16, -5, 0],
-		Vec3 Scale = [1, 2, 1],
+		Vec3 Translation = [0, -306.916626, 0],
+		Vec3 Scale = [2, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.162524998, 0.836954653, 0.985000014, 1],
+		Vec4 Color = [0.625, 0.206249982, 0.583124876, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -40,15 +40,15 @@ Cog =
 	{
 		bool Static = false,
 		bool Asleep = false,
-		bool Kinematic = false,
-		bool RotationLocked = true,
-		bool Mode2D = true,
+		bool Kinematic = true,
+		bool RotationLocked = false,
+		bool Mode2D = false,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	CapsuleCollider = 
+	BoxCollider = 
 	{
 		bool Ghost = false,
 		bool SendsMessages = true,
@@ -56,26 +56,24 @@ Cog =
 		string MaterialName = "58cf7875009ddbd3:Physocks",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
-		float Radius = 0.5,
-		float Height = 9.99999975e-05,
-		AxisDirection Direction = Y,
-		CapsuleScalingMode ScalingMode = PreserveScale,
+		Vec3 Size = [0.5, 0.5, 0.5],
 	},
-	Physocks = 
-	{
-		float Speed = 2.5,
-		float JumpStrength = 13,
-	},
-	Guard = 
+	GravityEffect = 
 	{
 		bool Active = true,
-		Vec3 LeftPoint = [5, 0, 0],
-		Vec3 RightPoint = [16, 0, 0],
-		int Type = 1,
-		float VisionRange = 5,
-		float ChaseSpeed = 6,
+		bool WakeUpOnChange = true,
+		bool LocalSpaceDirection = false,
+		float Strength = 50,
+		Vec3 Direction = [0, -1, 0],
 	},
-	Hierarchy = 
+	DragEffect = 
+	{
+		bool Active = true,
+		bool WakeUpOnChange = true,
+		float Drag = 10,
+		float AngularDrag = 0.100000001,
+	},
+	Crate = 
 	{
 	},
 },

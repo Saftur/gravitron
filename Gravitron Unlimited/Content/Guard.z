@@ -23,29 +23,25 @@ class Guard : ZilchComponent
     
     var Player : Cog = null;
     var VisionIndicator : Cog = null;
-    var Spotted : Boolean = false;
-    
-    var Time : Real = 0;
     
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         this.Player = this.Space.FindObjectByName("Player");
         this.VisionIndicator = this.Space.FindObjectByName("GuardV");
+        this.VisionIndicator.Transform.Scale = Real3(this.VisionRange, 2 /*height*/, 1);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.Time += event.Dt;
-        
-        if(!this.Active || this.Time < 0) return;
-        
+        if(!this.Active) return;
+        //Console.WriteLine("`this.RightPoint` `this.LeftPoint` `this.Dir`");
         var ray = Ray();
         var pos = this.Owner.Transform.Translation;
         var h = this.Owner.Transform.Scale.Y;
         
         ray.Direction = this.Dir;
-        if(this.Look() || this.Spotted)
+        if(this.Look())
         {
             this.Chase();
         }
@@ -57,36 +53,30 @@ class Guard : ZilchComponent
         //Jumping
         if(this.Socks.Grounded())
         {
-            ray.Start = pos + Real3(0, this.Owner.Transform.Scale.Y/2 + 1, 0); //Check if object is jumpable
+            ray.Start = pos + Real3(0, this.Owner.Transform.Scale.Y/2 + 0.5, 0); //Check if object is jumpable
             var dist = this.Owner.Transform.Scale.X/2 + 0.75;
             if(this.CastRay(ray, dist, null) && !this.CastRay(ray,dist,this.Player))
             {
-                if(this.Dir.X == 1) this.RightPoint = this.Owner.Transform.Translation;
-                else this.LeftPoint = this.Owner.Transform.Translation;
-                    
-                this.Dir *= Real3(1,-1,1);
-                this.Owner.Sprite.FlipX = !this.Owner.Sprite.FlipX;
+                this.Dir *= Real3(-1,1,1);
+                this.Turn();
             }
             else
             {
                 ray.Start = pos;
                 if(this.CastRay(ray, dist, null) && !this.CastRay(ray, dist, this.Player))  //middle
                 {
-                    this.Time = -2;
                     this.Socks.Jump();
                 }
                 
                 ray.Start = pos + Real3(0, h/2, 0);
                 if(this.CastRay(ray, dist, null) && !this.CastRay(ray, dist, this.Player)) //top
                 {
-                    this.Time = -2;
                     this.Socks.Jump();
                 }
                 
-                ray.Start = pos + Real3(0, -h/2, 0);
+                ray.Start = pos + Real3(0, -h/3, 0);
                 if(this.CastRay(ray, dist, null) && !this.CastRay(ray, dist, this.Player)) //bottom
                 {
-                    this.Time = -2;
                     this.Socks.Jump();
                 }
             }
@@ -95,8 +85,7 @@ class Guard : ZilchComponent
     function Chase()
     {
         var d = this.Player.Transform.Translation.X - this.Owner.Transform.Translation.X;
-        if(d > 0) d = 1;
-        else d = -1;
+        d = this.Normalize(d);
         this.Dir = Real3(d,0,0);
         this.Turn();
         var speed = this.Socks.Speed;
@@ -122,6 +111,7 @@ class Guard : ZilchComponent
     }
     function Turn()
     {
+        this.Owner.RigidBody.Velocity = Real3(this.Owner.RigidBody.Velocity.X, 0, 0);
         if(this.Dir.X > 0)
         {
             this.Owner.Sprite.FlipX = false;
@@ -135,15 +125,16 @@ class Guard : ZilchComponent
     }
     function Look() : Boolean
     {
+        var disFromPlayer = this.Player.Transform.Translation.X - this.Owner.Transform.Translation.X;
+        if(this.Player.PlayerStatus.Spotted && Math.Abs(disFromPlayer) <= 10 && this.Dir.X == this.Normalize(disFromPlayer)) return true;
+        
         var ray = Ray();
         var pos = this.Owner.Transform.Translation;
         var h = this.Owner.Transform.Scale.Y;
         
-        ray.Start = pos;
         ray.Direction = this.Dir;
         
         ray.Start = pos;
-        //Console.WriteLine("`this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)`");
         if(this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)) return true; //middle
             
         ray.Start = pos + Real3(0, h/2, 0);
@@ -170,5 +161,11 @@ class Guard : ZilchComponent
             }
         }
         return false;
+    }
+    function Normalize(r : Real) : Real
+    {
+        if(r > 0) r = 1;
+        else r = -1;
+        return r;
     }
 }

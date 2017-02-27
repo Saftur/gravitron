@@ -1,0 +1,33 @@
+class Crate : ZilchComponent
+{
+    var StaticCrate : Archetype = Archetype.StaticCrate;
+    var MovableCrate : Archetype = Archetype.Crate;
+    var RespawnPoint : Real3 = Real3(0,0,0);
+    function Initialize(init : CogInitializer)
+    {
+        this.RespawnPoint = this.Owner.Transform.Translation;
+        var pos = this.Owner.Transform.Translation;
+    }
+
+    function Swap()
+    {
+        Console.WriteLine("hi");
+        var pos = this.Owner.Transform.Translation;
+        if(this.Owner.Name == "Crate")
+        {
+            this.Owner.Destroy();
+            this.Space.CreateAtPosition(this.StaticCrate, pos);
+        }
+        else
+        {
+            Console.WriteLine("bye");
+            this.Owner.Destroy();
+            Console.WriteLine("Am I Alive? `this.Owner`");
+            this.Space.CreateAtPosition(this.MovableCrate,pos);
+        }
+    }
+    function Reset()
+    {
+        this.Owner.Transform.Translation = this.RespawnPoint;
+    }
+}

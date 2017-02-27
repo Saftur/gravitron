@@ -1,8 +1,0 @@
-TextContent = 
-{
-	ZilchScriptBuilder = 
-	{
-		string Name = "LightCollide",
-		uint64 ResourceId = 58ce3d848a35bfb1,
-	},
-},

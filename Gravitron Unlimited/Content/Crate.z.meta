@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "Crate",
+		uint64 ResourceId = 586e1914ccf53961,
+	},
+},
