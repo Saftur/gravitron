@@ -21,6 +21,10 @@ class Guard : ZilchComponent
     
     var Dir : Real3 = Real3(1,0,0);
     
+    var OldPos : Real3 = Real3(0,0,0);
+    var Stuck : Real = 0;
+    var Time : Real = 0;
+    
     var Player : Cog = null;
     var VisionIndicator : Cog = null;
     
@@ -34,6 +38,8 @@ class Guard : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        this.Time += event.Dt;
+        
         if(!this.Active) return;
         //Console.WriteLine("`this.RightPoint` `this.LeftPoint` `this.Dir`");
         var ray = Ray();
@@ -47,9 +53,25 @@ class Guard : ZilchComponent
         }
         else
         {
-
             this.Patrol();
         }
+        Console.WriteLine("`this.OldPos` `this.Owner.Transform.Translation`");
+        if(Math.Abs(this.OldPos.X - this.Owner.Transform.Translation.X) <= 1)
+        {
+            this.Stuck += event.Dt;
+        }
+        if(this.Stuck > 2)
+        {
+            this.Dir *= Real3(-1,1,1);
+            this.Turn();
+        }
+        if(this.Time > 2)
+        {
+            this.OldPos = this.Owner.Transform.Translation;
+            this.Time = 0;
+            this.Stuck = 0;
+        }
+        
         //Jumping
         if(this.Socks.Grounded())
         {

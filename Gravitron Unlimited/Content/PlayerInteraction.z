@@ -2,6 +2,7 @@ class PlayerInteraction : ZilchComponent
 {
     var CurrentItem : Cog = null;
     var CurrentSwitch : Cog = null;
+    var CurrentCrate : Cog = null;
     var HoldingItem : Boolean = false;
     var IMadeIt : Boolean = false; //reached exit
     var Player : Cog = null;
@@ -27,6 +28,11 @@ class PlayerInteraction : ZilchComponent
             {
                 //NextLevel
                 this.GameSession.Quit();
+            }
+            //Crates
+            else if(this.CurrentCrate != null)
+            {
+                this.CurrentCrate.Crate.Swap();
             }
             //Switches
             else if(this.CurrentSwitch != null)
@@ -86,31 +92,6 @@ class PlayerInteraction : ZilchComponent
                     }
                 }
             }
-            //Picking up and putting down objects
-            else if(this.CurrentItem != null && !this.HoldingItem)
-            {
-                this.CurrentItem.FollowObject.ObjectToFollow.Cog = this.Owner;
-                this.CurrentItem.FollowObject.Displacement = this.Player.PlayerMovement.Displacement;
-                this.HoldingItem = true;
-            }
-            else if(this.CurrentItem != null)
-            {
-                var dad = this.Player;
-                
-                if(this.CurrentItem.Pickupable.ImInSomething)
-                {
-                    var x = dad.Transform.Translation.X - this.CurrentItem.Transform.Translation.X;
-                    if(x < 0)
-                        x = -1;
-                    else
-                        x = 2;
-                        Console.WriteLine("Released");
-                    this.CurrentItem.Transform.Translation += Real3(x, 0, 0);
-                }
-                this.CurrentItem.FollowObject.ObjectToFollow.Cog = null;
-                this.CurrentItem.RigidBody.Velocity = dad.RigidBody.Velocity;
-                this.HoldingItem = false;
-            }
         }
     }
     function OnCollisionStarted(event : CollisionEvent)
@@ -123,7 +104,7 @@ class PlayerInteraction : ZilchComponent
         
         if(o.Name == "StaticCrate")
         {
-            o.Crate.Swap();
+            this.CurrentCrate = o;
         }
             
         if(o.Switch != null)    this.CurrentSwitch = o;
@@ -137,8 +118,13 @@ class PlayerInteraction : ZilchComponent
         {
             this.IMadeIt = false;
         }
+        if(this.CurrentCrate != null && o.Name == "StaticCrate")
+        {
+            this.CurrentCrate = null;
+        }
         if(o.Name == "Crate")
         {
+            this.CurrentCrate = null;
             o.Crate.Swap();
         }
         if(o.Switch != null)

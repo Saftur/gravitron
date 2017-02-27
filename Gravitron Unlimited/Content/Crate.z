@@ -6,24 +6,24 @@ class Crate : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         this.RespawnPoint = this.Owner.Transform.Translation;
-        var pos = this.Owner.Transform.Translation;
     }
 
     function Swap()
     {
         Console.WriteLine("hi");
         var pos = this.Owner.Transform.Translation;
+        var oldResPos = this.RespawnPoint;
         if(this.Owner.Name == "Crate")
         {
+            var c = this.Space.CreateAtPosition(this.StaticCrate, pos);
+            c.Crate.RespawnPoint = oldResPos;
             this.Owner.Destroy();
-            this.Space.CreateAtPosition(this.StaticCrate, pos);
         }
         else
         {
-            Console.WriteLine("bye");
+            var c = this.Space.CreateAtPosition(this.MovableCrate,pos);
+            c.Crate.RespawnPoint = oldResPos;
             this.Owner.Destroy();
-            Console.WriteLine("Am I Alive? `this.Owner`");
-            this.Space.CreateAtPosition(this.MovableCrate,pos);
         }
     }
     function Reset()
