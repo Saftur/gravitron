@@ -41,7 +41,7 @@ class PlayerInteraction : ZilchComponent
                 if(this.CurrentSwitch.Switch.Gravity)
                 {
                     var switches = this.Space.FindAllObjectsByName("GravitySwitch");
-                    //var crates = this.Space.FindAllObjectsByName("Crate");
+                    var crates = this.Space.FindAllObjectsByName("Crate");
                     foreach(var s in switches)
                     {
                         //Changing the different switch states
@@ -55,10 +55,10 @@ class PlayerInteraction : ZilchComponent
                             s.Sprite.Color = Real4(0.329412, 0.20625, 0.625, 1);
                         }
                     }
-                    /*foreach(var c in crates)
+                    foreach(var c in crates)
                     {
                         c.GravityEffect.Direction *= Real3(1,-1,1);
-                    }*/
+                    }
                     this.Player.PlayerMovement.CrawlOffset *= Real3(1,-1,1);
                     
                     this.Space.LevelSettings.GravityEffect.Direction *= Real3(1,-1,1);
@@ -102,7 +102,7 @@ class PlayerInteraction : ZilchComponent
         
         if(o.Name == "Guard")   this.Player.PlayerStatus.Caught = true;
         
-        if(o.Name == "StaticCrate")
+        if(false)//o.Name == "StaticCrate")
         {
             this.CurrentCrate = o;
         }
@@ -122,7 +122,7 @@ class PlayerInteraction : ZilchComponent
         {
             this.CurrentCrate = null;
         }
-        if(o.Name == "Crate")
+        if(false)//o.Name == "Crate")
         {
             this.CurrentCrate = null;
             o.Crate.Swap();

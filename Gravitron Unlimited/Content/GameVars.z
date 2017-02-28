@@ -1,0 +1,8 @@
+class GameVars : ZilchComponent
+{
+    var Initializied : Boolean = false;
+    function Reset()
+    {
+        this.Initializied = false;
+    }
+}

@@ -147,6 +147,7 @@ class Guard : ZilchComponent
     }
     function Look() : Boolean
     {
+        Console.WriteLine("`this.Player.PlayerStatus.Spotted`");
         var disFromPlayer = this.Player.Transform.Translation.X - this.Owner.Transform.Translation.X;
         if(this.Player.PlayerStatus.Spotted && Math.Abs(disFromPlayer) <= 10 && this.Dir.X == this.Normalize(disFromPlayer)) return true;
         
@@ -178,7 +179,7 @@ class Guard : ZilchComponent
             }
             else if(cog == null)
             {
-                //Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
+                Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
                 return true;
             }
         }

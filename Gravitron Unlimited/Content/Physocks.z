@@ -50,7 +50,7 @@ class Physocks : ZilchComponent
     function UnderBlock() : Boolean
     {
         var pos = this.Trans.Translation;
-        var width = this.Collider.Radius;
+        var width = this.Collider.Radius*4;
         var dist = this.Trans.Scale.Y/2;
         var ray = Ray();
         ray.Direction = this.Space.LevelSettings.GravityEffect.Direction * Real3(1, -1, 1);
