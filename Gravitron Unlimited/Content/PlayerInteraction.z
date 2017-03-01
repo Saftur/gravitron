@@ -17,6 +17,7 @@ class PlayerInteraction : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        //Console.WriteLine("`this.Player.RigidBody.Velocity` `this.Player.RigidBody.Mass`");
         if(this.Player.PlayerStatus.Caught)
         {
             return;
@@ -32,7 +33,7 @@ class PlayerInteraction : ZilchComponent
             //Crates
             else if(this.CurrentCrate != null)
             {
-                this.CurrentCrate.Crate.Swap();
+                this.PullCrate();
             }
             //Switches
             else if(this.CurrentSwitch != null)
@@ -41,7 +42,7 @@ class PlayerInteraction : ZilchComponent
                 if(this.CurrentSwitch.Switch.Gravity)
                 {
                     var switches = this.Space.FindAllObjectsByName("GravitySwitch");
-                    var crates = this.Space.FindAllObjectsByName("Crate");
+                    var crates = this.Space.FindAllObjectsByName("StaticCrate");
                     foreach(var s in switches)
                     {
                         //Changing the different switch states
@@ -94,6 +95,10 @@ class PlayerInteraction : ZilchComponent
             }
         }
     }
+    function PullCrate()
+    {
+        
+    }
     function OnCollisionStarted(event : CollisionEvent)
     {
         //Console.WriteLine("`event.OtherObject.Name`");
@@ -102,7 +107,7 @@ class PlayerInteraction : ZilchComponent
         
         if(o.Name == "Guard")   this.Player.PlayerStatus.Caught = true;
         
-        if(false)//o.Name == "StaticCrate")
+        if(o.Name == "StaticCrate")
         {
             this.CurrentCrate = o;
         }

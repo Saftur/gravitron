@@ -3,7 +3,7 @@ class Physocks : ZilchComponent
     [Dependency]
     var Trans : Transform = null;
     [Dependency]
-    var Collider : CapsuleCollider = null;
+    var Collider : BoxCollider = null;
     [Dependency]
     var RBody : RigidBody = null;
     
@@ -34,7 +34,7 @@ class Physocks : ZilchComponent
     function Grounded() : Boolean
     {
         var pos = this.Trans.Translation;
-        var width = this.Collider.Radius;
+        var width = this.Collider.Size.X;
         var dist = this.Trans.Scale.Y/2;
         var ray = Ray();
         ray.Direction = this.Space.LevelSettings.GravityEffect.Direction;
@@ -50,7 +50,7 @@ class Physocks : ZilchComponent
     function UnderBlock() : Boolean
     {
         var pos = this.Trans.Translation;
-        var width = this.Collider.Radius*4;
+        var width = this.Collider.Size.X;
         var dist = this.Trans.Scale.Y/2;
         var ray = Ray();
         ray.Direction = this.Space.LevelSettings.GravityEffect.Direction * Real3(1, -1, 1);
@@ -66,7 +66,7 @@ class Physocks : ZilchComponent
     function InPit() : Boolean
     {
         var pos = this.Trans.Translation+Real3(0, -0.25, 0);
-        var height = this.Collider.Radius*2;
+        var height = this.Collider.Size.X;
         var dist = this.Trans.Scale.Y/2;
         var hitLeft = false;
         var hitRight = false;

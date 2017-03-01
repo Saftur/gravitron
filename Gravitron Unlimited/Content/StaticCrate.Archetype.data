@@ -65,4 +65,12 @@ Cog =
 		float Drag = 10,
 		float AngularDrag = 0.100000001,
 	},
+	GravityEffect = 
+	{
+		bool Active = true,
+		bool WakeUpOnChange = true,
+		bool LocalSpaceDirection = false,
+		float Strength = 60,
+		Vec3 Direction = [0, -1, 0],
+	},
 },

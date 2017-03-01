@@ -48,18 +48,15 @@ Cog =
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	CapsuleCollider = 
+	BoxCollider = 
 	{
 		bool Ghost = false,
 		bool SendsMessages = true,
 		bool Seamless = true,
-		string MaterialName = "58cf7875009ddbd3:Physocks",
+		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
-		float Radius = 0.5,
-		float Height = 9.99999975e-05,
-		AxisDirection Direction = Y,
-		CapsuleScalingMode ScalingMode = PreserveScale,
+		Vec3 Size = [0.5, 0.5, 0.5],
 	},
 	Physocks = 
 	{
