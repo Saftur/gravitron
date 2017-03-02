@@ -20,7 +20,7 @@ class Guard : ZilchComponent
     [Property]
     var ChaseSpeed : Real = 6;
     [Property]
-    var JumpHeight : Real = 0;
+    var JumpHeight : Real = 1.5;
     
     var Dir : Real3 = Real3(1,0,0);
     
