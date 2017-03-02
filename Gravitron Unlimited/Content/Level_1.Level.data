@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 14.3892584,
+			float Size = 39.1140213,
 		},
 		EditorCameraController = 
 		{
@@ -171,19 +171,12 @@ Level =
 			float MeshThickness = 1.20000005,
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "58f3cc3555d5a99b:Player",
 		LinkId = 
 		{
 			uint Id = 5,
-		},
-		Named = 
-		{
-			string Name = "Player",
-		},
-		Archetyped = 
-		{
-			string Name = "58f3cc3555d5a99b:Player",
 		},
 		Transform = 
 		{
@@ -191,69 +184,9 @@ Level =
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [1, 1, 1, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = true,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		Physocks = 
-		{
-			float Speed = 5,
-			float JumpStrength = 15,
-		},
-		PlayerMovement = 
-		{
-		},
-		PlayerStatus = 
-		{
-			Vec3 RespawnPoint = [0, 0, 0],
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "58cf7875009ddbd3:Physocks",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		MassOverride = 
-		{
-			bool Active = true,
-			float invMass = 0.5,
-			Vec3 invInertiaX = [0, 0, 0],
-			Vec3 invInertiaY = [0, 0, 0],
-			Vec3 invInertiaZ = [0, 0, 0],
-			Vec3 LocalCenterOfMass = [0, 0, 0],
-		},
-		Hierarchy = 
-		{
+			string Name = "Player",
 		},
 	},
 	Cog = 
@@ -463,7 +396,7 @@ Level =
 			Vec3 Velocity = [0, 0, 0],
 			Vec3 AngularVelocity = [0, 0, 0],
 		},
-		CapsuleCollider = 
+		BoxCollider = 
 		{
 			bool Ghost = false,
 			bool SendsMessages = true,
@@ -471,10 +404,7 @@ Level =
 			string MaterialName = "58cf7875009ddbd3:Physocks",
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
-			float Radius = 0.5,
-			float Height = 9.99999975e-05,
-			AxisDirection Direction = Y,
-			CapsuleScalingMode ScalingMode = PreserveScale,
+			Vec3 Size = [0.5, 0.5, 0.5],
 		},
 		Physocks = 
 		{
@@ -483,9 +413,9 @@ Level =
 		},
 		Guard = 
 		{
-			bool Active = false,
-			Vec3 LeftPoint = [-3, 0, 0],
-			Vec3 RightPoint = [13, 0, 0],
+			bool Active = true,
+			Vec3 LeftPoint = [5, 0, 0],
+			Vec3 RightPoint = [16, 0, 0],
 			int Type = 1,
 			float VisionRange = 5,
 			float ChaseSpeed = 6,
@@ -548,19 +478,12 @@ Level =
 			string Name = "GravitySwitch",
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "586fa0a219e7d914:StaticCrate",
 		LinkId = 
 		{
 			uint Id = 12,
-		},
-		Named = 
-		{
-			string Name = "StaticCrate",
-		},
-		Archetyped = 
-		{
-			string Name = "586fa0a219e7d914:StaticCrate",
 		},
 		Transform = 
 		{
@@ -568,63 +491,9 @@ Level =
 			Vec3 Scale = [2, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Sprite = 
+		Named = 
 		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [0.625, 0.206249982, 0.583124876, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = true,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "58cf7875009ddbd3:Physocks",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		DragEffect = 
-		{
-			bool Active = true,
-			bool WakeUpOnChange = true,
-			float Drag = 20,
-			float AngularDrag = 0.100000001,
-		},
-		GravityEffect = 
-		{
-			bool Active = true,
-			bool WakeUpOnChange = true,
-			bool LocalSpaceDirection = false,
-			float Strength = 120,
-			Vec3 Direction = [0, -1, 0],
-		},
-		Crate = 
-		{
+			string Name = "StaticCrate",
 		},
 	},
 },

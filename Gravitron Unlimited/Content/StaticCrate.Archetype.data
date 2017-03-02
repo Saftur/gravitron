@@ -62,7 +62,7 @@ Cog =
 	{
 		bool Active = true,
 		bool WakeUpOnChange = true,
-		float Drag = 10,
+		float Drag = 20,
 		float AngularDrag = 0.100000001,
 	},
 	GravityEffect = 
@@ -70,7 +70,10 @@ Cog =
 		bool Active = true,
 		bool WakeUpOnChange = true,
 		bool LocalSpaceDirection = false,
-		float Strength = 60,
+		float Strength = 120,
 		Vec3 Direction = [0, -1, 0],
+	},
+	Crate = 
+	{
 	},
 },
