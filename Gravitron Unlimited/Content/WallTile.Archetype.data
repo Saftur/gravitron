@@ -8,10 +8,17 @@ Cog =
 	{
 		string Name = "Transform",
 	},
+	Archetyped = 
+	{
+		string Name = "58cce1526cfeeb5d:WallTile",
+	},
 	Transform = 
 	{
-		Vec3 Translation = [2.66811967, 4.33393002, 40],
+		Vec3 Translation = [0, 0, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
+	},
+	WallTile = 
+	{
 	},
 },

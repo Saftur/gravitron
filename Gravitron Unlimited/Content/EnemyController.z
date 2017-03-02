@@ -100,6 +100,7 @@ class EnemyController : ZilchComponent
     {
         if(event.OtherObject.WallTile != null)
         {
+            Console.WriteLine("here `this.PaceDirection.X` `this.PaceDirection.Y` `event.OtherObject`");
             if(this.PaceDirection.X != 0.0) this.PaceDirection.X = (this.PaceDirection.X) * -1;
             if(this.PaceDirection.Y != 0.0) this.PaceDirection.Y = (this.PaceDirection.Y) * -1;
         }
