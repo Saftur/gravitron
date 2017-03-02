@@ -2,6 +2,9 @@ class PlayerStatus : ZilchComponent
 {
     var Caught : Boolean = false;
     var Spotted : Boolean = false;
+    
+    var Pulling : Boolean = false;
+    
     [Property]
     var RespawnPoint : Real3 = Real3(0,0,0);
     
@@ -28,6 +31,7 @@ class PlayerStatus : ZilchComponent
         }
         this.Caught = false;
         this.Spotted = false;
+        this.Pulling = false;
         this.Owner.Transform.Translation = this.RespawnPoint; //transport the player
     }
 }

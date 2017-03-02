@@ -30,7 +30,7 @@ class PlayerMovement : ZilchComponent
         var movement = Real3(0,0,0);
         
         //Jumping
-        if(this.Controls.KeyDown(2) && this.Socks.Grounded())
+        if(this.Controls.KeyDown(2) && this.Socks.Grounded() && !this.Owner.PlayerStatus.Pulling)
         {
             this.Owner.Physocks.Jump();
         }
@@ -40,7 +40,7 @@ class PlayerMovement : ZilchComponent
         }
         
         //Crawling
-        else if(this.Controls.KeyDown(3) && this.Socks.Grounded() && !this.Socks.InPit())
+        else if(this.Controls.KeyDown(3) && this.Socks.Grounded() && !this.Socks.InPit() && !this.Owner.PlayerStatus.Pulling)
         {
             //this.Speed = 5;        //Crawling Speed
             //Crawling Sprite
@@ -69,6 +69,9 @@ class PlayerMovement : ZilchComponent
             if(this.Controls.KeyDown(0))
             {
                 movement.X += -1;
+                
+                if(this.Owner.PlayerStatus.Pulling) movement.X /= 2;
+                
                 this.Displacement = Real3(-1.5, 0, 0);
                 if(this.Grabbox.PlayerInteraction.CurrentItem != null)
                 {
@@ -78,6 +81,9 @@ class PlayerMovement : ZilchComponent
             if(this.Controls.KeyDown(1))
             {
                 movement.X += 1;
+                
+                if(this.Owner.PlayerStatus.Pulling) movement.X /= 2;
+                
                 this.Displacement = Real3(1.5, 0, 0);
                 if(this.Grabbox.PlayerInteraction.CurrentItem != null)
                 {

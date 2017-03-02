@@ -1,0 +1,5 @@
+class Tag : ZilchComponent
+{
+    [Property]
+    var Number : Integer = 1;
+}
