@@ -19,7 +19,7 @@ class Flash : ZilchComponent
         {
             if (this.Flashing)
             {
-                Console.WriteLine(this.Owner.Sprite.Color.W);
+                //Console.WriteLine(this.Owner.Sprite.Color.W);
                 if (this.Owner.Sprite.Color.W >= this.Max)
                     this.FlashSpeed = -Math.Abs(this.FlashSpeed);
                 else if (this.Owner.Sprite.Color.W <= this.Min)

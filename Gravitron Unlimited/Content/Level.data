@@ -787,6 +787,7 @@ Level =
 			int Type = 1,
 			float VisionRange = 5,
 			float ChaseSpeed = 6,
+			float JumpHeight = 0,
 		},
 		Hierarchy = 
 		{
@@ -850,6 +851,7 @@ Level =
 		},
 		LightboxSpawner = 
 		{
+			bool Active = true,
 			string LightboxType = "58fd1dcfe8e2c3b4:LightBox",
 			Vec3 Lightboxdisplace = [0, 2.5, 0],
 		},

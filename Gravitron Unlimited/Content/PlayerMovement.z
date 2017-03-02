@@ -7,7 +7,7 @@ class PlayerMovement : ZilchComponent
     [Dependency]
     var Socks : Physocks = null;
     var CeilingDistance : Real = 0;
-    var CrawlOffset : Real3 = Real3(0, -0.5, 0);
+    var CrawlOffset : Real3 = Real3(0, -0.25, 0);
     
     var Grabbox : Cog = null;    //For holding items
     var Displacement : Real3 = Real3(1.5,0,0);
@@ -30,7 +30,7 @@ class PlayerMovement : ZilchComponent
         var movement = Real3(0,0,0);
         
         //Jumping
-        if(this.Controls.KeyDown(2) && this.Socks.Grounded())
+        if(this.Controls.KeyDown(2) && this.Socks.Grounded() && !this.Owner.PlayerStatus.Pulling)
         {
             this.Owner.Physocks.Jump();
         }
@@ -40,24 +40,22 @@ class PlayerMovement : ZilchComponent
         }
         
         //Crawling
-        else if(this.Controls.KeyDown(3) && this.Socks.Grounded() && !this.Socks.InPit())
+        else if(this.Controls.KeyDown(3) && this.Socks.Grounded() && !this.Socks.InPit() && !this.Owner.PlayerStatus.Pulling)
         {
             //this.Speed = 5;        //Crawling Speed
             //Crawling Sprite
             this.Owner.Sprite.Color = Real4(1,0,0,1);
+             
+            this.Owner.BoxCollider.Offset = this.CrawlOffset;
+            this.Owner.BoxCollider.Size = Real3(2, 0.5, 1);
             
-            var t = this.Owner.Transform.Translation;
-            if(this.Owner.CapsuleCollider.Direction == AxisDirection.Y)
-                this.Owner.Transform.Translation = t + this.CrawlOffset;
-            this.Owner.CapsuleCollider.Direction = AxisDirection.X;
-            this.Owner.Transform.Scale = Real3(2,1,0);
         }
         else if (!this.Socks.UnderBlock())
         {
             //Walking Sprite
             this.Owner.Sprite.Color = Real4(1,1,1,1);
-            this.Owner.CapsuleCollider.Direction = AxisDirection.Y;
-            this.Owner.Transform.Scale = Real3(1,2,0);
+            this.Owner.BoxCollider.Offset = Real3(0, 0, 0);
+            this.Owner.BoxCollider.Size = Real3(1, 1, 1);
         }
         
         //Left Right movement
@@ -71,6 +69,9 @@ class PlayerMovement : ZilchComponent
             if(this.Controls.KeyDown(0))
             {
                 movement.X += -1;
+                
+                if(this.Owner.PlayerStatus.Pulling) movement.X /= 2;
+                
                 this.Displacement = Real3(-1.5, 0, 0);
                 if(this.Grabbox.PlayerInteraction.CurrentItem != null)
                 {
@@ -80,6 +81,9 @@ class PlayerMovement : ZilchComponent
             if(this.Controls.KeyDown(1))
             {
                 movement.X += 1;
+                
+                if(this.Owner.PlayerStatus.Pulling) movement.X /= 2;
+                
                 this.Displacement = Real3(1.5, 0, 0);
                 if(this.Grabbox.PlayerInteraction.CurrentItem != null)
                 {

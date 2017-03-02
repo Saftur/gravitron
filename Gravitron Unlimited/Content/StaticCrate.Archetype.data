@@ -73,4 +73,7 @@ Cog =
 		float Strength = 120,
 		Vec3 Direction = [0, -1, 0],
 	},
+	Crate = 
+	{
+	},
 },

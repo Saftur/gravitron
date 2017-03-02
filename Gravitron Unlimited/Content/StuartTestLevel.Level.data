@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [7.47901392, 1.34841228, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 32.974411,
+			float Size = 24.4280682,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [7.47901392, 1.34841228, 3.2691824e-07],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -204,7 +204,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-3.97852945, -4.29112864, 0],
+			Vec3 Translation = [-6.57638454, -6.21243715, 0],
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -245,17 +245,17 @@ Level =
 			bool Mode2D = true,
 			bool AllowSleep = true,
 			bool Inherit2DMode = true,
-			Vec3 Velocity = [-248.658081, -268.195526, 0],
+			Vec3 Velocity = [0, -46.0117722, 0],
 			Vec3 AngularVelocity = [0, 0, 0],
 		},
 		EnemyController = 
 		{
-			float PaceSpeed = 3,
+			float PaceSpeed = 5,
 			float MaxMoveDistance = 10,
 			Vec3 PaceDirection = [1, 0, 0],
 			CogPath TargetObject = 
 			{
-				string Path = ":/Player",
+				string Path = "",
 				bool ErrorOnResolveToNull = false,
 				bool ErrorOnPathCantCompute = false,
 				bool ErrorOnDirectLinkFail = false,
@@ -263,7 +263,7 @@ Level =
 				bool UpdatePathOnCogChange = true,
 				bool UpdateCogOnInitialize = true,
 				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 4,
+				uint ResolvedCog = 4294967293,
 				CogPathPreference PathPreference0 = CogRelative,
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
@@ -451,7 +451,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [7.69318104, -1.0097903, 0],
+			Vec3 Translation = [14.1503172, -2.41753387, 0],
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -492,7 +492,7 @@ Level =
 			bool Mode2D = true,
 			bool AllowSleep = true,
 			bool Inherit2DMode = true,
-			Vec3 Velocity = [480.823792, -63.1118889, 0],
+			Vec3 Velocity = [2.09158635, 6.2743721, 0],
 			Vec3 AngularVelocity = [0, 0, 0],
 		},
 		EnemyController = 
@@ -548,10 +548,13 @@ Level =
 		},
 		TileMap = 
 		{
-			string SourceName = "58d0ce2465ad0b1e:StuartTestLevel_TileMap00",
+			string SourceName = "58d7713e8fd6a2c9:StuartTestLevel_TileMap01",
 			string PaletteName = "58f3d4fff60129ba:TilePalette1",
 			float UnitsPerTile = 1,
 			float MeshThickness = 1.20000005,
+		},
+		Hierarchy = 
+		{
 		},
 	},
 	ArchetypeInstance = 
@@ -642,7 +645,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.3054986, 1.41510868, 0],
+			Vec3 Translation = [5.96767473, -6.68296432, 0],
 			Vec3 Scale = [1.48963308, 1.48963284, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},

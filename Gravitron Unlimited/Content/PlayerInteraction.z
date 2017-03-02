@@ -3,7 +3,6 @@ class PlayerInteraction : ZilchComponent
     var CurrentItem : Cog = null;
     var CurrentSwitch : Cog = null;
     var CurrentCrate : Cog = null;
-    var HoldingItem : Boolean = false;
     var IMadeIt : Boolean = false; //reached exit
     var Player : Cog = null;
     
@@ -17,9 +16,14 @@ class PlayerInteraction : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+        //Console.WriteLine("`this.Player.RigidBody.Velocity` `this.Player.RigidBody.Mass`");
         if(this.Player.PlayerStatus.Caught)
         {
             return;
+        }
+        if(this.Player.PlayerStatus.Pulling)
+        {
+            this.PullCrate();
         }
         if(Zero.Keyboard.KeyIsPressed(Keys.Space)) //OBJECT INTERACTIONS
         {
@@ -32,7 +36,8 @@ class PlayerInteraction : ZilchComponent
             //Crates
             else if(this.CurrentCrate != null)
             {
-                //this.CurrentCrate.Crate.Swap();
+                if(!this.Player.PlayerStatus.Pulling)   this.Player.PlayerStatus.Pulling = true;
+                else    this.Player.PlayerStatus.Pulling = false;
             }
             //Switches
             else if(this.CurrentSwitch != null)
@@ -41,7 +46,8 @@ class PlayerInteraction : ZilchComponent
                 if(this.CurrentSwitch.Switch.Gravity)
                 {
                     var switches = this.Space.FindAllObjectsByName("GravitySwitch");
-                    var crates = this.Space.FindAllObjectsByName("Crate");
+                    var crates = this.Space.FindAllObjectsByName("StaticCrate");
+                    var guards = this.Space.FindAllObjectsByName("Guard");
                     foreach(var s in switches)
                     {
                         //Changing the different switch states
@@ -58,6 +64,10 @@ class PlayerInteraction : ZilchComponent
                     foreach(var c in crates)
                     {
                         c.GravityEffect.Direction *= Real3(1,-1,1);
+                    }
+                    foreach(var g in guards)
+                    {
+                        g.Guard.JumpHeight *= -1;
                     }
                     this.Player.PlayerMovement.CrawlOffset *= Real3(1,-1,1);
                     
@@ -94,6 +104,11 @@ class PlayerInteraction : ZilchComponent
             }
         }
     }
+    function PullCrate()
+    {
+        var yvel = this.CurrentCrate.RigidBody.Velocity.Y;
+        this.CurrentCrate.RigidBody.Velocity = Real3(this.Player.RigidBody.Velocity.X * 1.5, yvel, 0);
+    }
     function OnCollisionStarted(event : CollisionEvent)
     {
         //Console.WriteLine("`event.OtherObject.Name`");
@@ -102,7 +117,7 @@ class PlayerInteraction : ZilchComponent
         
         if(o.Name == "Guard")   this.Player.PlayerStatus.Caught = true;
         
-        if(false)//o.Name == "StaticCrate")
+        if(o.Name == "StaticCrate")
         {
             this.CurrentCrate = o;
         }
@@ -126,6 +141,7 @@ class PlayerInteraction : ZilchComponent
         }
         if(this.CurrentCrate != null && o.Name == "StaticCrate")
         {
+            this.Player.PlayerStatus.Pulling = false;
             this.CurrentCrate = null;
         }
         if(false)//o.Name == "Crate")

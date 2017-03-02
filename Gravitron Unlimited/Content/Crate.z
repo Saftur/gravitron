@@ -10,7 +10,7 @@ class Crate : ZilchComponent
 
     function Swap()
     {
-        Console.WriteLine("hi");
+        //Console.WriteLine("hi");
         var pos = this.Owner.Transform.Translation;
         var oldResPos = this.RespawnPoint;
         if(this.Owner.Name == "Crate")
