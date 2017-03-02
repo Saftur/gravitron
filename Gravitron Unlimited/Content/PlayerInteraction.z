@@ -107,7 +107,7 @@ class PlayerInteraction : ZilchComponent
     function PullCrate()
     {
         var yvel = this.CurrentCrate.RigidBody.Velocity.Y;
-        this.CurrentCrate.RigidBody.Velocity = Real3(this.Player.RigidBody.Velocity.X * 2, yvel, 0);
+        this.CurrentCrate.RigidBody.Velocity = Real3(this.Player.RigidBody.Velocity.X * 1.5, yvel, 0);
     }
     function OnCollisionStarted(event : CollisionEvent)
     {

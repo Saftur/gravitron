@@ -419,17 +419,29 @@ Level =
 			int Type = 1,
 			float VisionRange = 5,
 			float ChaseSpeed = 6,
+			float JumpHeight = 0,
+		},
+		Tag = 
+		{
+			int Number = 1,
 		},
 		Hierarchy = 
 		{
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "586e10f29f47da51:GuardV",
 		LinkId = 
 		{
 			uint Id = 9,
+		},
+		Named = 
+		{
+			string Name = "GuardV",
+		},
+		Archetyped = 
+		{
+			string Name = "586e10f29f47da51:GuardV",
 		},
 		Transform = 
 		{
@@ -437,9 +449,47 @@ Level =
 			Vec3 Scale = [5, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		Sprite = 
 		{
-			string Name = "GuardV",
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0.894999981, 0.420650005, 0.420650005, 0.300000012],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		FollowObject = 
+		{
+			bool Active = true,
+			CogPath ObjectToFollow = 
+			{
+				string Path = ":/Guard",
+				bool ErrorOnResolveToNull = false,
+				bool ErrorOnPathCantCompute = false,
+				bool ErrorOnDirectLinkFail = false,
+				bool UpdateCogOnPathChange = true,
+				bool UpdatePathOnCogChange = true,
+				bool UpdateCogOnInitialize = true,
+				bool ResolvedNullErrorOccurred = false,
+				uint ResolvedCog = 8,
+				CogPathPreference PathPreference0 = CogRelative,
+				CogPathPreference PathPreference1 = SpaceRelative,
+				CogPathPreference PathPreference2 = Absolute,
+			},
+			Vec3 Displacement = [3, 0, 0],
+		},
+		Tag = 
+		{
+			int Number = 1,
 		},
 	},
 	ArchetypeInstance = 
@@ -478,12 +528,19 @@ Level =
 			string Name = "GravitySwitch",
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "586fa0a219e7d914:StaticCrate",
 		LinkId = 
 		{
 			uint Id = 12,
+		},
+		Named = 
+		{
+			string Name = "StaticCrate",
+		},
+		Archetyped = 
+		{
+			string Name = "586fa0a219e7d914:StaticCrate",
 		},
 		Transform = 
 		{
@@ -491,9 +548,63 @@ Level =
 			Vec3 Scale = [2, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
-		Named = 
+		Sprite = 
 		{
-			string Name = "StaticCrate",
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0.625, 0.206249982, 0.583124876, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = false,
+			bool RotationLocked = true,
+			bool Mode2D = true,
+			bool AllowSleep = true,
+			bool Inherit2DMode = true,
+			Vec3 Velocity = [0, 0, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "58cf7875009ddbd3:Physocks",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+		DragEffect = 
+		{
+			bool Active = true,
+			bool WakeUpOnChange = true,
+			float Drag = 20,
+			float AngularDrag = 0.100000001,
+		},
+		GravityEffect = 
+		{
+			bool Active = true,
+			bool WakeUpOnChange = true,
+			bool LocalSpaceDirection = false,
+			float Strength = 120,
+			Vec3 Direction = [0, -1, 0],
+		},
+		Crate = 
+		{
 		},
 	},
 },
