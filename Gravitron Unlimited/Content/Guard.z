@@ -14,10 +14,13 @@ class Guard : ZilchComponent
     [Property]
     var Type : Integer = 1; //Differentiate types of guards here
     
+    //Stats
     [Property]
     var VisionRange : Real = 5;
     [Property]
     var ChaseSpeed : Real = 6;
+    [Property]
+    var JumpHeight : Real = 0;
     
     var Dir : Real3 = Real3(1,0,0);
     

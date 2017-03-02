@@ -114,7 +114,13 @@ class PlayerInteraction : ZilchComponent
             
         if(o.Switch != null)    this.CurrentSwitch = o;
         
+        
+        
+        //Collision Only
+        
+        //Light
         if(o.Name == "LightBox")   this.Player.PlayerStatus.Spotted = true;
+        if(o.Name == "Checkpoint")  this.Player.PlayerStatus.RespawnPoint = o.Transform.Translation;
     }
     function OnCollisionEnded(event : CollisionEvent)
     {

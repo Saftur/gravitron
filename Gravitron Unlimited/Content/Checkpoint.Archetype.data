@@ -6,16 +6,12 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Exit",
-	},
-	Archetyped = 
-	{
-		string Name = "584ab76582c0ad7e:Exit",
+		string Name = "Checkpoint",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-12.1802893, 11, 0],
-		Vec3 Scale = [2, 3, 1],
+		Vec3 Translation = [0, 0, 0],
+		Vec3 Scale = [1.5, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
@@ -24,7 +20,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.30992499, 0.805000007, 0.329727978, 1],
+		Vec4 Color = [0.371000141, 1, 0.0749999881, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",

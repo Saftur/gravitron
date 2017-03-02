@@ -1,18 +1,18 @@
 class LightboxSpawner : ZilchComponent
 {
     [Property]
+    var Active : Boolean = true;
+    [Property]
     var LightboxType : Archetype = Archetype.LightBox;
-    
-    var Spawnpos : Real3 = Real3();
-    
     [Property]
     var Lightboxdisplace : Real3 = Real3();
     
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-        this.Spawnpos = this.Owner.Transform.Translation;
-        
-        this.Space.CreateAtPosition(this.LightboxType, this.Spawnpos - this.Lightboxdisplace);
+        if(this.Active)
+        {
+            var spawnPos = this.Owner.Transform.Translation;
+            this.Space.CreateAtPosition(this.LightboxType, spawnPos - this.Lightboxdisplace);
+        }
     }
 }
