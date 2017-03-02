@@ -1,0 +1,12 @@
+BinaryContent = 
+{
+	BinaryBuilder = 
+	{
+		string Name = "JRealLevel_TileMap00",
+		uint64 ResourceId = 58d76cdae62f0d6e,
+		string LoaderType = "TileMapSource",
+		uint Version = 0,
+		string FilterTag = "",
+		string ResourceOwner = "58d0d032d0529499:JRealLevel",
+	},
+},
