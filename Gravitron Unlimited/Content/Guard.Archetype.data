@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [16, -5, 0],
+		Vec3 Translation = [-0.844342709, 2.38720036, 0],
 		Vec3 Scale = [1, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -48,7 +48,7 @@ Cog =
 		Vec3 Velocity = [0, 0, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
-	CapsuleCollider = 
+	BoxCollider = 
 	{
 		bool Ghost = false,
 		bool SendsMessages = true,
@@ -56,10 +56,7 @@ Cog =
 		string MaterialName = "58cf7875009ddbd3:Physocks",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
-		float Radius = 0.5,
-		float Height = 9.99999975e-05,
-		AxisDirection Direction = Y,
-		CapsuleScalingMode ScalingMode = PreserveScale,
+		Vec3 Size = [0.5, 0.5, 0.5],
 	},
 	Physocks = 
 	{
@@ -69,11 +66,12 @@ Cog =
 	Guard = 
 	{
 		bool Active = true,
-		Vec3 LeftPoint = [5, 0, 0],
-		Vec3 RightPoint = [16, 0, 0],
+		Vec3 LeftPoint = [-5, 0, 0],
+		Vec3 RightPoint = [12, 0, 0],
 		int Type = 1,
 		float VisionRange = 5,
 		float ChaseSpeed = 6,
+		float JumpHeight = 0,
 	},
 	Hierarchy = 
 	{

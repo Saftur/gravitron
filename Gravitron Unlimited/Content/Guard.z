@@ -35,8 +35,19 @@ class Guard : ZilchComponent
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         this.Player = this.Space.FindObjectByName("Player");
-        this.VisionIndicator = this.Space.FindObjectByName("GuardV");
-        this.VisionIndicator.Transform.Scale = Real3(this.VisionRange, 2 /*height*/, 1);
+        
+        var visions = this.Space.FindAllObjectsByName("GuardV");
+        foreach (var v in visions)
+        {
+            if(v.Tag.Number == this.Owner.Tag.Number)  
+            {
+                this.VisionIndicator = v;
+                break;
+            }
+        }
+        
+        this.VisionIndicator.Transform.Scale = Real3(this.VisionRange, this.Owner.Transform.Scale.Y /*height*/, 1);
+        this.JumpHeight = this.Owner.Transform.Scale.Y/2 + 0.5;
     }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -68,7 +79,7 @@ class Guard : ZilchComponent
             this.Dir *= Real3(-1,1,1);
             this.Turn();
         }
-        if(this.Time > 2)
+        if(this.Time > 3)
         {
             this.OldPos = this.Owner.Transform.Translation;
             this.Time = 0;
@@ -78,7 +89,7 @@ class Guard : ZilchComponent
         //Jumping
         if(this.Socks.Grounded())
         {
-            ray.Start = pos + Real3(0, this.Owner.Transform.Scale.Y/2 + 0.5, 0); //Check if object is jumpable
+            ray.Start = pos + Real3(0, this.JumpHeight, 0); //Check if object is jumpable
             var dist = this.Owner.Transform.Scale.X/2 + 0.75;
             if(this.CastRay(ray, dist, null) && !this.CastRay(ray,dist,this.Player))
             {
@@ -150,7 +161,7 @@ class Guard : ZilchComponent
     }
     function Look() : Boolean
     {
-        Console.WriteLine("`this.Player.PlayerStatus.Spotted`");
+        //Console.WriteLine("`this.Player.PlayerStatus.Spotted`");
         var disFromPlayer = this.Player.Transform.Translation.X - this.Owner.Transform.Translation.X;
         if(this.Player.PlayerStatus.Spotted && Math.Abs(disFromPlayer) <= 10 && this.Dir.X == this.Normalize(disFromPlayer)) return true;
         
@@ -182,7 +193,7 @@ class Guard : ZilchComponent
             }
             else if(cog == null)
             {
-                Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
+                //Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
                 return true;
             }
         }

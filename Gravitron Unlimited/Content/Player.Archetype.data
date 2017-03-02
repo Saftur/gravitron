@@ -14,7 +14,7 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-8.53234482, -2.36711311, 0],
+		Vec3 Translation = [-11.5827827, -2.03481364, 0],
 		Vec3 Scale = [1, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -51,7 +51,7 @@ Cog =
 	Physocks = 
 	{
 		float Speed = 5,
-		float JumpStrength = 15,
+		float JumpStrength = 14,
 	},
 	PlayerMovement = 
 	{
