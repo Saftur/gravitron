@@ -1,0 +1,63 @@
+class PressurePlateDoor : ZilchComponent
+{
+    [Property]
+    var DoorToOpen : CogPath = null;
+    
+    [Property]
+    var AnimationTime : Real = 0.5;
+    
+    var Start : Boolean = false;
+    var Timer : Real = 0;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+    }
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //Console.WriteLine("`this.Start`");
+        if(this.Start)
+        {
+            this.Timer += event.Dt;
+        }
+        else this.Timer = 0;
+        
+        if(this.Timer > this.AnimationTime)
+        {
+            this.Start = false;
+            this.OpenClose();
+        }
+    }
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        if((event.OtherObject.Name == "Player" || event.OtherObject.Name == "StaticCrate") && this.Start)
+        {
+            this.Start = false;
+        }
+        else if(event.OtherObject.Name == "Player" || event.OtherObject.Name == "StaticCrate")
+        {
+            Console.WriteLine("hi");
+            this.Start = true;
+        }
+    }
+    function OnCollisionEnded(event : CollisionEvent)
+    {
+        if((event.OtherObject.Name == "Player" || event.OtherObject.Name == "StaticCrate") && this.Start)
+        {
+            this.Start = false;
+        }
+        else if(event.OtherObject.Name == "Player" || event.OtherObject.Name == "StaticCrate")
+        {
+            this.Start = true;
+        }
+        
+    }
+    function OpenClose()
+    {
+        this.DoorToOpen.Cog.BoxCollider.Ghost = !this.DoorToOpen.Cog.BoxCollider.Ghost;
+        this.Owner.BoxCollider.Ghost = !this.Owner.BoxCollider.Ghost;
+        if(this.DoorToOpen.Cog.Sprite.Color == Real4(0.1, 0, 0, 0))   this.DoorToOpen.Cog.Sprite.Color = Real4(0, 0, 0, 1);
+        else this.DoorToOpen.Cog.Sprite.Color = Real4(0.1, 0, 0, 0);
+    }
+}
