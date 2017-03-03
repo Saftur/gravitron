@@ -56,11 +56,14 @@ class Guard : ZilchComponent
         
         if(!this.Active) return;
         //Console.WriteLine("`this.RightPoint` `this.LeftPoint` `this.Dir`");
+        
         var ray = Ray();
         var pos = this.Owner.Transform.Translation;
         var h = this.Owner.Transform.Scale.Y;
         
+        Console.WriteLine("`this.Owner.RigidBody.Velocity`");
         ray.Direction = this.Dir;
+        
         if(this.Look())
         {
             this.Chase();
@@ -69,17 +72,20 @@ class Guard : ZilchComponent
         {
             this.Patrol();
         }
-        Console.WriteLine("`this.OldPos` `this.Owner.Transform.Translation`");
+        Console.WriteLine("`this.Owner.RigidBody.Velocity`");
+        //Console.WriteLine("`this.OldPos` `this.Owner.Transform.Translation`");
+        
+        //Getting Stuck
         if(Math.Abs(this.OldPos.X - this.Owner.Transform.Translation.X) <= 1)
         {
             this.Stuck += event.Dt;
         }
-        if(this.Stuck > 2)
+        if(this.Stuck > 2)      //If going one direction gets you nowhere turn around
         {
             this.Dir *= Real3(-1,1,1);
             this.Turn();
         }
-        if(this.Time > 3)
+        if(this.Time > 3) //Not stuck
         {
             this.OldPos = this.Owner.Transform.Translation;
             this.Time = 0;
