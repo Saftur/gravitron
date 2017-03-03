@@ -98,7 +98,7 @@ class EnemyController : ZilchComponent
     
     function OnCollisionStarted(event : CollisionEvent)
     {
-        if(event.OtherObject.WallTile != null)
+        if(event.OtherObject != null)
         {
             Console.WriteLine("here `this.PaceDirection.X` `this.PaceDirection.Y` `event.OtherObject`");
             if(this.PaceDirection.X != 0.0) this.PaceDirection.X = (this.PaceDirection.X) * -1;

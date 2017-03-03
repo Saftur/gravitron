@@ -6,11 +6,15 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Guard",
+		string Name = "FloatingGuard",
+	},
+	Archetyped = 
+	{
+		string Name = "58ce2bb8fca89cd3:FloatingGuard",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [5.19516754, 10.3533497, 0],
+		Vec3 Translation = [61.0096588, -4.79447746, 0],
 		Vec3 Scale = [1, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -51,12 +55,30 @@ Cog =
 		bool Mode2D = true,
 		bool AllowSleep = true,
 		bool Inherit2DMode = true,
-		Vec3 Velocity = [324.697937, 647.08429, 0],
+		Vec3 Velocity = [3813.10352, -299.654816, 0],
 		Vec3 AngularVelocity = [0, 0, 0],
 	},
 	EnemyController = 
 	{
 		float PaceSpeed = 3,
 		float MaxMoveDistance = 10,
+		Vec3 PaceDirection = [1, 0, 0],
+		CogPath TargetObject = 
+		{
+			string Path = "",
+			bool ErrorOnResolveToNull = false,
+			bool ErrorOnPathCantCompute = false,
+			bool ErrorOnDirectLinkFail = false,
+			bool UpdateCogOnPathChange = true,
+			bool UpdatePathOnCogChange = true,
+			bool UpdateCogOnInitialize = true,
+			bool ResolvedNullErrorOccurred = false,
+			uint ResolvedCog = 4294967293,
+			CogPathPreference PathPreference0 = CogRelative,
+			CogPathPreference PathPreference1 = SpaceRelative,
+			CogPathPreference PathPreference2 = Absolute,
+		},
+		float ChaseSpeed = 5,
+		int Type = 1,
 	},
 },

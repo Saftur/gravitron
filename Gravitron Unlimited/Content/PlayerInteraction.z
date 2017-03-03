@@ -108,6 +108,35 @@ class PlayerInteraction : ZilchComponent
                         }
                     }
                 }
+                //Door
+                //if(this.CurrentSwitch.Switch.Door)
+                //{
+                    //var doorOpen = Real4(0.3, 0.6, 0.5, 1.0);
+                    //var doorClosed = Real4(0.6, 0.6, 0.5, 1.0);
+                    //var doorToOpen = this.Space.Switch.DoorToOpen;
+                    //if(this.Space.DoorSwitch.Cog.Sprite.Color == doorClosed)
+                    //{
+                     //   this.doorToOpen.Cog.BoxCollider.Ghost = true;
+                    //    this.doorToOpen.Cog.Sprite.Color = (0, 0, 0, 0);
+                   // }
+                  //  else
+                  //  {
+                  //      this.doorToOpen.Cog.BoxCollider.Ghost = false;
+                 //       this.doorToOpen.Cog.Sprite.Color = (0, 0, 0, 1.0);
+                 //   }
+                 //   var switches = this.Space.FindAllObjectsByName("DoorSwitch");
+                  //  foreach(var s in switches)
+                 //   {
+                   //     if(s.Sprite.Color == doorClosed)
+                   //     {
+                    //        s.Sprite.Color = doorOpen;
+                   //     }
+                    //    else
+                    //    {
+                    //        s.Sprite.Color = doorClosed;
+                    //    }
+                  //  }
+                }
             }
         }
     }

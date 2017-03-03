@@ -6,15 +6,15 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "PressurePlate",
+		string Name = "WallDoor",
 	},
 	Archetyped = 
 	{
-		string Name = "58d8b3330380c3b9:PressurePlate",
+		string Name = "58d8b872107e2892:WallDoor",
 	},
 	Transform = 
 	{
-		Vec3 Translation = [3.8320694, 1.16292655, 0],
+		Vec3 Translation = [38, 3.5, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.334999979, 0.334999979, 0.334999979, 1],
+		Vec4 Color = [0, 0, 0, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -36,6 +36,11 @@ Cog =
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
 	},
+	Area = 
+	{
+		Vec2 Size = [2, 3],
+		Location Origin = Center,
+	},
 	BoxCollider = 
 	{
 		bool Ghost = false,
@@ -44,30 +49,6 @@ Cog =
 		string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
 		string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 		Vec3 Offset = [0, 0, 0],
-		Vec3 Size = [1, 0.125, 0.5],
-	},
-	Area = 
-	{
-		Vec2 Size = [2, 0.25],
-		Location Origin = Center,
-	},
-	PressurePlateDoor = 
-	{
-		CogPath DoorToOpen = 
-		{
-			string Path = ":/WallDoor1",
-			bool ErrorOnResolveToNull = false,
-			bool ErrorOnPathCantCompute = false,
-			bool ErrorOnDirectLinkFail = false,
-			bool UpdateCogOnPathChange = true,
-			bool UpdatePathOnCogChange = true,
-			bool UpdateCogOnInitialize = true,
-			bool ResolvedNullErrorOccurred = false,
-			uint ResolvedCog = 2,
-			CogPathPreference PathPreference0 = CogRelative,
-			CogPathPreference PathPreference1 = SpaceRelative,
-			CogPathPreference PathPreference2 = Absolute,
-		},
-		float AnimationTime = 0.5,
+		Vec3 Size = [1, 1.5, 0.5],
 	},
 },
