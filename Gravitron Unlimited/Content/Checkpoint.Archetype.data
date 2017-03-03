@@ -8,9 +8,13 @@ Cog =
 	{
 		string Name = "Checkpoint",
 	},
+	Archetyped = 
+	{
+		string Name = "586a8f0c0d4163b9:Checkpoint",
+	},
 	Transform = 
 	{
-		Vec3 Translation = [0, 0, 0],
+		Vec3 Translation = [42, 7, 0],
 		Vec3 Scale = [1.5, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -20,11 +24,11 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0.371000141, 1, 0.0749999881, 1],
+		Vec4 Color = [1, 1, 1, 1],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-		string SpriteSource = "5275aa4d802dd6dc:Square",
+		string SpriteSource = "5865218c31faed13:BudgetFlad",
 		bool RenderMask = false,
 		bool FlipX = false,
 		bool FlipY = false,

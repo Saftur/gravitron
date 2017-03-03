@@ -42,6 +42,7 @@ class Guard : ZilchComponent
     
     var Player : Cog = null;
     var VisionIndicator : Cog = null;
+    var AlertSymbol : Cog = null;
     
     function Initialize(init : CogInitializer)
     {
@@ -61,6 +62,10 @@ class Guard : ZilchComponent
         }
         
         this.VisionIndicator.Transform.Scale = Real3(this.VisionRange, this.Owner.Transform.Scale.Y /*height*/, 1);
+        this.AlertSymbol = this.Space.CreateAtPosition(Archetype.AlertSymbol, this.Owner.Transform.Translation);
+        this.AlertSymbol.FollowObject.ObjectToFollow.Cog = this.Owner;
+        this.AlertSymbol.FollowObject.Displacement = Real3(-0.25,2.5,0);
+        
         this.JumpHeight = this.Owner.Transform.Scale.Y/2 + 0.5;
     }
 
@@ -79,11 +84,20 @@ class Guard : ZilchComponent
         //Console.WriteLine("`this.VerticalPoint` `this.Owner.Transform.Translation`");
         if(this.Look())
         {
+            if(!this.AlertSymbol.SpriteText.Visible)
+            {
+                this.AlertSymbol.SpriteText.Visible = true;
+            }
             this.Chase();
         }
         //For falling off cliff
         else if((this.Owner.Transform.Translation.X <= this.VerticalPoint.X + 0.5) && (this.Owner.Transform.Translation.X >= this.VerticalPoint.X - 0.5) && !this.Release)
         {
+            if(this.AlertSymbol.SpriteText.Visible)
+            {
+                this.AlertSymbol.SpriteText.Visible = false;
+            }
+            
             ray.Direction = this.Space.LevelSettings.GravityEffect.Direction * Real3(1,-1,1);
             
             if(this.Space.LevelSettings.GravityEffect.Direction.Y < 0)
@@ -141,6 +155,10 @@ class Guard : ZilchComponent
         }
         else
         {
+            if(this.AlertSymbol.SpriteText.Visible)
+            {
+                this.AlertSymbol.SpriteText.Visible = false;
+            }
             this.Patrol();
         }
         

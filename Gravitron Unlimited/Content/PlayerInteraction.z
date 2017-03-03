@@ -36,8 +36,16 @@ class PlayerInteraction : ZilchComponent
             //Crates
             else if(this.CurrentCrate != null)
             {
-                if(!this.Player.PlayerStatus.Pulling)   this.Player.PlayerStatus.Pulling = true;
-                else    this.Player.PlayerStatus.Pulling = false;
+                Console.WriteLine("`this.Player.PlayerStatus.Pulling`");
+                if(!this.Player.PlayerStatus.Pulling)
+                {
+                    this.Player.PlayerStatus.Pulling = true;
+                }
+                else
+                {
+                    this.Player.PlayerStatus.Pulling = false;
+                }
+                Console.WriteLine("`this.Player.PlayerStatus.Pulling`");
             }
             //Switches
             else if(this.CurrentSwitch != null)
@@ -73,6 +81,7 @@ class PlayerInteraction : ZilchComponent
                         foreach(var g in guards)
                         {
                             g.Guard.JumpHeight *= -1;
+                            g.Guard.AlertSymbol.FollowObject.Displacement *= -1;
                         }
                     }
                     
@@ -140,6 +149,7 @@ class PlayerInteraction : ZilchComponent
         //Checkpoint
         if(o.Name == "Checkpoint")  
         {
+            o.Sprite.Color = Real4(0,1,0,1);
             var guard = this.Space.FindObjectByName("Guard");
             var crate = this.Space.FindObjectByName("StaticCrate");
             
@@ -163,11 +173,6 @@ class PlayerInteraction : ZilchComponent
         {
             this.Player.PlayerStatus.Pulling = false;
             this.CurrentCrate = null;
-        }
-        if(false)//o.Name == "Crate")
-        {
-            this.CurrentCrate = null;
-            o.Crate.Swap();
         }
         if(o.Switch != null)
         {
