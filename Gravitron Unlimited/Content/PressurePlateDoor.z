@@ -6,8 +6,7 @@ class PressurePlateDoor : ZilchComponent
     [Property]
     var AnimationTime : Real = 0.5;
     
-    var Open : Boolean = false;
-    var Close : Boolean = false;
+    var Start : Boolean = false;
     var Timer : Real = 0;
     function Initialize(init : CogInitializer)
     {
@@ -17,7 +16,8 @@ class PressurePlateDoor : ZilchComponent
     }
     function OnLogicUpdate(event : UpdateEvent)
     {
-        if(this.Open || this.Close)
+        //Console.WriteLine("`this.Start`");
+        if(this.Start)
         {
             this.Timer += event.Dt;
         }
@@ -25,31 +25,31 @@ class PressurePlateDoor : ZilchComponent
         
         if(this.Timer > this.AnimationTime)
         {
-            if(this.Open)   this.Open = false;
-            if(this.Close)  this.Close = false;
+            this.Start = false;
             this.OpenClose();
         }
     }
     function OnCollisionStarted(event : CollisionEvent)
     {
-        if(event.OtherObject.Name == "Player" || event.OtherObject.Name == "StaticCrate" && !this.Close)
+        if((event.OtherObject.Name == "Player" || event.OtherObject.Name == "StaticCrate") && this.Start)
         {
-            this.Open = true;
+            this.Start = false;
         }
         else if(event.OtherObject.Name == "Player" || event.OtherObject.Name == "StaticCrate")
         {
-            this.Close = false;
+            Console.WriteLine("hi");
+            this.Start = true;
         }
     }
     function OnCollisionEnded(event : CollisionEvent)
     {
-        if(event.OtherObject.Name == "Player" || event.OtherObject.Name == "StaticCrate" && !this.Open)
+        if((event.OtherObject.Name == "Player" || event.OtherObject.Name == "StaticCrate") && this.Start)
         {
-            this.Close = true;
+            this.Start = false;
         }
         else if(event.OtherObject.Name == "Player" || event.OtherObject.Name == "StaticCrate")
         {
-            this.Open = false;
+            this.Start = true;
         }
         
     }
