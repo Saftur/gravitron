@@ -137,7 +137,15 @@ class PlayerInteraction : ZilchComponent
         
         //Light
         if(o.Name == "LightBox")   this.Player.PlayerStatus.Spotted = true;
-        if(o.Name == "Checkpoint")  this.Player.PlayerStatus.RespawnPoint = o.Transform.Translation;
+        if(o.Name == "Checkpoint")  
+        {
+            var guard = this.Space.FindObjectByName("Guard");
+            var crate = this.Space.FindObjectByName("Crate");
+        
+            this.Player.PlayerStatus.RespawnPoint = o.Transform.Translation;
+            this.GameSession.GameVars.CurrentGravity = this.Space.LevelSettings.GravityEffect.Direction;
+            this.GameSession.GameVars.CurrentCrateGravity = crate.GravityEffect.Direction;
+        }
     }
     function OnCollisionEnded(event : CollisionEvent)
     {

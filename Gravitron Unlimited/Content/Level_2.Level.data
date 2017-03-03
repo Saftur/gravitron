@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-2.83001876, -0.619397283, 90],
+			Vec3 Translation = [20.5830708, 7.91133022, 90],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 16.5299377,
+			float Size = 18.2684174,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-2.83001876, -0.619397283, 40],
+			Vec3 LookTarget = [20.5830708, 7.91133022, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -292,7 +292,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [-11.4903736, 0.74075079, 0],
-			Vec3 Scale = [1.41999996, 2, 1],
+			Vec3 Scale = [1.41999996, 1.79999995, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
@@ -309,7 +309,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [10, -4, 0],
+			Vec3 Translation = [10, -3.79999995, 0],
 			Vec3 Scale = [2, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -503,7 +503,7 @@ Level =
 		{
 			bool Active = true,
 			Vec3 LeftPoint = [-5, 0, 0],
-			Vec3 RightPoint = [12, 0, 0],
+			Vec3 RightPoint = [23, 0, 0],
 			int Type = 1,
 			float VisionRange = 5,
 			float ChaseSpeed = 6,
