@@ -1,8 +1,0 @@
-TextContent = 
-{
-	ZilchScriptBuilder = 
-	{
-		string Name = "PressurePlateDoor",
-		uint64 ResourceId = 58d76e77984d26c7,
-	},
-},
