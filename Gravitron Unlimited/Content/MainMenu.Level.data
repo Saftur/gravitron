@@ -91,6 +91,11 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
+		NextLevel = 
+		{
+			Enum KeyToPress = Enter,
+			string NextLevel = "58d0d032d0529499:JRealLevel",
+		},
 	},
 	Cog = 
 	{

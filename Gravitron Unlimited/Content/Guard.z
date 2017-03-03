@@ -54,14 +54,17 @@ class Guard : ZilchComponent
         var visions = this.Space.FindAllObjectsByName("GuardV");
         foreach (var v in visions)
         {
-            if(v.Tag.Number == this.Owner.Tag.Number)  
-            {
-                this.VisionIndicator = v;
-                break;
+            if (v.Tag != null) {
+                if(v.Tag.Number == this.Owner.Tag.Number)  
+                {
+                    this.VisionIndicator = v;
+                    break;
+                }
             }
         }
         
-        this.VisionIndicator.Transform.Scale = Real3(this.VisionRange, this.Owner.Transform.Scale.Y /*height*/, 1);
+        if (this.VisionIndicator != null)
+            this.VisionIndicator.Transform.Scale = Real3(this.VisionRange, this.Owner.Transform.Scale.Y /*height*/, 1);
         this.AlertSymbol = this.Space.CreateAtPosition(Archetype.AlertSymbol, this.Owner.Transform.Translation);
         this.AlertSymbol.FollowObject.ObjectToFollow.Cog = this.Owner;
         this.AlertSymbol.FollowObject.Displacement = Real3(-0.25,2.5,0);
