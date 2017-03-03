@@ -9,6 +9,12 @@ class Switch : ZilchComponent
     [Property]
     var Light : Boolean = false;
     
+    [Property]
+    var Door : Boolean = false;
+    
+    [Property]
+    var DoorToOpen : CogPath = null;
+    
     function Initialize(init : CogInitializer) //Because colors in the editor don't match code
     {
         if(this.Gravity)
