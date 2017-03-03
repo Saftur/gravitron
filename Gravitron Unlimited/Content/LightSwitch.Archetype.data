@@ -8,9 +8,13 @@ Cog =
 	{
 		string Name = "LightSwitch",
 	},
+	Archetyped = 
+	{
+		string Name = "58d0cd8b570d37a7:LightSwitch",
+	},
 	Transform = 
 	{
-		Vec3 Translation = [1.48685455, 4.53785276, 0],
+		Vec3 Translation = [14.9168215, 2.51973343, 0],
 		Vec3 Scale = [1, 1, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -44,7 +48,7 @@ Cog =
 	},
 	Switch = 
 	{
-		bool Active = true,
+		bool Active = false,
 		bool Gravity = false,
 		bool Light = true,
 	},
