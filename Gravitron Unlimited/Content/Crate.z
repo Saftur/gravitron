@@ -29,5 +29,6 @@ class Crate : ZilchComponent
     function Reset()
     {
         this.Owner.Transform.Translation = this.RespawnPoint;
+        this.Owner.GravityEffect.Direction = this.GameSession.GameVars.CurrentCrateGravity;
     }
 }

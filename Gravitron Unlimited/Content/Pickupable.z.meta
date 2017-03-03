@@ -1,8 +1,0 @@
-TextContent = 
-{
-	ZilchScriptBuilder = 
-	{
-		string Name = "Pickupable",
-		uint64 ResourceId = 58f3dc79499080b0,
-	},
-},

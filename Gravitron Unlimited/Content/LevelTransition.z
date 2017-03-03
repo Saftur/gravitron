@@ -1,0 +1,13 @@
+class LevelTransition : ZilchComponent
+{
+    [Property]
+    var NextLevel : Level = null;
+    
+    function Transition()
+    {
+        if(this.NextLevel != null)
+            this.Space.LoadLevel(this.NextLevel);
+        else
+            this.GameSession.Quit();
+    }
+}

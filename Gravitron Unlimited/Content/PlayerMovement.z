@@ -39,6 +39,10 @@ class PlayerMovement : ZilchComponent
             //this.Owner.SweptController.JumpCancel();
         }
         
+        else if(this.Owner.PlayerStatus.Pulling)
+        {
+            this.Owner.Sprite.Color = Real4(0,0,1,1);
+        }
         //Crawling
         else if(this.Controls.KeyDown(3) && this.Socks.Grounded() && !this.Socks.InPit() && !this.Owner.PlayerStatus.Pulling)
         {

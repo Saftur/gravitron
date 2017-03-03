@@ -1,8 +1,7 @@
 class GameVars : ZilchComponent
 {
-    var Initializied : Boolean = false;
-    function Reset()
-    {
-        this.Initializied = false;
-    }
+    var CurrentGravity : Real3 = Real3(0,-1,0);
+    var PlayerOffset : Real3 = Real3(0,0,0);
+    var GuardJumpHeight : Real = 0;
+    var CurrentCrateGravity : Real3 = Real3(0,-1,0);
 }

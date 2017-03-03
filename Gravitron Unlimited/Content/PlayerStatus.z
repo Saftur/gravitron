@@ -25,13 +25,32 @@ class PlayerStatus : ZilchComponent
     function Reset()
     {
         var crates = this.Space.FindAllObjectsByName("StaticCrate");
+        var guards = this.Space.FindAllObjectsByName("Guard");
         foreach(var c in crates)
         {
             c.Crate.Reset();
         }
+        foreach(var g in guards)
+        {
+            g.Transform.Translation = g.Guard.RespawnPoint;
+            g.Guard.JumpHeight = this.GameSession.GameVars.GuardJumpHeight;
+            var alert = g.Guard.AlertSymbol.FollowObject.Displacement;
+            if(this.GameSession.GameVars.CurrentGravity.Y < 0)
+            {
+                g.Guard.AlertSymbol.FollowObject.Displacement = Real3(alert.X, Math.Abs(alert.Y), 0);
+            }
+            else
+            {
+                g.Guard.AlertSymbol.FollowObject.Displacement = Real3(alert.X, -Math.Abs(alert.Y), 0);
+            }
+        }
         this.Caught = false;
         this.Spotted = false;
         this.Pulling = false;
+        
+        this.Space.LevelSettings.GravityEffect.Direction = this.GameSession.GameVars.CurrentGravity;
+        this.Owner.PlayerMovement.CrawlOffset = this.GameSession.GameVars.PlayerOffset;
+        
         this.Owner.Transform.Translation = this.RespawnPoint; //transport the player
     }
 }

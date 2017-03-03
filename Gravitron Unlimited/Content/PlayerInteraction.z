@@ -36,8 +36,16 @@ class PlayerInteraction : ZilchComponent
             //Crates
             else if(this.CurrentCrate != null)
             {
-                if(!this.Player.PlayerStatus.Pulling)   this.Player.PlayerStatus.Pulling = true;
-                else    this.Player.PlayerStatus.Pulling = false;
+                Console.WriteLine("`this.Player.PlayerStatus.Pulling`");
+                if(!this.Player.PlayerStatus.Pulling)
+                {
+                    this.Player.PlayerStatus.Pulling = true;
+                }
+                else
+                {
+                    this.Player.PlayerStatus.Pulling = false;
+                }
+                Console.WriteLine("`this.Player.PlayerStatus.Pulling`");
             }
             //Switches
             else if(this.CurrentSwitch != null)
@@ -73,6 +81,7 @@ class PlayerInteraction : ZilchComponent
                         foreach(var g in guards)
                         {
                             g.Guard.JumpHeight *= -1;
+                            g.Guard.AlertSymbol.FollowObject.Displacement *= -1;
                         }
                     }
                     
@@ -166,7 +175,21 @@ class PlayerInteraction : ZilchComponent
         
         //Light
         if(o.Name == "LightBox")   this.Player.PlayerStatus.Spotted = true;
-        if(o.Name == "Checkpoint")  this.Player.PlayerStatus.RespawnPoint = o.Transform.Translation;
+        //Checkpoint
+        if(o.Name == "Checkpoint")  
+        {
+            o.Sprite.Color = Real4(0,1,0,1);
+            var guard = this.Space.FindObjectByName("Guard");
+            var crate = this.Space.FindObjectByName("StaticCrate");
+            
+            this.Player.PlayerStatus.RespawnPoint = o.Transform.Translation;
+            this.GameSession.GameVars.CurrentGravity = this.Space.LevelSettings.GravityEffect.Direction;
+            this.GameSession.GameVars.PlayerOffset = this.Player.PlayerMovement.CrawlOffset;
+            if(guard != null)
+                this.GameSession.GameVars.CurrentCrateGravity = crate.GravityEffect.Direction;
+            if(crate != null)
+                this.GameSession.GameVars.GuardJumpHeight = guard.Guard.JumpHeight;
+        }
     }
     function OnCollisionEnded(event : CollisionEvent)
     {
@@ -179,11 +202,6 @@ class PlayerInteraction : ZilchComponent
         {
             this.Player.PlayerStatus.Pulling = false;
             this.CurrentCrate = null;
-        }
-        if(false)//o.Name == "Crate")
-        {
-            this.CurrentCrate = null;
-            o.Crate.Swap();
         }
         if(o.Switch != null)
         {
