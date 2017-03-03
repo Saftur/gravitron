@@ -67,11 +67,16 @@ Cog =
 	{
 		bool Active = true,
 		Vec3 LeftPoint = [-5, 0, 0],
-		Vec3 RightPoint = [12, 0, 0],
+		Vec3 RightPoint = [23, 0, 0],
+		Vec3 VerticalPoint = [0, 1, 0],
 		int Type = 1,
 		float VisionRange = 5,
 		float ChaseSpeed = 6,
-		float JumpHeight = 0,
+		float JumpHeight = 1.5,
+	},
+	Tag = 
+	{
+		int Number = 1,
 	},
 	Hierarchy = 
 	{

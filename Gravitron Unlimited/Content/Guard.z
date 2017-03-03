@@ -1,3 +1,6 @@
+// Name: Charles
+// Date: 2/2/17
+// All content © 2017 DigiPen (USA) Corporation, all rights reserved.
 class Guard : ZilchComponent
 {
     [Dependency]
@@ -6,10 +9,18 @@ class Guard : ZilchComponent
     [Property]
     var Active : Boolean = true;
     
+    //For Patrolling
     [Property]
     var LeftPoint : Real3 = Real3(0,0,0);
     [Property]
     var RightPoint : Real3 = Real3(1,0,0);
+    [Property]
+    var VerticalPoint : Real3 = Real3(2,-1,1); //In case guard falls in pit while chasing player
+                                                //x is where the cliff is on the x axis
+                                                //y is where the cliff starts on the y axis
+                                                //z is what direction guard needs to face to get back onto cliff
+    var Up : Boolean = false;
+    var Release : Boolean = false;
     
     [Property]
     var Type : Integer = 1; //Differentiate types of guards here
@@ -60,23 +71,87 @@ class Guard : ZilchComponent
         if(!this.Active) return;
         //Console.WriteLine("`this.RightPoint` `this.LeftPoint` `this.Dir`");
         
-        var ray = Ray();
+        var ray = Ray();    //For jumping and getting stuck
         var pos = this.Owner.Transform.Translation;
         var h = this.Owner.Transform.Scale.Y;
         
-        Console.WriteLine("`this.Owner.RigidBody.Velocity`");
-        ray.Direction = this.Dir;
         
+        //Console.WriteLine("`this.VerticalPoint` `this.Owner.Transform.Translation`");
         if(this.Look())
         {
             this.Chase();
+        }
+        //For falling off cliff
+        else if((this.Owner.Transform.Translation.X <= this.VerticalPoint.X + 0.5) && (this.Owner.Transform.Translation.X >= this.VerticalPoint.X - 0.5) && !this.Release)
+        {
+            ray.Direction = this.Space.LevelSettings.GravityEffect.Direction * Real3(1,-1,1);
+            
+            if(this.Space.LevelSettings.GravityEffect.Direction.Y < 0)
+            {
+                if(this.Owner.Transform.Translation.Y <= this.VerticalPoint.Y)
+                {
+                    if(!this.Up)
+                        this.Owner.Transform.Translation = Real3(this.VerticalPoint.X, this.Owner.Transform.Translation.Y, 0);
+                    this.Up = true;
+                    
+                    //rise slowly
+                    this.Owner.RigidBody.Velocity = Real3(0,2,0);
+                }
+                else if(this.Up)
+                {
+                    //final boost
+                    this.Owner.RigidBody.Velocity = Real3(0,11,0);
+                    this.Dir = Real3(this.VerticalPoint.Z,0,0);
+                    this.Turn();
+                    this.Socks.Update(this.Dir);
+                    this.Up = false;
+                    this.Release = true;
+                }
+            }
+            else if(this.Space.LevelSettings.GravityEffect.Direction.Y > 0)
+            {
+                if(this.Owner.Transform.Translation.Y >= this.VerticalPoint.Y)
+                {
+                    if(!this.Up)
+                        this.Owner.Transform.Translation = Real3(this.VerticalPoint.X, this.Owner.Transform.Translation.Y, 0);
+                    this.Up = true;
+                    
+                    if(this.CastRay(ray, 0.2, null))
+                    {
+                        this.Owner.RigidBody.Velocity = Real3(0,-20, 0);
+                    }
+                    else
+                    {
+                    //rise slowly
+                    this.Owner.RigidBody.Velocity = Real3(0,-2,0);
+                    }
+                    
+                }
+                else if(this.Up)
+                {
+                    //final boost
+                    this.Owner.RigidBody.Velocity = Real3(0,-11,0);
+                    this.Dir = Real3(this.VerticalPoint.Z,0,0);
+                    this.Turn();
+                    this.Socks.Update(this.Dir);
+                    this.Up = false;
+                    this.Release = true;
+                }
+            }
         }
         else
         {
             this.Patrol();
         }
-        Console.WriteLine("`this.Owner.RigidBody.Velocity`");
+        
+        //landing
+        if(this.Socks.Grounded())
+            this.Release = false;
+        
         //Console.WriteLine("`this.OldPos` `this.Owner.Transform.Translation`");
+        
+        
+        ray.Direction = this.Dir;
         
         //Getting Stuck
         if(Math.Abs(this.OldPos.X - this.Owner.Transform.Translation.X) <= 1)
@@ -98,6 +173,7 @@ class Guard : ZilchComponent
         //Jumping
         if(this.Socks.Grounded())
         {
+            
             ray.Start = pos + Real3(0, this.JumpHeight, 0); //Check if object is jumpable
             var dist = this.Owner.Transform.Scale.X/2 + 0.75;
             if(this.CastRay(ray, dist, null) && !this.CastRay(ray,dist,this.Player))
@@ -114,7 +190,7 @@ class Guard : ZilchComponent
                     this.Socks.Jump();
                 }
                 
-                ray.Start = pos + Real3(0, h/2, 0);
+                ray.Start = pos + Real3(0, h/3, 0);
                 if(this.CastRay(ray, dist, null) && !this.CastRay(ray, dist, this.Player)) //top
                 {
                     this.Socks.Jump();
@@ -202,7 +278,7 @@ class Guard : ZilchComponent
             }
             else if(cog == null)
             {
-                //Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
+                Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
                 return true;
             }
         }

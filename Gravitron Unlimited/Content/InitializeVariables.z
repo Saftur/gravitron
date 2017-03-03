@@ -1,0 +1,11 @@
+class InitializeVariables : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        var player = this.Space.FindObjectByName("Player");
+        var guard = this.Space.FindObjectByName("Guard");
+        
+        this.GameSession.GameVars.GuardJumpHeight = guard.Guard.JumpHeight;
+        this.GameSession.GameVars.PlayerOffset = player.PlayerMovement.CrawlOffset;
+    }
+}
