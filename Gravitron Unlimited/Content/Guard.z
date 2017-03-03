@@ -23,6 +23,7 @@ class Guard : ZilchComponent
     var JumpHeight : Real = 1.5;
     
     var Dir : Real3 = Real3(1,0,0);
+    var RespawnPoint : Real3 = Real3(0,0,0);
     
     var OldPos : Real3 = Real3(0,0,0);
     var Stuck : Real = 0;
@@ -35,6 +36,8 @@ class Guard : ZilchComponent
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
         this.Player = this.Space.FindObjectByName("Player");
+        
+        this.RespawnPoint = this.Owner.Transform.Translation;
         
         var visions = this.Space.FindAllObjectsByName("GuardV");
         foreach (var v in visions)
@@ -100,6 +103,7 @@ class Guard : ZilchComponent
             if(this.CastRay(ray, dist, null) && !this.CastRay(ray,dist,this.Player))
             {
                 this.Dir *= Real3(-1,1,1);
+                this.Owner.RigidBody.Velocity = Real3(this.Owner.RigidBody.Velocity.X, 0, 0);
                 this.Turn();
             }
             else
@@ -151,9 +155,8 @@ class Guard : ZilchComponent
         }
         this.Socks.Update(this.Dir);
     }
-    function Turn()
+    function Turn() //Face Direction Visually
     {
-        this.Owner.RigidBody.Velocity = Real3(this.Owner.RigidBody.Velocity.X, 0, 0);
         if(this.Dir.X > 0)
         {
             this.Owner.Sprite.FlipX = false;
