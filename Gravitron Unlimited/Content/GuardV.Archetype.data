@@ -8,9 +8,13 @@ Cog =
 	{
 		string Name = "GuardV",
 	},
+	Archetyped = 
+	{
+		string Name = "586e10f29f47da51:GuardV",
+	},
 	Transform = 
 	{
-		Vec3 Translation = [-3.90145206, -1.21237946, 0],
+		Vec3 Translation = [63.2300873, -2.49258256, 3.81469727e-06],
 		Vec3 Scale = [5, 2, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
@@ -51,5 +55,9 @@ Cog =
 			CogPathPreference PathPreference2 = Absolute,
 		},
 		Vec3 Displacement = [3, 0, 0],
+	},
+	Tag = 
+	{
+		int Number = 1,
 	},
 },

@@ -91,6 +91,9 @@ Level =
 			int HilightInterval = 10,
 			bool FollowEditorCamera = false,
 		},
+		InitializeVariables = 
+		{
+		},
 	},
 	Cog = 
 	{
@@ -104,7 +107,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [16.5163193, 4.39242887, 50.0000038],
+			Vec3 Translation = [59.493679, -3.5, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +119,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 44.510849,
+			float Size = 24.6597424,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +127,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [16.5163193, 4.39242887, 3.15598754e-06],
+			Vec3 LookTarget = [59.493679, -3.5, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -232,7 +235,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.03557587, -2.58615923, 0],
+			Vec3 Translation = [51.5, -3, 0],
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -250,8 +253,8 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-3.73971653, 3.70085263, 0],
-			Vec3 Scale = [1.41999996, 2, 1],
+			Vec3 Translation = [-4, 3.5, 0],
+			Vec3 Scale = [1.41999996, 1.79999995, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
@@ -261,46 +264,10 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "58ce2bb8fca89cd3:FloatingGuard",
-		LinkId = 
-		{
-			uint Id = 7,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [61.0096588, -4.79447746, 0],
-			Vec3 Scale = [1, 2, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "FloatingGuard",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "58ce2bb8fca89cd3:FloatingGuard",
-		LinkId = 
-		{
-			uint Id = 8,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [61.0096588, -4.79447746, 0],
-			Vec3 Scale = [1, 2, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "FloatingGuard",
-		},
-	},
-	ArchetypeInstance = 
-	{
 		string Name = "5849527ca9ca868c:GravitySwitch",
 		LinkId = 
 		{
-			uint Id = 9,
+			uint Id = 7,
 		},
 		Transform = 
 		{
@@ -318,11 +285,11 @@ Level =
 		string Name = "586fa0a219e7d914:StaticCrate",
 		LinkId = 
 		{
-			uint Id = 10,
+			uint Id = 8,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [10, -3, 0],
+			Vec3 Translation = [10, -1, 0],
 			Vec3 Scale = [2, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -336,7 +303,7 @@ Level =
 		string Name = "586fa0a219e7d914:StaticCrate",
 		LinkId = 
 		{
-			uint Id = 11,
+			uint Id = 9,
 		},
 		Transform = 
 		{
@@ -354,11 +321,11 @@ Level =
 		string Name = "5849527ca9ca868c:GravitySwitch",
 		LinkId = 
 		{
-			uint Id = 12,
+			uint Id = 10,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [17.5652847, 5.47396755, 0],
+			Vec3 Translation = [23, 5.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -372,11 +339,11 @@ Level =
 		string Name = "586fa0a219e7d914:StaticCrate",
 		LinkId = 
 		{
-			uint Id = 13,
+			uint Id = 11,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [47.9691963, -4.95953465, 0],
+			Vec3 Translation = [65.5, -5, 0],
 			Vec3 Scale = [2, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -390,11 +357,11 @@ Level =
 		string Name = "5849527ca9ca868c:GravitySwitch",
 		LinkId = 
 		{
-			uint Id = 14,
+			uint Id = 12,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [58.1031723, 6.47238922, 0],
+			Vec3 Translation = [54.5, 6.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -408,7 +375,7 @@ Level =
 		string Name = "584ab76582c0ad7e:Exit",
 		LinkId = 
 		{
-			uint Id = 15,
+			uint Id = 13,
 		},
 		Transform = 
 		{
@@ -423,33 +390,10 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "4faa6050b86884ec:DefaultArchetype",
+		string Name = "58da16e777ecc65f:WallDoor",
 		LinkId = 
 		{
-			uint Id = 16,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [20, 3.5, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Area = 
-		{
-			Vec2 Size = [2, 3],
-			Location Origin = Center,
-		},
-		Named = 
-		{
-			string Name = "WallDoor2",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "58da1b164a5ecc65:WallDoor1",
-		LinkId = 
-		{
-			uint Id = 17,
+			uint Id = 14,
 		},
 		Transform = 
 		{
@@ -469,10 +413,10 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "4faa6050b86884ec:DefaultArchetype",
+		string Name = "58da16e777ecc65f:WallDoor",
 		LinkId = 
 		{
-			uint Id = 18,
+			uint Id = 15,
 		},
 		Transform = 
 		{
@@ -490,23 +434,46 @@ Level =
 			string Name = "WallDoor3",
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "58da16e777ecc65f:WallDoor",
 		LinkId = 
 		{
-			uint Id = 19,
+			uint Id = 16,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [63, 8.5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Area = 
+		{
+			Vec2 Size = [2, 3],
+			Location Origin = Center,
 		},
 		Named = 
 		{
 			string Name = "WallDoor4",
 		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 17,
+		},
+		Named = 
+		{
+			string Name = "WallDoor2",
+		},
 		Archetyped = 
 		{
-			string Name = "4faa6050b86884ec:DefaultArchetype",
+			string Name = "58da16e777ecc65f:WallDoor",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [63, 8.5, 0],
+			Vec3 Translation = [20, 3.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -516,7 +483,7 @@ Level =
 			bool VisibilityCulling = true,
 			bool VisibilityEvents = true,
 			bool CastShadows = false,
-			Vec4 Color = [0, 0, 0, 1],
+			Vec4 Color = [0.555000007, 0.555000007, 0.555000007, 1],
 			BlendMode BlendMode = Alpha,
 			SpriteGeometryMode GeometryMode = ZPlane,
 			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
@@ -538,7 +505,7 @@ Level =
 			bool Ghost = false,
 			bool SendsMessages = true,
 			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string MaterialName = "58cf7875009ddbd3:Physocks",
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [1, 1.5, 0.5],
@@ -548,15 +515,19 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 20,
+			uint Id = 18,
 		},
 		Named = 
 		{
-			string Name = "Sprite",
+			string Name = "PressurePlate",
+		},
+		Archetyped = 
+		{
+			string Name = "5866fe78e16fd29d:PressurePlate",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [3.99947953, 1.13645065, 1.32856869e-07],
+			Vec3 Translation = [3.5, 1, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -583,7 +554,7 @@ Level =
 			bool Ghost = false,
 			bool SendsMessages = true,
 			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string MaterialName = "58cf7875009ddbd3:Physocks",
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [1, 0.125, 0.5],
@@ -605,7 +576,7 @@ Level =
 				bool UpdatePathOnCogChange = true,
 				bool UpdateCogOnInitialize = true,
 				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 17,
+				uint ResolvedCog = 14,
 				CogPathPreference PathPreference0 = CogRelative,
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
@@ -617,7 +588,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 21,
+			uint Id = 19,
 		},
 		Named = 
 		{
@@ -625,11 +596,11 @@ Level =
 		},
 		Archetyped = 
 		{
-			string Name = "4faa6050b86884ec:DefaultArchetype",
+			string Name = "5866fe78e16fd29d:PressurePlate",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [33, -4, 0],
+			Vec3 Translation = [51.5, 12, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -656,153 +627,7 @@ Level =
 			bool Ghost = false,
 			bool SendsMessages = true,
 			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [1, 0.125, 0.5],
-		},
-		Area = 
-		{
-			Vec2 Size = [2, 0.25],
-			Location Origin = Center,
-		},
-		PressurePlateDoor = 
-		{
-			CogPath DoorToOpen = 
-			{
-				string Path = ":/WallDoor3",
-				bool ErrorOnResolveToNull = false,
-				bool ErrorOnPathCantCompute = false,
-				bool ErrorOnDirectLinkFail = false,
-				bool UpdateCogOnPathChange = true,
-				bool UpdatePathOnCogChange = true,
-				bool UpdateCogOnInitialize = true,
-				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 18,
-				CogPathPreference PathPreference0 = CogRelative,
-				CogPathPreference PathPreference1 = SpaceRelative,
-				CogPathPreference PathPreference2 = Absolute,
-			},
-			float AnimationTime = 0.5,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 22,
-		},
-		Named = 
-		{
-			string Name = "PressurePlate",
-		},
-		Archetyped = 
-		{
-			string Name = "4faa6050b86884ec:DefaultArchetype",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [14, 11, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [0.334999979, 0.334999979, 0.334999979, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [1, 0.125, 0.5],
-		},
-		Area = 
-		{
-			Vec2 Size = [2, 0.25],
-			Location Origin = Center,
-		},
-		PressurePlateDoor = 
-		{
-			CogPath DoorToOpen = 
-			{
-				string Path = ":/WallDoor2",
-				bool ErrorOnResolveToNull = false,
-				bool ErrorOnPathCantCompute = false,
-				bool ErrorOnDirectLinkFail = false,
-				bool UpdateCogOnPathChange = true,
-				bool UpdatePathOnCogChange = true,
-				bool UpdateCogOnInitialize = true,
-				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 16,
-				CogPathPreference PathPreference0 = CogRelative,
-				CogPathPreference PathPreference1 = SpaceRelative,
-				CogPathPreference PathPreference2 = Absolute,
-			},
-			float AnimationTime = 0.5,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 23,
-		},
-		Named = 
-		{
-			string Name = "PressurePlate",
-		},
-		Archetyped = 
-		{
-			string Name = "4faa6050b86884ec:DefaultArchetype",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [61, 12, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [0.334999979, 0.334999979, 0.334999979, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string MaterialName = "58cf7875009ddbd3:Physocks",
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [1, 0.125, 0.5],
@@ -824,12 +649,423 @@ Level =
 				bool UpdatePathOnCogChange = true,
 				bool UpdateCogOnInitialize = true,
 				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 19,
+				uint ResolvedCog = 16,
 				CogPathPreference PathPreference0 = CogRelative,
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
 			},
 			float AnimationTime = 0.5,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 20,
+		},
+		Named = 
+		{
+			string Name = "PressurePlate",
+		},
+		Archetyped = 
+		{
+			string Name = "5866fe78e16fd29d:PressurePlate",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [33, -2, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0.334999979, 0.334999979, 0.334999979, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "58cf7875009ddbd3:Physocks",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [1, 0.125, 0.5],
+		},
+		Area = 
+		{
+			Vec2 Size = [2, 0.25],
+			Location Origin = Center,
+		},
+		PressurePlateDoor = 
+		{
+			CogPath DoorToOpen = 
+			{
+				string Path = ":/WallDoor3",
+				bool ErrorOnResolveToNull = false,
+				bool ErrorOnPathCantCompute = false,
+				bool ErrorOnDirectLinkFail = false,
+				bool UpdateCogOnPathChange = true,
+				bool UpdatePathOnCogChange = true,
+				bool UpdateCogOnInitialize = true,
+				bool ResolvedNullErrorOccurred = false,
+				uint ResolvedCog = 15,
+				CogPathPreference PathPreference0 = CogRelative,
+				CogPathPreference PathPreference1 = SpaceRelative,
+				CogPathPreference PathPreference2 = Absolute,
+			},
+			float AnimationTime = 0.5,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 21,
+		},
+		Named = 
+		{
+			string Name = "PressurePlate",
+		},
+		Archetyped = 
+		{
+			string Name = "5866fe78e16fd29d:PressurePlate",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [14, 9, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0.334999979, 0.334999979, 0.334999979, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "58cf7875009ddbd3:Physocks",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [1, 0.125, 0.5],
+		},
+		Area = 
+		{
+			Vec2 Size = [2, 0.25],
+			Location Origin = Center,
+		},
+		PressurePlateDoor = 
+		{
+			CogPath DoorToOpen = 
+			{
+				string Path = ":/WallDoor2",
+				bool ErrorOnResolveToNull = false,
+				bool ErrorOnPathCantCompute = false,
+				bool ErrorOnDirectLinkFail = false,
+				bool UpdateCogOnPathChange = true,
+				bool UpdatePathOnCogChange = true,
+				bool UpdateCogOnInitialize = true,
+				bool ResolvedNullErrorOccurred = false,
+				uint ResolvedCog = 17,
+				CogPathPreference PathPreference0 = CogRelative,
+				CogPathPreference PathPreference1 = SpaceRelative,
+				CogPathPreference PathPreference2 = Absolute,
+			},
+			float AnimationTime = 0.5,
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "58ce2c4b165bc29e:Lightbulb",
+		LinkId = 
+		{
+			uint Id = 22,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [54.5, -0.5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Lightbulb",
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 23,
+		},
+		Named = 
+		{
+			string Name = "Lightbulb",
+		},
+		Archetyped = 
+		{
+			string Name = "58ce2c4b165bc29e:Lightbulb",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [58.5, -0.5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		LightboxSpawner = 
+		{
+			bool Active = true,
+			CogPath Lightbox = 
+			{
+				string Path = "",
+				bool ErrorOnResolveToNull = false,
+				bool ErrorOnPathCantCompute = false,
+				bool ErrorOnDirectLinkFail = false,
+				bool UpdateCogOnPathChange = true,
+				bool UpdatePathOnCogChange = true,
+				bool UpdateCogOnInitialize = true,
+				bool ResolvedNullErrorOccurred = false,
+				uint ResolvedCog = 4294967293,
+				CogPathPreference PathPreference0 = CogRelative,
+				CogPathPreference PathPreference1 = SpaceRelative,
+				CogPathPreference PathPreference2 = Absolute,
+			},
+			Vec3 Lightboxdisplace = [0, 2.5, 0],
+		},
+		Tag = 
+		{
+			int Number = 1,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 24,
+		},
+		Named = 
+		{
+			string Name = "Lightbulb",
+		},
+		Archetyped = 
+		{
+			string Name = "58ce2c4b165bc29e:Lightbulb",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [62.5, -0.5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [1, 1, 1, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		LightboxSpawner = 
+		{
+			bool Active = true,
+			CogPath Lightbox = 
+			{
+				string Path = "",
+				bool ErrorOnResolveToNull = false,
+				bool ErrorOnPathCantCompute = false,
+				bool ErrorOnDirectLinkFail = false,
+				bool UpdateCogOnPathChange = true,
+				bool UpdatePathOnCogChange = true,
+				bool UpdateCogOnInitialize = true,
+				bool ResolvedNullErrorOccurred = false,
+				uint ResolvedCog = 4294967293,
+				CogPathPreference PathPreference0 = CogRelative,
+				CogPathPreference PathPreference1 = SpaceRelative,
+				CogPathPreference PathPreference2 = Absolute,
+			},
+			Vec3 Lightboxdisplace = [0, 2.5, 0],
+		},
+		Tag = 
+		{
+			int Number = 1,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 25,
+		},
+		Named = 
+		{
+			string Name = "Guard",
+		},
+		Archetyped = 
+		{
+			string Name = "584b3d0c7ec77112:Guard",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [69, -5, 0],
+			Vec3 Scale = [1, 2, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0.162524998, 0.836954653, 0.985000014, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		RigidBody = 
+		{
+			bool Static = false,
+			bool Asleep = false,
+			bool Kinematic = false,
+			bool RotationLocked = true,
+			bool Mode2D = true,
+			bool AllowSleep = true,
+			bool Inherit2DMode = true,
+			Vec3 Velocity = [0, 0, 0],
+			Vec3 AngularVelocity = [0, 0, 0],
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "58cf7875009ddbd3:Physocks",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+		Physocks = 
+		{
+			float Speed = 2.5,
+			float JumpStrength = 13,
+		},
+		Guard = 
+		{
+			bool Active = true,
+			Vec3 LeftPoint = [64.5, 0, 0],
+			Vec3 RightPoint = [69, -5, 0],
+			float GlanceTime = 0,
+			Vec3 VerticalPoint = [99, 99, 99],
+			int Type = 2,
+			float VisionRange = 5,
+			float ChaseSpeed = 6,
+			float JumpHeight = 1.5,
+		},
+		Tag = 
+		{
+			int Number = 1,
+		},
+		Hierarchy = 
+		{
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "586e10f29f47da51:GuardV",
+		LinkId = 
+		{
+			uint Id = 26,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [69.5, -2.5, 0],
+			Vec3 Scale = [5, 2, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "GuardV",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "58d0cd8b570d37a7:LightSwitch",
+		LinkId = 
+		{
+			uint Id = 27,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [49, 6.5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "LightSwitch",
 		},
 	},
 },

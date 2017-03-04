@@ -14,6 +14,10 @@ class Guard : ZilchComponent
     var LeftPoint : Real3 = Real3(0,0,0);
     [Property]
     var RightPoint : Real3 = Real3(1,0,0);
+    
+    [Property]
+    var GlanceTime : Real = 0;
+    
     [Property]
     var VerticalPoint : Real3 = Real3(2,-1,1); //In case guard falls in pit while chasing player
                                                 //x is where the cliff is on the x axis
@@ -47,6 +51,8 @@ class Guard : ZilchComponent
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+        
         this.Player = this.Space.FindObjectByName("Player");
         
         this.RespawnPoint = this.Owner.Transform.Translation;
@@ -91,7 +97,29 @@ class Guard : ZilchComponent
             {
                 this.AlertSymbol.SpriteText.Visible = true;
             }
+            
+            this.GlanceTime = 0;
+            
             this.Chase();
+        }
+        else if(this.Type == 2)
+        {
+            if(this.Socks.Speed != 0.5)
+                this.Socks.Speed = 0.5;
+            if(this.AlertSymbol.SpriteText.Visible)
+            {
+                this.AlertSymbol.SpriteText.Visible = false;
+            }
+            this.GlanceTime += event.Dt;
+            
+            if(this.GlanceTime > 2.5)
+            {
+                this.GlanceTime = 0;
+                this.Dir *= Real3(-1,1,1);
+                this.Turn();
+                this.Patrol();
+            }
+            return;
         }
         //For falling off cliff
         else if((this.Owner.Transform.Translation.X <= this.VerticalPoint.X + 0.5) && (this.Owner.Transform.Translation.X >= this.VerticalPoint.X - 0.5) && !this.Release)
@@ -100,6 +128,8 @@ class Guard : ZilchComponent
             {
                 this.AlertSymbol.SpriteText.Visible = false;
             }
+            
+            this.GlanceTime = 0;
             
             ray.Direction = this.Space.LevelSettings.GravityEffect.Direction * Real3(1,-1,1);
             
@@ -156,7 +186,7 @@ class Guard : ZilchComponent
                 }
             }
         }
-        else
+        else if(this.Type == 1)
         {
             if(this.AlertSymbol.SpriteText.Visible)
             {
@@ -240,15 +270,27 @@ class Guard : ZilchComponent
     {
         //Patrolling
         var pos = this.Owner.Transform.Translation;
-        if(pos.X > this.RightPoint.X)
+        
+        if(this.Type == 1)
         {
-            this.Dir = Real3(-1,0,0);
-            this.Turn();
+            if(pos.X > this.RightPoint.X)
+            {
+                this.Dir = Real3(-1,0,0);
+                this.Turn();
+            }
+            if(pos.X < this.LeftPoint.X)
+            {
+                this.Dir = Real3(1,0,0);
+                this.Turn();
+            }
         }
-        if(pos.X < this.LeftPoint.X)
+        else if(this.Type == 2)
         {
-            this.Dir = Real3(1,0,0);
-            this.Turn();
+            if(pos.X > this.RightPoint.X + 2 || pos.X < this.RightPoint.X - 2)
+            {
+                this.Space.CreateAtPosition(Archetype.Teleport, this.Owner.Transform.Translation);
+                this.Owner.Transform.Translation = this.RightPoint;
+            }
         }
         this.Socks.Update(this.Dir);
     }
@@ -288,6 +330,14 @@ class Guard : ZilchComponent
         
         return false;
     }
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        var o = event.OtherObject;
+        if(o.Name == "Player")
+        {
+            o.PlayerStatus.Caught = true;
+        }
+    }
     function CastRay(ray : Ray, dis : Real, cog : Cog) : Boolean
     {
         var objHit = this.Space.PhysicsSpace.CastRayFirst(ray);
@@ -299,7 +349,7 @@ class Guard : ZilchComponent
             }
             else if(cog == null)
             {
-                Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
+                //Console.WriteLine("`objHit.ObjectHit` `objHit.Distance`");
                 return true;
             }
         }

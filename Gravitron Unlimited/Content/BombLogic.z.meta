@@ -1,0 +1,15 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "BombLogic",
+		uint64 ResourceId = 559e5cb72ff0b2e6,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"VG1_PracticalParticles",
+		],
+	},
+},

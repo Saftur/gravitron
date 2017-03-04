@@ -57,7 +57,9 @@ class PressurePlateDoor : ZilchComponent
     {
         this.DoorToOpen.Cog.BoxCollider.Ghost = !this.DoorToOpen.Cog.BoxCollider.Ghost;
         this.Owner.BoxCollider.Ghost = !this.Owner.BoxCollider.Ghost;
-        if(this.DoorToOpen.Cog.Sprite.Color == Real4(0.1, 0, 0, 0))   this.DoorToOpen.Cog.Sprite.Color = Real4(0, 0, 0, 1);
-        else this.DoorToOpen.Cog.Sprite.Color = Real4(0.1, 0, 0, 0);
+        
+        var gray = 131.0/255.0;
+        if(this.DoorToOpen.Cog.Sprite.Color == Real4(gray, gray, gray, 0))   this.DoorToOpen.Cog.Sprite.Color = Real4(gray, gray, gray, 1);
+        else this.DoorToOpen.Cog.Sprite.Color = Real4(gray, gray, gray, 0);
     }
 }

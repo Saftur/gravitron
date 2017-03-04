@@ -2,8 +2,8 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "DoorSwitch.Archetype",
-		uint64 ResourceId = 58da16e777ef5f45,
+		string Name = "DoorSwitch",
+		uint64 ResourceId = 5866ff90eeffda5a,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,

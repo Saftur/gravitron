@@ -1,0 +1,36 @@
+class BombLogic : ZilchComponent
+{
+    sends Detonate : ZilchEvent;
+    
+    [Property]
+    var ExplosionArchetype : Archetype = Archetype.Find("BasicExplosion");
+    
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+        Zero.Connect(this.Owner, Events.Detonate, this.OnDetonate);
+    }
+    
+    
+    function OnKeyDown(event : KeyboardEvent)
+    {
+        if(event.Key == Keys.Space)
+        {
+            this.Explode();
+        }
+    }
+    
+    
+    function OnDetonate(event : ZilchEvent)
+    {
+        this.Explode();
+    }
+    
+    
+    function Explode()
+    {
+        this.Space.CreateAtPosition(this.ExplosionArchetype, this.Owner.Transform.Translation);
+        this.Owner.Destroy();
+    }
+}

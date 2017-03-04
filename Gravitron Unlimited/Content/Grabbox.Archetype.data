@@ -14,8 +14,8 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-2.37125778, 4.12481308, 0],
-		Vec3 Scale = [1.20000005, 1.39999998, 1],
+		Vec3 Translation = [-11.4903736, 0.74075079, 0],
+		Vec3 Scale = [1.41999996, 1.79999995, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 

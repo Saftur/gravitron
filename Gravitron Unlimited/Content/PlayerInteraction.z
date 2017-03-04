@@ -1,6 +1,5 @@
 class PlayerInteraction : ZilchComponent
 {
-    var CurrentItem : Cog = null;
     var CurrentSwitch : Cog = null;
     var CurrentCrate : Cog = null;
     var IMadeIt : Boolean = false; //reached exit
@@ -94,15 +93,19 @@ class PlayerInteraction : ZilchComponent
                 {
                     var lightOn = Real4(1, 0.972549, 0.596078, 0.5);
                     var lightOff = Real4(0, 0, 0, 0);
-                    var lightBox = this.Space.FindObjectByName("LightBox");
-                    if(lightBox.Sprite.Color == lightOn)
+                    var lightbulbs = this.Space.FindAllObjectsByName("Lightbulb");
+                    foreach(var lb in lightbulbs)
                     {
-                        lightBox.Sprite.Color = lightOff;
-                        
-                    }
-                    else
-                    {
-                        lightBox.Sprite.Color = lightOn;
+                        if(lb.Tag.Number == this.CurrentSwitch.Tag.Number)
+                        {
+                            var light = lb.LightboxSpawner.Lightbox.Cog;
+                            if(light.Sprite.Color == lightOff)
+                                light.Sprite.Color = lightOn;
+                            else
+                                light.Sprite.Color = lightOff;
+                                
+                            light.MultiConvexMeshCollider.SendsEvents = !light.MultiConvexMeshCollider.SendsEvents;
+                        }
                     }
                     var switches = this.Space.FindAllObjectsByName("LightSwitch");
                     foreach(var s in switches)
@@ -117,7 +120,7 @@ class PlayerInteraction : ZilchComponent
                         }
                     }
                 }
-                /* INCOMPLETE */
+                /* INCOMPLETE  could not finish in time */
                 //Door
                 //if(this.CurrentSwitch.Switch.Door)
                 //{
@@ -157,11 +160,11 @@ class PlayerInteraction : ZilchComponent
     }
     function OnCollisionStarted(event : CollisionEvent)
     {
-        //Console.WriteLine("`event.OtherObject.Name`");
+        Console.WriteLine("`event.OtherObject.Name`");
+        Console.WriteLine("`this.Player.PlayerStatus.Spotted`");
+        
         var o = event.OtherObject;
         if(o.Name == "Exit")    this.IMadeIt = true;
-        
-        if(o.Name == "Guard")   this.Player.PlayerStatus.Caught = true;
         
         if(o.Name == "StaticCrate")
         {
@@ -169,8 +172,6 @@ class PlayerInteraction : ZilchComponent
         }
             
         if(o.Switch != null)    this.CurrentSwitch = o;
-        
-        
         
         //Collision Only
         
@@ -211,7 +212,8 @@ class PlayerInteraction : ZilchComponent
         }
         if(o.Name == "LightBox")
         {
-            this.Player.PlayerStatus.Spotted = false;
+            if(this.Player != null)
+                this.Player.PlayerStatus.Spotted = false;
         }
     }
 }

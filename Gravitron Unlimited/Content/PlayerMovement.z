@@ -13,8 +13,7 @@ class PlayerMovement : ZilchComponent
     var ColliderCrawlSize : Real3 = Real3(2, 1, 1);
     var CrawlOffset : Real3 = Real3(0, -0.25, 0);
     
-    var Grabbox : Cog = null;    //For holding items
-    var Displacement : Real3 = Real3(1.5,0,0);
+    var Grabbox : Cog = null;   //Player collider for object interactions
     
     var Controls : Input;
     
@@ -84,24 +83,12 @@ class PlayerMovement : ZilchComponent
                 movement.X += -1;
                 
                 if(this.Owner.PlayerStatus.Pulling) movement.X /= 2;
-                
-                this.Displacement = Real3(-1.5, 0, 0);
-                if(this.Grabbox.PlayerInteraction.CurrentItem != null)
-                {
-                    this.Grabbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
-                }
             }
             if(this.Controls.KeyDown(1))
             {
                 movement.X += 1;
                 
                 if(this.Owner.PlayerStatus.Pulling) movement.X /= 2;
-                
-                this.Displacement = Real3(1.5, 0, 0);
-                if(this.Grabbox.PlayerInteraction.CurrentItem != null)
-                {
-                    this.Grabbox.PlayerInteraction.CurrentItem.FollowObject.Displacement = this.Displacement;
-                }
             }
         }
         
