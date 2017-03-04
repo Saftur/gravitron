@@ -94,19 +94,52 @@ class PlayerMovement : ZilchComponent
         
         //Console.WriteLine(movement);
         
-        if (this.Socks.Grounded()) {
-            if (movement.X == 0)
+        if (this.Owner.Sprite.SpriteSource != SpriteSource.Flip) {
+            if (this.Socks.Grounded()) {
+                if (movement.X == 0)
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Walk1;
+                else if (this.Owner.Sprite.SpriteSource != SpriteSource.Walk)
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Walk;
+            } else {
                 this.Owner.Sprite.SpriteSource = SpriteSource.Walk1;
-            else if (this.Owner.Sprite.SpriteSource != SpriteSource.Walk)
-                this.Owner.Sprite.SpriteSource = SpriteSource.Walk;
-        } else {
-            this.Owner.Sprite.SpriteSource = SpriteSource.Walk1;
+            }
+            
+            if (movement.X > 0) {
+                this.Owner.Sprite.FlipX = false;
+            } else if (movement.X < 0) {
+                this.Owner.Sprite.FlipX = true;
+            }
         }
         
-        if (movement.X > 0) {
-            this.Owner.Sprite.FlipX = false;
-        } else if (movement.X < 0) {
-            this.Owner.Sprite.FlipX = true;
+        if (Zero.Keyboard.KeyIsDown(Keys.Enter)) {
+            Console.WriteLine("`this.Space.LevelSettings.GravityEffect.Direction.Y`");
+        }
+        if (this.Space.LevelSettings.GravityEffect.Direction.Y > 0) {
+            /*if (!this.Owner.Sprite.FlipY) { // add back when flip is colored
+                if (this.Owner.Sprite.SpriteSource == SpriteSource.Flip) {
+                    if (this.Owner.Sprite.CurrentFrame == 5) {
+                        this.Owner.Sprite.FlipY = true;
+                        this.Owner.Sprite.FlipX = !this.Owner.Sprite.FlipX;
+                        this.Owner.Sprite.SpriteSource = SpriteSource.Walk1;
+                    }
+                } else {
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Flip;
+                }
+            }*/
+            this.Owner.Sprite.FlipY = true;
+        } else if (this.Space.LevelSettings.GravityEffect.Direction.Y < 0) {
+            /*if (this.Owner.Sprite.FlipY) { // add back when flip is colored
+                if (this.Owner.Sprite.SpriteSource == SpriteSource.Flip) {
+                    if (this.Owner.Sprite.CurrentFrame == 5) {
+                        this.Owner.Sprite.FlipY = false;
+                        this.Owner.Sprite.FlipX = !this.Owner.Sprite.FlipX;
+                        this.Owner.Sprite.SpriteSource = SpriteSource.Walk1;
+                    }
+                } else {
+                    this.Owner.Sprite.SpriteSource = SpriteSource.Flip;
+                }
+            }*/
+            this.Owner.Sprite.FlipY = false;
         }
         
         this.Owner.Physocks.Update(movement);

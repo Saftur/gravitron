@@ -1,0 +1,20 @@
+ImageContent = 
+{
+	SpriteSourceBuilder = 
+	{
+		string Name = "Flip",
+		uint64 ResourceId = 58e5b1255ac6c4ae,
+		uint64 AtlasId = 5274cf95e4a661fd,
+		uint FrameSizeX = 256,
+		uint FrameSizeY = 258,
+		uint FrameCount = 6,
+		float FrameDelay = 0.0833333358,
+		float OriginX = 128,
+		float OriginY = 129,
+		float PixelsPerUnit = 256,
+		bool Smoothing = true,
+		bool Looping = false,
+		Vec4 Slices = [0, 0, 0, 0],
+		SpriteFill Fill = Stretch,
+	},
+},
