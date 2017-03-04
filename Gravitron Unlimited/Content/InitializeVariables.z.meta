@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "InitializeVariables",
+		uint64 ResourceId = 58d9fea2241ed746,
+	},
+},
