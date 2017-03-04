@@ -1,0 +1,20 @@
+ImageContent = 
+{
+	SpriteSourceBuilder = 
+	{
+		string Name = "Floor Corners X",
+		uint64 ResourceId = 58e5eaf9685d7dd6,
+		uint64 AtlasId = 5274cf95e4a661fd,
+		uint FrameSizeX = 252,
+		uint FrameSizeY = 252,
+		uint FrameCount = 1,
+		float FrameDelay = 0.0833333358,
+		float OriginX = 126,
+		float OriginY = 126,
+		float PixelsPerUnit = 256,
+		bool Smoothing = true,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+		SpriteFill Fill = Stretch,
+	},
+},

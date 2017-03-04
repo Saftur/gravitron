@@ -33,9 +33,9 @@ class Physocks : ZilchComponent
     
     function Grounded() : Boolean
     {
-        var pos = this.Trans.Translation;
+        var pos = this.Trans.Translation+this.Collider.Offset;
         var width = this.Collider.Size.X;
-        var dist = this.Trans.Scale.Y/2;
+        var dist = this.Collider.Size.Y/2;
         var ray = Ray();
         ray.Direction = this.Space.LevelSettings.GravityEffect.Direction;
         ray.Start = pos;
@@ -49,9 +49,9 @@ class Physocks : ZilchComponent
     
     function UnderBlock() : Boolean
     {
-        var pos = this.Trans.Translation;
+        var pos = this.Trans.Translation+this.Collider.Offset;
         var width = this.Collider.Size.X;
-        var dist = this.Trans.Scale.Y/2;
+        var dist = this.Collider.Size.Y/2+0.05;
         var ray = Ray();
         ray.Direction = this.Space.LevelSettings.GravityEffect.Direction * Real3(1, -1, 1);
         ray.Start = pos;
@@ -65,9 +65,9 @@ class Physocks : ZilchComponent
     
     function InPit() : Boolean
     {
-        var pos = this.Trans.Translation+Real3(0, -0.25, 0);
-        var height = this.Collider.Size.X;
-        var dist = this.Trans.Scale.Y/2;
+        var pos = this.Trans.Translation+this.Owner.PlayerMovement.CrawlOffset;
+        var height = this.Owner.PlayerMovement.ColliderCrawlSize.Y;
+        var dist = this.Owner.PlayerMovement.ColliderCrawlSize.X/2;
         var hitLeft = false;
         var hitRight = false;
         var ray = Ray();
@@ -76,14 +76,14 @@ class Physocks : ZilchComponent
         if (this.CastGroundRay(ray, dist)) hitLeft = true;
         ray.Start = pos + Real3(0, height/2-0.05, 0); // -0.1 is wall jump fix, remove when fixing going in walls
         if (this.CastGroundRay(ray, dist)) hitLeft = true;
-        ray.Start = pos + Real3(0, -height/2-0.05, 0);
+        ray.Start = pos + Real3(0, -height/2+0.05, 0);
         if (this.CastGroundRay(ray, dist)) hitLeft = true;
         ray.Direction = Real3(1, 0, 0);
         ray.Start = pos;
         if (this.CastGroundRay(ray, dist)) hitRight = true;
         ray.Start = pos + Real3(0, height/2-0.05, 0); // -0.1 is wall jump fix, remove when fixing going in walls
         if (this.CastGroundRay(ray, dist)) hitRight = true;
-        ray.Start = pos + Real3(0, -height/2-0.05, 0);
+        ray.Start = pos + Real3(0, -height/2+0.05, 0);
         if (this.CastGroundRay(ray, dist)) hitRight = true;
         if (hitLeft && hitRight) return true;
         return false;

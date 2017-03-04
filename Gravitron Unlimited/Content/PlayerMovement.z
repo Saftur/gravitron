@@ -6,7 +6,11 @@ class PlayerMovement : ZilchComponent
 {
     [Dependency]
     var Socks : Physocks = null;
+    [Dependency]
+    var Collider : BoxCollider = null;
     var CeilingDistance : Real = 0;
+    var ColliderSize : Real3 = Real3(1, 1.5, 1);
+    var ColliderCrawlSize : Real3 = Real3(2, 1, 1);
     var CrawlOffset : Real3 = Real3(0, -0.25, 0);
     
     var Grabbox : Cog = null;    //For holding items
@@ -30,7 +34,7 @@ class PlayerMovement : ZilchComponent
         var movement = Real3(0,0,0);
         
         //Jumping
-        if(this.Controls.KeyDown(2) && this.Socks.Grounded() && !this.Owner.PlayerStatus.Pulling)
+        if(this.Controls.KeyDown(2) && this.Socks.Grounded() && !this.Owner.PlayerStatus.Pulling && !this.Socks.UnderBlock())
         {
             this.Owner.Physocks.Jump();
         }
@@ -39,27 +43,32 @@ class PlayerMovement : ZilchComponent
             //this.Owner.SweptController.JumpCancel();
         }
         
-        else if(this.Owner.PlayerStatus.Pulling)
-        {
-            this.Owner.Sprite.Color = Real4(0,0,1,1);
+        if (Zero.Keyboard.KeyIsDown(Keys.Enter)) {
+            Console.WriteLine("`this.Socks.Grounded()` `!this.Socks.InPit()` `!this.Owner.PlayerStatus.Pulling`");
+            Console.WriteLine("`this.Socks.UnderBlock()`");
         }
+        
         //Crawling
-        else if(this.Controls.KeyDown(3) && this.Socks.Grounded() && !this.Socks.InPit() && !this.Owner.PlayerStatus.Pulling)
+        if(this.Controls.KeyDown(3) && this.Socks.Grounded() && !this.Socks.InPit() && !this.Owner.PlayerStatus.Pulling)
         {
             //this.Speed = 5;        //Crawling Speed
             //Crawling Sprite
             this.Owner.Sprite.Color = Real4(1,0,0,1);
-             
-            this.Owner.BoxCollider.Offset = this.CrawlOffset;
-            this.Owner.BoxCollider.Size = Real3(2, 0.5, 1);
+            this.Collider.Offset = this.CrawlOffset;
+            this.Collider.Size = this.ColliderCrawlSize;
             
         }
         else if (!this.Socks.UnderBlock())
         {
             //Walking Sprite
             this.Owner.Sprite.Color = Real4(1,1,1,1);
-            this.Owner.BoxCollider.Offset = Real3(0, 0, 0);
-            this.Owner.BoxCollider.Size = Real3(1, 1, 1);
+            this.Collider.Offset = Real3(0, 0, 0);
+            this.Collider.Size = this.ColliderSize;
+        }
+        
+        if(this.Owner.PlayerStatus.Pulling)
+        {
+            this.Owner.Sprite.Color = Real4(0,0,1,1);
         }
         
         //Left Right movement
@@ -97,6 +106,21 @@ class PlayerMovement : ZilchComponent
         }
         
         //Console.WriteLine(movement);
+        
+        if (this.Socks.Grounded()) {
+            if (movement.X == 0)
+                this.Owner.Sprite.SpriteSource = SpriteSource.Walk1;
+            else if (this.Owner.Sprite.SpriteSource != SpriteSource.Walk)
+                this.Owner.Sprite.SpriteSource = SpriteSource.Walk;
+        } else {
+            this.Owner.Sprite.SpriteSource = SpriteSource.Walk1;
+        }
+        
+        if (movement.X > 0) {
+            this.Owner.Sprite.FlipX = false;
+        } else if (movement.X < 0) {
+            this.Owner.Sprite.FlipX = true;
+        }
         
         this.Owner.Physocks.Update(movement);
         

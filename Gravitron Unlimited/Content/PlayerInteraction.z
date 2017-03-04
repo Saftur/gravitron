@@ -36,7 +36,7 @@ class PlayerInteraction : ZilchComponent
             //Crates
             else if(this.CurrentCrate != null)
             {
-                Console.WriteLine("`this.Player.PlayerStatus.Pulling`");
+                //Console.WriteLine("`this.Player.PlayerStatus.Pulling`");
                 if(!this.Player.PlayerStatus.Pulling)
                 {
                     this.Player.PlayerStatus.Pulling = true;
@@ -45,7 +45,7 @@ class PlayerInteraction : ZilchComponent
                 {
                     this.Player.PlayerStatus.Pulling = false;
                 }
-                Console.WriteLine("`this.Player.PlayerStatus.Pulling`");
+                //Console.WriteLine("`this.Player.PlayerStatus.Pulling`");
             }
             //Switches
             else if(this.CurrentSwitch != null)
@@ -201,7 +201,8 @@ class PlayerInteraction : ZilchComponent
         }
         if(this.CurrentCrate != null && o.Name == "StaticCrate")
         {
-            this.Player.PlayerStatus.Pulling = false;
+            if (this.Player != null)
+                this.Player.PlayerStatus.Pulling = false;
             this.CurrentCrate = null;
         }
         if(o.Switch != null)

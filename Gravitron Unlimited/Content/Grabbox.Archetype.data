@@ -14,13 +14,13 @@ Cog =
 	},
 	Transform = 
 	{
-		Vec3 Translation = [-7.62147379, 0.782883167, 0],
-		Vec3 Scale = [1.41999996, 2, 1],
+		Vec3 Translation = [-2.37125778, 4.12481308, 0],
+		Vec3 Scale = [1.20000005, 1.39999998, 1],
 		Quat Rotation = [0, 0, 0, 1],
 	},
 	Sprite = 
 	{
-		bool Visible = true,
+		bool Visible = false,
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
@@ -35,18 +35,6 @@ Cog =
 		bool AnimationActive = true,
 		float AnimationSpeed = 1,
 		uint StartFrame = 0,
-	},
-	RigidBody = 
-	{
-		bool Static = false,
-		bool Asleep = false,
-		bool Kinematic = true,
-		bool RotationLocked = false,
-		bool Mode2D = true,
-		bool AllowSleep = true,
-		bool Inherit2DMode = true,
-		Vec3 Velocity = [0, 0, 0],
-		Vec3 AngularVelocity = [0, 0, 0],
 	},
 	BoxCollider = 
 	{
@@ -80,6 +68,18 @@ Cog =
 	},
 	PlayerInteraction = 
 	{
+	},
+	RigidBody = 
+	{
+		bool Static = false,
+		bool Asleep = false,
+		bool Kinematic = true,
+		bool RotationLocked = false,
+		bool Mode2D = true,
+		bool AllowSleep = true,
+		bool Inherit2DMode = true,
+		Vec3 Velocity = [283.861786, 64.841507, 0],
+		Vec3 AngularVelocity = [0, 0, 0],
 	},
 	Hierarchy = 
 	{
