@@ -15,7 +15,6 @@ class Guard : ZilchComponent
     [Property]
     var RightPoint : Real3 = Real3(1,0,0);
     
-    [Property]
     var GlanceTime : Real = 0;
     
     [Property]
@@ -23,6 +22,9 @@ class Guard : ZilchComponent
                                                 //x is where the cliff is on the x axis
                                                 //y is where the cliff starts on the y axis
                                                 //z is what direction guard needs to face to get back onto cliff
+    [Property]
+    var VertDir : Real = -1;                    //direction of cliff 
+    
     var Up : Boolean = false;
     var Release : Boolean = false;
     
@@ -35,7 +37,7 @@ class Guard : ZilchComponent
     [Property]
     var ChaseSpeed : Real = 6;
     [Property]
-    var JumpHeight : Real = 1.5;
+    var JumpHeight : Real = 0;
     
     var Dir : Real3 = Real3(1,0,0);
     var RespawnPoint : Real3 = Real3(0,0,0);
@@ -70,12 +72,12 @@ class Guard : ZilchComponent
         }
         
         if (this.VisionIndicator != null)
-            this.VisionIndicator.Transform.Scale = Real3(this.VisionRange, this.Owner.Transform.Scale.Y /*height*/, 1);
+            this.VisionIndicator.Transform.Scale = Real3(this.VisionRange, this.Owner.BoxCollider.Size.Y /*height*/, 1);
         this.AlertSymbol = this.Space.CreateAtPosition(Archetype.AlertSymbol, this.Owner.Transform.Translation);
         this.AlertSymbol.FollowObject.ObjectToFollow.Cog = this.Owner;
         this.AlertSymbol.FollowObject.Displacement = Real3(-0.25,2.5,0);
         
-        this.JumpHeight = this.Owner.Transform.Scale.Y/2 + 0.5;
+        this.JumpHeight = this.Owner.BoxCollider.Size.Y/2 + 0.5;
     }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -87,9 +89,11 @@ class Guard : ZilchComponent
         
         var ray = Ray();    //For jumping and getting stuck
         var pos = this.Owner.Transform.Translation;
-        var h = this.Owner.Transform.Scale.Y;
+        var h = this.Owner.BoxCollider.Size.Y;
         
+        var currentG = this.Space.LevelSettings.GravityEffect.Direction.Y;
         
+        //Console.WriteLine("                         `this.JumpHeight`           `this.GameSession.GameVars.GuardJumpHeight`");
         //Console.WriteLine("`this.VerticalPoint` `this.Owner.Transform.Translation`");
         if(this.Look())
         {
@@ -102,7 +106,7 @@ class Guard : ZilchComponent
             
             this.Chase();
         }
-        else if(this.Type == 2)
+        else if(this.Type == 2) //Look back and forth
         {
             if(this.Socks.Speed != 0.5)
                 this.Socks.Speed = 0.5;
@@ -122,7 +126,8 @@ class Guard : ZilchComponent
             return;
         }
         //For falling off cliff
-        else if((this.Owner.Transform.Translation.X <= this.VerticalPoint.X + 0.5) && (this.Owner.Transform.Translation.X >= this.VerticalPoint.X - 0.5) && !this.Release)
+        else if((this.Owner.Transform.Translation.X <= this.VerticalPoint.X + 0.5) && 
+        (this.Owner.Transform.Translation.X >= this.VerticalPoint.X - 0.5) && !this.Release)
         {
             if(this.AlertSymbol.SpriteText.Visible)
             {
@@ -131,57 +136,35 @@ class Guard : ZilchComponent
             
             this.GlanceTime = 0;
             
-            ray.Direction = this.Space.LevelSettings.GravityEffect.Direction * Real3(1,-1,1);
-            
-            if(this.Space.LevelSettings.GravityEffect.Direction.Y < 0)
+            if(currentG < 0)
             {
-                if(this.Owner.Transform.Translation.Y <= this.VerticalPoint.Y)
+                if((this.Owner.Transform.Translation.Y <= this.VerticalPoint.Y) &&
+                    (currentG == this.VertDir))
                 {
-                    if(!this.Up)
-                        this.Owner.Transform.Translation = Real3(this.VerticalPoint.X, this.Owner.Transform.Translation.Y, 0);
-                    this.Up = true;
-                    
-                    //rise slowly
-                    this.Owner.RigidBody.Velocity = Real3(0,2,0);
-                }
-                else if(this.Up)
-                {
+                    Console.WriteLine("No");
+                    var dest = Real3(this.VerticalPoint.X, this.VerticalPoint.Y, 0);
+                    this.Teleport(dest, Real3(0,this.JumpHeight,0));
                     //final boost
-                    this.Owner.RigidBody.Velocity = Real3(0,11,0);
+                    this.Owner.RigidBody.Velocity = Real3(0,2,0);
                     this.Dir = Real3(this.VerticalPoint.Z,0,0);
                     this.Turn();
                     this.Socks.Update(this.Dir);
-                    this.Up = false;
                     this.Release = true;
                 }
             }
-            else if(this.Space.LevelSettings.GravityEffect.Direction.Y > 0)
+            else if(currentG > 0)
             {
-                if(this.Owner.Transform.Translation.Y >= this.VerticalPoint.Y)
+                if((this.Owner.Transform.Translation.Y >= this.VerticalPoint.Y) &&
+                    (currentG == this.VertDir))
                 {
-                    if(!this.Up)
-                        this.Owner.Transform.Translation = Real3(this.VerticalPoint.X, this.Owner.Transform.Translation.Y, 0);
-                    this.Up = true;
-                    
-                    if(this.CastRay(ray, 0.2, null))
-                    {
-                        this.Owner.RigidBody.Velocity = Real3(0,-20, 0);
-                    }
-                    else
-                    {
-                    //rise slowly
-                    this.Owner.RigidBody.Velocity = Real3(0,-2,0);
-                    }
-                    
-                }
-                else if(this.Up)
-                {
+                    Console.WriteLine("Noo");
+                    var dest = Real3(this.VerticalPoint.X, this.VerticalPoint.Y, 0);
+                    this.Teleport(dest, Real3(0,this.JumpHeight,0));
                     //final boost
-                    this.Owner.RigidBody.Velocity = Real3(0,-11,0);
+                    this.Owner.RigidBody.Velocity = Real3(0,-20,0);
                     this.Dir = Real3(this.VerticalPoint.Z,0,0);
                     this.Turn();
                     this.Socks.Update(this.Dir);
-                    this.Up = false;
                     this.Release = true;
                 }
             }
@@ -213,6 +196,12 @@ class Guard : ZilchComponent
         {
             this.Dir *= Real3(-1,1,1);
             this.Turn();
+            this.Stuck = 0;
+        }
+        else if(this.Stuck > 4)
+        {
+            //Get OUT of there man
+            this.Teleport(this.RightPoint, Real3(0,this.JumpHeight,0));
         }
         if(this.Time > 3) //Not stuck
         {
@@ -224,9 +213,8 @@ class Guard : ZilchComponent
         //Jumping
         if(this.Socks.Grounded())
         {
-            
             ray.Start = pos + Real3(0, this.JumpHeight, 0); //Check if object is jumpable
-            var dist = this.Owner.Transform.Scale.X/2 + 0.75;
+            var dist = this.Owner.BoxCollider.Size.X/2 + 1.25;
             if(this.CastRay(ray, dist, null) && !this.CastRay(ray,dist,this.Player))
             {
                 this.Dir *= Real3(-1,1,1);
@@ -288,6 +276,7 @@ class Guard : ZilchComponent
         {
             if(pos.X > this.RightPoint.X + 2 || pos.X < this.RightPoint.X - 2)
             {
+                //Teleport back to position
                 this.Space.CreateAtPosition(Archetype.Teleport, this.Owner.Transform.Translation);
                 this.Owner.Transform.Translation = this.RightPoint;
             }
@@ -315,20 +304,37 @@ class Guard : ZilchComponent
         
         var ray = Ray();
         var pos = this.Owner.Transform.Translation;
-        var h = this.Owner.Transform.Scale.Y;
+        var h = this.Owner.BoxCollider.Size.Y;
         
         ray.Direction = this.Dir;
         
         ray.Start = pos;
-        if(this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)) return true; //middle
+        if(this.CastRay(ray, this.Owner.BoxCollider.Size.X/2 + this.VisionRange, this.Player)) return true; //middle
             
         ray.Start = pos + Real3(0, h/2, 0);
-        if(this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)) return true; //top
+        if(this.CastRay(ray, this.Owner.BoxCollider.Size.X/2 + this.VisionRange, this.Player)) return true; //top
         
         ray.Start = pos + Real3(0, -h/2 +0.1, 0);
-        if(this.CastRay(ray, this.Owner.Transform.Scale.X/2 + this.VisionRange, this.Player)) return true; //bottom
+        if(this.CastRay(ray, this.Owner.BoxCollider.Size.X/2 + this.VisionRange, this.Player)) return true; //bottom
         
         return false;
+    }
+    function Teleport(destination : Real3, adjustment : Real3)
+    {
+        var rad = this.Owner.BoxCollider.Size.Y;
+        var num = 1;
+        var filter = CastFilter();
+        
+        var results = this.Space.PhysicsSpace.CastSphereResults(destination, rad, num, filter);
+        
+        while(results.IsNotEmpty)
+        {
+            destination += adjustment;
+            results = this.Space.PhysicsSpace.CastSphereResults(destination, rad, num, filter);
+        }
+                            
+        this.Space.CreateAtPosition(Archetype.Teleport, this.Owner.Transform.Translation);
+        this.Owner.Transform.Translation = destination;
     }
     function OnCollisionStarted(event : CollisionEvent)
     {
