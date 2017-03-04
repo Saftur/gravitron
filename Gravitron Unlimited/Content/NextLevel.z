@@ -4,7 +4,7 @@ class NextLevel : ZilchComponent
     var KeyToPress : Keys = Keys.Enter;
     
     [Property]
-    var NextLevel : Level = Level.Level;
+    var NextLevel : Level = Level.JRealLevel;
     
     
     function Initialize(init : CogInitializer)

@@ -104,7 +104,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [64.849884, 3.83537698, 50.0000038],
+			Vec3 Translation = [40.008503, 7.11233711, 50.0000038],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-08, 0, 1],
 		},
@@ -116,7 +116,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 30.1194935,
+			float Size = 60.0833473,
 		},
 		EditorCameraController = 
 		{
@@ -124,7 +124,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [64.849884, 3.83537698, 4.87825855e-06],
+			Vec3 LookTarget = [40.008503, 7.11233711, 3.15598754e-06],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -232,7 +232,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-4.47879601, -3.75829411, 0],
+			Vec3 Translation = [-4.03557587, -2.58615923, 0],
 			Vec3 Scale = [1, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -261,10 +261,46 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "5849527ca9ca868c:GravitySwitch",
+		string Name = "58ce2bb8fca89cd3:FloatingGuard",
 		LinkId = 
 		{
 			uint Id = 7,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [61.0096588, -4.79447746, 0],
+			Vec3 Scale = [1, 2, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "FloatingGuard",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "58ce2bb8fca89cd3:FloatingGuard",
+		LinkId = 
+		{
+			uint Id = 8,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [61.0096588, -4.79447746, 0],
+			Vec3 Scale = [1, 2, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "FloatingGuard",
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "5849527ca9ca868c:GravitySwitch",
+		LinkId = 
+		{
+			uint Id = 9,
 		},
 		Transform = 
 		{
@@ -282,11 +318,11 @@ Level =
 		string Name = "586fa0a219e7d914:StaticCrate",
 		LinkId = 
 		{
-			uint Id = 8,
+			uint Id = 10,
 		},
 		Transform = 
 		{
-			Vec3 Translation = [9.99999905, -1, 0],
+			Vec3 Translation = [10, -3, 0],
 			Vec3 Scale = [2, 2, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -300,7 +336,7 @@ Level =
 		string Name = "586fa0a219e7d914:StaticCrate",
 		LinkId = 
 		{
-			uint Id = 9,
+			uint Id = 11,
 		},
 		Transform = 
 		{
@@ -318,7 +354,7 @@ Level =
 		string Name = "5849527ca9ca868c:GravitySwitch",
 		LinkId = 
 		{
-			uint Id = 10,
+			uint Id = 12,
 		},
 		Transform = 
 		{
@@ -336,7 +372,7 @@ Level =
 		string Name = "586fa0a219e7d914:StaticCrate",
 		LinkId = 
 		{
-			uint Id = 11,
+			uint Id = 13,
 		},
 		Transform = 
 		{
@@ -349,58 +385,22 @@ Level =
 			string Name = "StaticCrate",
 		},
 	},
-	Cog = 
+	ArchetypeInstance = 
 	{
+		string Name = "5849527ca9ca868c:GravitySwitch",
 		LinkId = 
 		{
-			uint Id = 12,
+			uint Id = 14,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [58.1031723, 6.47238922, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
 		},
 		Named = 
 		{
 			string Name = "GravitySwitch",
-		},
-		Archetyped = 
-		{
-			string Name = "5849527ca9ca868c:GravitySwitch",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [54.5, 6.5, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [0.329411685, 0.206250012, 0.625, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		BoxCollider = 
-		{
-			bool Ghost = true,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		Switch = 
-		{
-			bool Active = false,
-			bool Gravity = true,
 		},
 	},
 	ArchetypeInstance = 
@@ -408,7 +408,7 @@ Level =
 		string Name = "584ab76582c0ad7e:Exit",
 		LinkId = 
 		{
-			uint Id = 13,
+			uint Id = 15,
 		},
 		Transform = 
 		{
@@ -423,33 +423,10 @@ Level =
 	},
 	ArchetypeInstance = 
 	{
-		string Name = "58d8b872107e2892:WallDoor",
+		string Name = "58d76dfebdbf5c43:WallDoor2",
 		LinkId = 
 		{
-			uint Id = 14,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [38, 3.5, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Area = 
-		{
-			Vec2 Size = [2, 3],
-			Location Origin = Center,
-		},
-		Named = 
-		{
-			string Name = "WallDoor3",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "58d8b872107e2892:WallDoor",
-		LinkId = 
-		{
-			uint Id = 15,
+			uint Id = 16,
 		},
 		Transform = 
 		{
@@ -467,16 +444,70 @@ Level =
 			string Name = "WallDoor2",
 		},
 	},
-	ArchetypeInstance = 
+	Cog = 
 	{
-		string Name = "58d8b872107e2892:WallDoor",
 		LinkId = 
 		{
-			uint Id = 16,
+			uint Id = 17,
+		},
+		Named = 
+		{
+			string Name = "WallDoor1",
+		},
+		Archetyped = 
+		{
+			string Name = "58d76dc5b1ca0f22:WallDoor1",
 		},
 		Transform = 
 		{
 			Vec3 Translation = [6, 3.5, 0],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0.829999983, 0.738699973, 0.738699973, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		Area = 
+		{
+			Vec2 Size = [2, 3],
+			Location Origin = Center,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [1, 1.5, 0.5],
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "58d76dd4b50f90c8:WallDoor3",
+		LinkId = 
+		{
+			uint Id = 18,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [38, 3.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -487,14 +518,14 @@ Level =
 		},
 		Named = 
 		{
-			string Name = "WallDoor1",
+			string Name = "WallDoor3",
 		},
 	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 17,
+			uint Id = 19,
 		},
 		Named = 
 		{
@@ -506,7 +537,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [65, 8.5, 0],
+			Vec3 Translation = [63, 8.5, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -548,7 +579,76 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 18,
+			uint Id = 20,
+		},
+		Named = 
+		{
+			string Name = "Sprite",
+		},
+		Transform = 
+		{
+			Vec3 Translation = [3.99947953, 1.13645065, 1.32856869e-07],
+			Vec3 Scale = [1, 1, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Sprite = 
+		{
+			bool Visible = true,
+			bool VisibilityCulling = true,
+			bool VisibilityEvents = true,
+			bool CastShadows = false,
+			Vec4 Color = [0.334999979, 0.334999979, 0.334999979, 1],
+			BlendMode BlendMode = Alpha,
+			SpriteGeometryMode GeometryMode = ZPlane,
+			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
+			string SpriteSource = "5275aa4d802dd6dc:Square",
+			bool RenderMask = false,
+			bool FlipX = false,
+			bool FlipY = false,
+			bool AnimationActive = true,
+			float AnimationSpeed = 1,
+			uint StartFrame = 0,
+		},
+		BoxCollider = 
+		{
+			bool Ghost = false,
+			bool SendsMessages = true,
+			bool Seamless = true,
+			string MaterialName = "4de020863e872da8:DefaultPhysicsMaterial",
+			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
+			Vec3 Offset = [0, 0, 0],
+			Vec3 Size = [1, 0.125, 0.5],
+		},
+		Area = 
+		{
+			Vec2 Size = [2, 0.25],
+			Location Origin = Center,
+		},
+		PressurePlateDoor = 
+		{
+			CogPath DoorToOpen = 
+			{
+				string Path = ":/WallDoor",
+				bool ErrorOnResolveToNull = false,
+				bool ErrorOnPathCantCompute = false,
+				bool ErrorOnDirectLinkFail = false,
+				bool UpdateCogOnPathChange = true,
+				bool UpdatePathOnCogChange = true,
+				bool UpdateCogOnInitialize = true,
+				bool ResolvedNullErrorOccurred = false,
+				uint ResolvedCog = 17,
+				CogPathPreference PathPreference0 = CogRelative,
+				CogPathPreference PathPreference1 = SpaceRelative,
+				CogPathPreference PathPreference2 = Absolute,
+			},
+			float AnimationTime = 0.5,
+		},
+	},
+	Cog = 
+	{
+		LinkId = 
+		{
+			uint Id = 21,
 		},
 		Named = 
 		{
@@ -556,11 +656,11 @@ Level =
 		},
 		Archetyped = 
 		{
-			string Name = "58d8b3330380c3b9:PressurePlate",
+			string Name = "4faa6050b86884ec:DefaultArchetype",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [33, -2, 0],
+			Vec3 Translation = [33, -4, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -609,7 +709,7 @@ Level =
 				bool UpdatePathOnCogChange = true,
 				bool UpdateCogOnInitialize = true,
 				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 14,
+				uint ResolvedCog = 18,
 				CogPathPreference PathPreference0 = CogRelative,
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
@@ -621,7 +721,7 @@ Level =
 	{
 		LinkId = 
 		{
-			uint Id = 19,
+			uint Id = 22,
 		},
 		Named = 
 		{
@@ -629,11 +729,11 @@ Level =
 		},
 		Archetyped = 
 		{
-			string Name = "58d8b3330380c3b9:PressurePlate",
+			string Name = "4faa6050b86884ec:DefaultArchetype",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [14, 9, 0],
+			Vec3 Translation = [14, 11, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -682,7 +782,7 @@ Level =
 				bool UpdatePathOnCogChange = true,
 				bool UpdateCogOnInitialize = true,
 				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 15,
+				uint ResolvedCog = 16,
 				CogPathPreference PathPreference0 = CogRelative,
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
@@ -690,34 +790,11 @@ Level =
 			float AnimationTime = 0.5,
 		},
 	},
-	ArchetypeInstance = 
-	{
-		string Name = "58d8b3330380c3b9:PressurePlate",
-		LinkId = 
-		{
-			uint Id = 20,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [3.8320694, 1.16292655, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Area = 
-		{
-			Vec2 Size = [2, 0.25],
-			Location Origin = Center,
-		},
-		Named = 
-		{
-			string Name = "PressurePlate",
-		},
-	},
 	Cog = 
 	{
 		LinkId = 
 		{
-			uint Id = 21,
+			uint Id = 23,
 		},
 		Named = 
 		{
@@ -725,11 +802,11 @@ Level =
 		},
 		Archetyped = 
 		{
-			string Name = "58d8b3330380c3b9:PressurePlate",
+			string Name = "4faa6050b86884ec:DefaultArchetype",
 		},
 		Transform = 
 		{
-			Vec3 Translation = [59.5, 12, 0],
+			Vec3 Translation = [61, 12, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -778,212 +855,12 @@ Level =
 				bool UpdatePathOnCogChange = true,
 				bool UpdateCogOnInitialize = true,
 				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 17,
+				uint ResolvedCog = 19,
 				CogPathPreference PathPreference0 = CogRelative,
 				CogPathPreference PathPreference1 = SpaceRelative,
 				CogPathPreference PathPreference2 = Absolute,
 			},
 			float AnimationTime = 0.5,
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 22,
-		},
-		Named = 
-		{
-			string Name = "Guard",
-		},
-		Archetyped = 
-		{
-			string Name = "584b3d0c7ec77112:Guard",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [60.1474113, -4.94798517, 3.81469727e-06],
-			Vec3 Scale = [1, 2, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [0.162524998, 0.836954653, 0.985000014, 1],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		RigidBody = 
-		{
-			bool Static = false,
-			bool Asleep = false,
-			bool Kinematic = false,
-			bool RotationLocked = true,
-			bool Mode2D = true,
-			bool AllowSleep = true,
-			bool Inherit2DMode = true,
-			Vec3 Velocity = [0, 0, 0],
-			Vec3 AngularVelocity = [0, 0, 0],
-		},
-		BoxCollider = 
-		{
-			bool Ghost = false,
-			bool SendsMessages = true,
-			bool Seamless = true,
-			string MaterialName = "58cf7875009ddbd3:Physocks",
-			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
-			Vec3 Offset = [0, 0, 0],
-			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-		Physocks = 
-		{
-			float Speed = 2.5,
-			float JumpStrength = 13,
-		},
-		Guard = 
-		{
-			bool Active = true,
-			Vec3 LeftPoint = [54, 0, 0],
-			Vec3 RightPoint = [66, 0, 0],
-			int Type = 1,
-			float VisionRange = 5,
-			float ChaseSpeed = 6,
-			float JumpHeight = 0,
-		},
-		Tag = 
-		{
-			int Number = 1,
-		},
-		Hierarchy = 
-		{
-		},
-	},
-	Cog = 
-	{
-		LinkId = 
-		{
-			uint Id = 23,
-		},
-		Named = 
-		{
-			string Name = "GuardV",
-		},
-		Archetyped = 
-		{
-			string Name = "586e10f29f47da51:GuardV",
-		},
-		Transform = 
-		{
-			Vec3 Translation = [60.1221504, -3.08855653, 3.81469727e-06],
-			Vec3 Scale = [5, 2, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Sprite = 
-		{
-			bool Visible = true,
-			bool VisibilityCulling = true,
-			bool VisibilityEvents = true,
-			bool CastShadows = false,
-			Vec4 Color = [0.894999981, 0.420650005, 0.420650005, 0.300000012],
-			BlendMode BlendMode = Alpha,
-			SpriteGeometryMode GeometryMode = ZPlane,
-			string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",
-			string SpriteSource = "5275aa4d802dd6dc:Square",
-			bool RenderMask = false,
-			bool FlipX = false,
-			bool FlipY = false,
-			bool AnimationActive = true,
-			float AnimationSpeed = 1,
-			uint StartFrame = 0,
-		},
-		FollowObject = 
-		{
-			bool Active = true,
-			CogPath ObjectToFollow = 
-			{
-				string Path = ":/Guard",
-				bool ErrorOnResolveToNull = false,
-				bool ErrorOnPathCantCompute = false,
-				bool ErrorOnDirectLinkFail = false,
-				bool UpdateCogOnPathChange = true,
-				bool UpdatePathOnCogChange = true,
-				bool UpdateCogOnInitialize = true,
-				bool ResolvedNullErrorOccurred = false,
-				uint ResolvedCog = 22,
-				CogPathPreference PathPreference0 = CogRelative,
-				CogPathPreference PathPreference1 = SpaceRelative,
-				CogPathPreference PathPreference2 = Absolute,
-			},
-			Vec3 Displacement = [3, 0, 0],
-		},
-		Tag = 
-		{
-			int Number = 1,
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "586a8f0c0d4163b9:Checkpoint",
-		LinkId = 
-		{
-			uint Id = 24,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [40, 1, 0],
-			Vec3 Scale = [1.5, 2, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Checkpoint",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "58ce2c4b165bc29e:Lightbulb",
-		LinkId = 
-		{
-			uint Id = 25,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [54.5, -0.5, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Lightbulb",
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "58d0cd8b570d37a7:LightSwitch",
-		LinkId = 
-		{
-			uint Id = 26,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [52, 6.5, 0],
-			Vec3 Scale = [1, 1, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "LightSwitch",
 		},
 	},
 },
