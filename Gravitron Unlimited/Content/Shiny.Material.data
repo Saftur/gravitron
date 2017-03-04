@@ -1,0 +1,15 @@
+Material = 
+{
+	Phong = 
+	{
+		float SpecularExponent = 40,
+		float SpecularScalar = 1,
+	},
+	ModulateModelColor = 
+	{
+	},
+	ColorDiffuse = 
+	{
+		Vec4 DiffuseColor = [1, 1, 1, 1],
+	},
+},

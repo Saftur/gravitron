@@ -2,8 +2,8 @@ DataContent =
 {
 	DataBuilder = 
 	{
-		string Name = "PressurePlate.Archetype",
-		uint64 ResourceId = 58d8b93ee1442116,
+		string Name = "PressurePlate",
+		uint64 ResourceId = 5866fe78e16fd29d,
 		string LoaderType = "Cog",
 		uint Version = 0,
 		bool ShowInEditor = true,
